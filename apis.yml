@@ -2,8 +2,6 @@ aid: ably
 url: https://raw.githubusercontent.com/api-evangelist/ably/refs/heads/main/apis.yml
 name: Ably
 x-type: company
-description: >-
-  Ably is a realtime messaging platform offering pub/sub, presence, push notifications, integrations, and chat/streaming APIs over WebSocket and HTTP.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Realtime
@@ -11,13 +9,90 @@ tags:
   - Pub/Sub
   - Messaging
   - Streaming
+  - Push Notifications
+  - Chat
+  - LiveSync
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+description: >-
+  Ably is a realtime messaging platform offering pub/sub, presence, push notifications, chat,
+  LiveSync, and integrations over WebSocket and HTTP. Ably publishes its OpenAPI specifications
+  publicly via the ably/open-specs GitHub repository, with separate specs for the Platform API
+  (REST messaging surface) and the Control API (account, app, and key management).
+apis:
+  - aid: ably:platform-api
+    name: Ably Platform API
+    tags:
+      - Pub/Sub
+      - Messaging
+      - WebSockets
+      - REST
+      - Streaming
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rest.ably.io
+    humanURL: https://ably.com/docs/api/rest-api
+    description: >-
+      The Ably Platform API exposes pub/sub messaging, presence, history, push notifications,
+      and channel/stats endpoints over REST and WebSocket. WebSocket realtime connections use
+      realtime.ably.io. Authentication via Basic auth (key) or token-based.
+    properties:
+      - type: Documentation
+        url: https://ably.com/docs/api/rest-api
+      - type: OpenAPI
+        url: openapi/ably-platform-api-openapi.yml
+      - type: WebSocket
+        url: wss://realtime.ably.io
+    x-features:
+      - Pub/Sub channels with presence
+      - History (1-365 days by tier)
+      - Push notifications (FCM/APNs/Web)
+      - Realtime over WebSocket
+      - REST publish for backend
+    x-use-cases:
+      - In-app chat and notifications
+      - Live dashboards and tickers
+      - IoT telemetry
+  - aid: ably:control-api
+    name: Ably Control API
+    tags:
+      - Account Management
+      - Apps
+      - Keys
+      - Namespaces
+      - Integrations
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://control.ably.net/v1
+    humanURL: https://ably.com/docs/api/control-api
+    description: >-
+      The Ably Control API manages accounts, apps, API keys, namespaces, queues, integration
+      rules, and webhooks. Used to provision and operate Ably resources programmatically.
+      Authentication via personal access token (PAT).
+    properties:
+      - type: Documentation
+        url: https://ably.com/docs/api/control-api
+      - type: OpenAPI
+        url: openapi/ably-control-api-openapi.yml
+    x-features:
+      - Manage apps and keys
+      - Provision namespaces and integration rules
+      - Webhook management
+      - Account stats
+    x-use-cases:
+      - DevOps automation
+      - Multi-tenant Ably provisioning
+      - CI/CD environment setup
 common:
-  - type: Website
+  - type: Portal
     url: https://ably.com/
+  - type: Documentation
+    url: https://ably.com/docs
+  - type: Pricing
+    url: https://ably.com/pricing
+  - type: GitHub
+    url: https://github.com/ably
+  - type: Status
+    url: https://status.ably.com/
   - type: Plans
     url: plans/ably-plans-pricing.yml
   - type: RateLimits

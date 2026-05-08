@@ -5,31 +5,59 @@ provider: Ably
 providerId: ably
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Realtime
-- WebSockets
-- Pub/Sub
-- Messaging
-- Streaming
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Ably. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+  - Realtime
+  - Rate Limiting
+description: >-
+  Ably gates per-account concurrent connections, channels, and per-second message rates by plan
+  tier. Free is 200 connections / 500 msg/sec; Standard 10K / 2.5K; Pro 50K / 10K; Enterprise
+  unlimited. The Control API enforces a separate per-token limit on management calls (typically
+  60 rpm). HTTP 429 is returned when caps are exceeded.
 sources:
-- https://ably.com/
+  - https://ably.com/pricing
+  - https://ably.com/docs/api/rest-api
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Free - connections
+    scope: account
+    metric: concurrent_connections
+    limit: 200
+  - name: Free - message rate
+    scope: account
+    metric: messages_per_second
+    limit: 500
+  - name: Standard - connections
+    scope: account
+    metric: concurrent_connections
+    limit: 10000
+  - name: Standard - message rate
+    scope: account
+    metric: messages_per_second
+    limit: 2500
+  - name: Pro - connections
+    scope: account
+    metric: concurrent_connections
+    limit: 50000
+  - name: Pro - message rate
+    scope: account
+    metric: messages_per_second
+    limit: 10000
+  - name: Enterprise
+    scope: account
+    metric: concurrent_connections
+    limit: -1
+    notes: Unlimited per contract.
+  - name: Control API
+    scope: token
+    metric: requests_per_minute
+    limit: 60
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Backoff Strategy
+    description: Honor 429 Retry-After and apply exponential backoff with jitter.
+  - name: Burst Control
+    description: Use channel namespacing and shard fan-out across many channels to stay under per-channel caps.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
