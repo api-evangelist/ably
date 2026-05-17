@@ -1,7 +1,7 @@
 aid: ably
 url: https://raw.githubusercontent.com/api-evangelist/ably/refs/heads/main/apis.yml
 name: Ably
-x-type: company
+kind: company
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Realtime
@@ -91,7 +91,7 @@ common:
     url: https://ably.com/pricing
   - type: GitHub
     url: https://github.com/ably
-  - type: Status
+  - type: StatusPage
     url: https://status.ably.com/
   - type: Plans
     url: plans/ably-plans-pricing.yml
