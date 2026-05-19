@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Platform API — History
+  description: 'Platform API — History. 2 operations. Lead operation: Get message history for a channel. Self-contained Naftiko
+    capability covering one Ably business surface.'
+  tags:
+  - Ably
+  - History
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-history
+    baseUri: https://rest.ably.io
+    description: Platform API — History business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-messages
+      path: /channels/{channel_id}/messages
+      operations:
+      - name: getmessagesbychannel
+        method: GET
+        description: Get message history for a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-presence-history
+      path: /channels/{channel_id}/presence/history
+      operations:
+      - name: getpresencehistoryofchannel
+        method: GET
+        description: Get presence history of a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-history-rest
+    port: 8080
+    description: REST adapter for Platform API — History. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/messages
+      name: channels-channel-id-messages
+      description: REST surface for channels-channel_id-messages.
+      operations:
+      - method: GET
+        name: getmessagesbychannel
+        description: Get message history for a channel
+        call: platform-history.getmessagesbychannel
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/presence/history
+      name: channels-channel-id-presence-history
+      description: REST surface for channels-channel_id-presence-history.
+      operations:
+      - method: GET
+        name: getpresencehistoryofchannel
+        description: Get presence history of a channel
+        call: platform-history.getpresencehistoryofchannel
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-history-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Platform API — History. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-message-history-channel
+      description: Get message history for a channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-history.getmessagesbychannel
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-presence-history-channel
+      description: Get presence history of a channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-history.getpresencehistoryofchannel
+      outputParameters:
+      - type: object
+        mapping: $.

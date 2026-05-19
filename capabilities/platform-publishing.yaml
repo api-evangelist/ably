@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Platform API — Publishing
+  description: 'Platform API — Publishing. 1 operations. Lead operation: Publish a message to a channel. Self-contained Naftiko
+    capability covering one Ably business surface.'
+  tags:
+  - Ably
+  - Publishing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-publishing
+    baseUri: https://rest.ably.io
+    description: Platform API — Publishing business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-messages
+      path: /channels/{channel_id}/messages
+      operations:
+      - name: publishmessagestochannel
+        method: POST
+        description: Publish a message to a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-publishing-rest
+    port: 8080
+    description: REST adapter for Platform API — Publishing. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/messages
+      name: channels-channel-id-messages
+      description: REST surface for channels-channel_id-messages.
+      operations:
+      - method: POST
+        name: publishmessagestochannel
+        description: Publish a message to a channel
+        call: platform-publishing.publishmessagestochannel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-publishing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Platform API — Publishing. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: publish-message-channel
+      description: Publish a message to a channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-publishing.publishmessagestochannel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

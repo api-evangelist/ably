@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Platform API — Stats
+  description: 'Platform API — Stats. 2 operations. Lead operation: Retrieve usage statistics for an application. Self-contained
+    Naftiko capability covering one Ably business surface.'
+  tags:
+  - Ably
+  - Stats
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-stats
+    baseUri: https://rest.ably.io
+    description: Platform API — Stats business capability. Self-contained, no shared references.
+    resources:
+    - name: stats
+      path: /stats
+      operations:
+      - name: getstats
+        method: GET
+        description: Retrieve usage statistics for an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: unit
+          in: query
+          type: string
+          description: Specifies the unit of aggregation in the returned results.
+    - name: time
+      path: /time
+      operations:
+      - name: gettime
+        method: GET
+        description: Get the service time
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-stats-rest
+    port: 8080
+    description: REST adapter for Platform API — Stats. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/stats
+      name: stats
+      description: REST surface for stats.
+      operations:
+      - method: GET
+        name: getstats
+        description: Retrieve usage statistics for an application
+        call: platform-stats.getstats
+        with:
+          unit: rest.unit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/time
+      name: time
+      description: REST surface for time.
+      operations:
+      - method: GET
+        name: gettime
+        description: Get the service time
+        call: platform-stats.gettime
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-stats-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Platform API — Stats. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: retrieve-usage-statistics-application
+      description: Retrieve usage statistics for an application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-stats.getstats
+      with:
+        unit: tools.unit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-service-time
+      description: Get the service time
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-stats.gettime
+      outputParameters:
+      - type: object
+        mapping: $.

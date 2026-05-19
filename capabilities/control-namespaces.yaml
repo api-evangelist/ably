@@ -1,0 +1,220 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Control API v1 — namespaces
+  description: 'Control API v1 — namespaces. 4 operations. Lead operation: Lists namespaces. Self-contained Naftiko capability
+    covering one Ably business surface.'
+  tags:
+  - Ably
+  - namespaces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-namespaces
+    baseUri: https://control.ably.net/v1
+    description: Control API v1 — namespaces business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-app_id-namespaces
+      path: /apps/{app_id}/namespaces
+      operations:
+      - name: get
+        method: GET
+        description: Lists namespaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+      - name: post
+        method: POST
+        description: Creates a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: apps-app_id-namespaces-namespace_id
+      path: /apps/{app_id}/namespaces/{namespace_id}
+      operations:
+      - name: patch
+        method: PATCH
+        description: Updates a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+        - name: namespace_id
+          in: path
+          type: string
+          description: The namespace ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: delete
+        method: DELETE
+        description: Deletes a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+        - name: namespace_id
+          in: path
+          type: string
+          description: The namespace ID.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: control-namespaces-rest
+    port: 8080
+    description: REST adapter for Control API v1 — namespaces. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/apps/{app-id}/namespaces
+      name: apps-app-id-namespaces
+      description: REST surface for apps-app_id-namespaces.
+      operations:
+      - method: GET
+        name: get
+        description: Lists namespaces
+        call: control-namespaces.get
+        with:
+          app_id: rest.app_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Creates a namespace
+        call: control-namespaces.post
+        with:
+          app_id: rest.app_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/{app-id}/namespaces/{namespace-id}
+      name: apps-app-id-namespaces-namespace-id
+      description: REST surface for apps-app_id-namespaces-namespace_id.
+      operations:
+      - method: PATCH
+        name: patch
+        description: Updates a namespace
+        call: control-namespaces.patch
+        with:
+          app_id: rest.app_id
+          namespace_id: rest.namespace_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Deletes a namespace
+        call: control-namespaces.delete
+        with:
+          app_id: rest.app_id
+          namespace_id: rest.namespace_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-namespaces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Control API v1 — namespaces. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: lists-namespaces
+      description: Lists namespaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-namespaces.get
+      with:
+        app_id: tools.app_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-namespace
+      description: Creates a namespace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-namespaces.post
+      with:
+        app_id: tools.app_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-namespace
+      description: Updates a namespace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: control-namespaces.patch
+      with:
+        app_id: tools.app_id
+        namespace_id: tools.namespace_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-namespace
+      description: Deletes a namespace
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-namespaces.delete
+      with:
+        app_id: tools.app_id
+        namespace_id: tools.namespace_id
+      outputParameters:
+      - type: object
+        mapping: $.

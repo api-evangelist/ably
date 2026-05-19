@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Control API v1 — queues
+  description: 'Control API v1 — queues. 3 operations. Lead operation: Lists queues. Self-contained Naftiko capability covering
+    one Ably business surface.'
+  tags:
+  - Ably
+  - queues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-queues
+    baseUri: https://control.ably.net/v1
+    description: Control API v1 — queues business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-app_id-queues
+      path: /apps/{app_id}/queues
+      operations:
+      - name: get
+        method: GET
+        description: Lists queues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+      - name: post
+        method: POST
+        description: Creates a queue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: apps-app_id-queues-queue_id
+      path: /apps/{app_id}/queues/{queue_id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Deletes a queue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: app_id
+          in: path
+          type: string
+          description: The application ID.
+          required: true
+        - name: queue_id
+          in: path
+          type: string
+          description: The queue ID.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: control-queues-rest
+    port: 8080
+    description: REST adapter for Control API v1 — queues. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/apps/{app-id}/queues
+      name: apps-app-id-queues
+      description: REST surface for apps-app_id-queues.
+      operations:
+      - method: GET
+        name: get
+        description: Lists queues
+        call: control-queues.get
+        with:
+          app_id: rest.app_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Creates a queue
+        call: control-queues.post
+        with:
+          app_id: rest.app_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/{app-id}/queues/{queue-id}
+      name: apps-app-id-queues-queue-id
+      description: REST surface for apps-app_id-queues-queue_id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Deletes a queue
+        call: control-queues.delete
+        with:
+          app_id: rest.app_id
+          queue_id: rest.queue_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-queues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Control API v1 — queues. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: lists-queues
+      description: Lists queues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-queues.get
+      with:
+        app_id: tools.app_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-queue
+      description: Creates a queue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-queues.post
+      with:
+        app_id: tools.app_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-queue
+      description: Deletes a queue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-queues.delete
+      with:
+        app_id: tools.app_id
+        queue_id: tools.queue_id
+      outputParameters:
+      - type: object
+        mapping: $.

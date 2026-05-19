@@ -1,0 +1,539 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Platform API — Push
+  description: 'Platform API — Push. 13 operations. Lead operation: List channel subscriptions. Self-contained Naftiko capability
+    covering one Ably business surface.'
+  tags:
+  - Ably
+  - Push
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-push
+    baseUri: https://rest.ably.io
+    description: Platform API — Push business capability. Self-contained, no shared references.
+    resources:
+    - name: push-channelSubscriptions
+      path: /push/channelSubscriptions
+      operations:
+      - name: getpushsubscriptionsonchannels
+        method: GET
+        description: List channel subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel
+          in: query
+          type: string
+          description: Filter to restrict to subscriptions associated with that channel.
+        - name: deviceId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that deviceId. Cannot be used with clientId.
+        - name: clientId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that clientId. Cannot be used with deviceId.
+        - name: limit
+          in: query
+          type: integer
+          description: The maximum number of records to return.
+      - name: subscribepushdevicetochannel
+        method: POST
+        description: Subscribe a device to a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletepushdevicedetails
+        method: DELETE
+        description: Delete a registered device's update token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel
+          in: query
+          type: string
+          description: Filter to restrict to subscriptions associated with that channel.
+        - name: deviceId
+          in: query
+          type: string
+          description: Must be set when clientId is empty, cannot be used with clientId.
+        - name: clientId
+          in: query
+          type: string
+          description: Must be set when deviceId is empty, cannot be used with deviceId.
+    - name: push-channels
+      path: /push/channels
+      operations:
+      - name: getchannelswithpushsubscribers
+        method: GET
+        description: List all channels with at least one subscribed device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: push-deviceRegistrations
+      path: /push/deviceRegistrations
+      operations:
+      - name: getregisteredpushdevices
+        method: GET
+        description: List devices registered for receiving push notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deviceId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that deviceId.
+        - name: clientId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that clientId.
+        - name: limit
+          in: query
+          type: integer
+          description: The maximum number of records to return.
+      - name: registerpushdevice
+        method: POST
+        description: Register a device for receiving push notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: unregisterallpushdevices
+        method: DELETE
+        description: Unregister matching devices for push notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deviceId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that deviceId. Cannot be used with clientId.
+        - name: clientId
+          in: query
+          type: string
+          description: Optional filter to restrict to devices associated with that clientId. Cannot be used with deviceId.
+    - name: push-deviceRegistrations-device_id
+      path: /push/deviceRegistrations/{device_id}
+      operations:
+      - name: getpushdevicedetails
+        method: GET
+        description: Get a device registration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putpushdevicedetails
+        method: PUT
+        description: Update a device registration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: patchpushdevicedetails
+        method: PATCH
+        description: Update a device registration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: unregisterpushdevice
+        method: DELETE
+        description: Unregister a single device for push notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: push-deviceRegistrations-device_id-resetUpdateToken
+      path: /push/deviceRegistrations/{device_id}/resetUpdateToken
+      operations:
+      - name: updatepushdevicedetails
+        method: GET
+        description: Reset a registered device's update token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: push-publish
+      path: /push/publish
+      operations:
+      - name: publishpushnotificationtodevices
+        method: POST
+        description: Publish a push notification to device(s)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-push-rest
+    port: 8080
+    description: REST adapter for Platform API — Push. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/push/channelsubscriptions
+      name: push-channelsubscriptions
+      description: REST surface for push-channelSubscriptions.
+      operations:
+      - method: GET
+        name: getpushsubscriptionsonchannels
+        description: List channel subscriptions
+        call: platform-push.getpushsubscriptionsonchannels
+        with:
+          channel: rest.channel
+          deviceId: rest.deviceId
+          clientId: rest.clientId
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: subscribepushdevicetochannel
+        description: Subscribe a device to a channel
+        call: platform-push.subscribepushdevicetochannel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepushdevicedetails
+        description: Delete a registered device's update token
+        call: platform-push.deletepushdevicedetails
+        with:
+          channel: rest.channel
+          deviceId: rest.deviceId
+          clientId: rest.clientId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/push/channels
+      name: push-channels
+      description: REST surface for push-channels.
+      operations:
+      - method: GET
+        name: getchannelswithpushsubscribers
+        description: List all channels with at least one subscribed device
+        call: platform-push.getchannelswithpushsubscribers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/push/deviceregistrations
+      name: push-deviceregistrations
+      description: REST surface for push-deviceRegistrations.
+      operations:
+      - method: GET
+        name: getregisteredpushdevices
+        description: List devices registered for receiving push notifications
+        call: platform-push.getregisteredpushdevices
+        with:
+          deviceId: rest.deviceId
+          clientId: rest.clientId
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: registerpushdevice
+        description: Register a device for receiving push notifications
+        call: platform-push.registerpushdevice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: unregisterallpushdevices
+        description: Unregister matching devices for push notifications
+        call: platform-push.unregisterallpushdevices
+        with:
+          deviceId: rest.deviceId
+          clientId: rest.clientId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/push/deviceregistrations/{device-id}
+      name: push-deviceregistrations-device-id
+      description: REST surface for push-deviceRegistrations-device_id.
+      operations:
+      - method: GET
+        name: getpushdevicedetails
+        description: Get a device registration
+        call: platform-push.getpushdevicedetails
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putpushdevicedetails
+        description: Update a device registration
+        call: platform-push.putpushdevicedetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchpushdevicedetails
+        description: Update a device registration
+        call: platform-push.patchpushdevicedetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: unregisterpushdevice
+        description: Unregister a single device for push notifications
+        call: platform-push.unregisterpushdevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/push/deviceregistrations/{device-id}/resetupdatetoken
+      name: push-deviceregistrations-device-id-resetupdatetoken
+      description: REST surface for push-deviceRegistrations-device_id-resetUpdateToken.
+      operations:
+      - method: GET
+        name: updatepushdevicedetails
+        description: Reset a registered device's update token
+        call: platform-push.updatepushdevicedetails
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/push/publish
+      name: push-publish
+      description: REST surface for push-publish.
+      operations:
+      - method: POST
+        name: publishpushnotificationtodevices
+        description: Publish a push notification to device(s)
+        call: platform-push.publishpushnotificationtodevices
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-push-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Platform API — Push. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-channel-subscriptions
+      description: List channel subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-push.getpushsubscriptionsonchannels
+      with:
+        channel: tools.channel
+        deviceId: tools.deviceId
+        clientId: tools.clientId
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: subscribe-device-channel
+      description: Subscribe a device to a channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-push.subscribepushdevicetochannel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-registered-device-s-update-token
+      description: Delete a registered device's update token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-push.deletepushdevicedetails
+      with:
+        channel: tools.channel
+        deviceId: tools.deviceId
+        clientId: tools.clientId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-channels-least-one
+      description: List all channels with at least one subscribed device
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-push.getchannelswithpushsubscribers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-devices-registered-receiving-push
+      description: List devices registered for receiving push notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-push.getregisteredpushdevices
+      with:
+        deviceId: tools.deviceId
+        clientId: tools.clientId
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-device-receiving-push-notifications
+      description: Register a device for receiving push notifications
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-push.registerpushdevice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unregister-matching-devices-push-notifications
+      description: Unregister matching devices for push notifications
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-push.unregisterallpushdevices
+      with:
+        deviceId: tools.deviceId
+        clientId: tools.clientId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-device-registration
+      description: Get a device registration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-push.getpushdevicedetails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-device-registration
+      description: Update a device registration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-push.putpushdevicedetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-device-registration-2
+      description: Update a device registration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-push.patchpushdevicedetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unregister-single-device-push-notifications
+      description: Unregister a single device for push notifications
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-push.unregisterpushdevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-registered-device-s-update-token
+      description: Reset a registered device's update token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-push.updatepushdevicedetails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-push-notification-device-s
+      description: Publish a push notification to device(s)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-push.publishpushnotificationtodevices
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

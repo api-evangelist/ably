@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Platform API — Status
+  description: 'Platform API — Status. 3 operations. Lead operation: Enumerate all active channels of the application. Self-contained
+    Naftiko capability covering one Ably business surface.'
+  tags:
+  - Ably
+  - Status
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-status
+    baseUri: https://rest.ably.io
+    description: Platform API — Status business capability. Self-contained, no shared references.
+    resources:
+    - name: channels
+      path: /channels
+      operations:
+      - name: getmetadataofallchannels
+        method: GET
+        description: Enumerate all active channels of the application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: prefix
+          in: query
+          type: string
+          description: Optionally limits the query to only those channels whose name starts with the given prefix
+        - name: by
+          in: query
+          type: string
+          description: optionally specifies whether to return just channel names (by=id) or ChannelDetails (by=value)
+    - name: channels-channel_id
+      path: /channels/{channel_id}
+      operations:
+      - name: getmetadataofchannel
+        method: GET
+        description: Get metadata of a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-presence
+      path: /channels/{channel_id}/presence
+      operations:
+      - name: getpresenceofchannel
+        method: GET
+        description: Get presence of a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: string
+        - name: connectionId
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-status-rest
+    port: 8080
+    description: REST adapter for Platform API — Status. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels
+      name: channels
+      description: REST surface for channels.
+      operations:
+      - method: GET
+        name: getmetadataofallchannels
+        description: Enumerate all active channels of the application
+        call: platform-status.getmetadataofallchannels
+        with:
+          limit: rest.limit
+          prefix: rest.prefix
+          by: rest.by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}
+      name: channels-channel-id
+      description: REST surface for channels-channel_id.
+      operations:
+      - method: GET
+        name: getmetadataofchannel
+        description: Get metadata of a channel
+        call: platform-status.getmetadataofchannel
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/presence
+      name: channels-channel-id-presence
+      description: REST surface for channels-channel_id-presence.
+      operations:
+      - method: GET
+        name: getpresenceofchannel
+        description: Get presence of a channel
+        call: platform-status.getpresenceofchannel
+        with:
+          clientId: rest.clientId
+          connectionId: rest.connectionId
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-status-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Platform API — Status. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: enumerate-all-active-channels-application
+      description: Enumerate all active channels of the application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-status.getmetadataofallchannels
+      with:
+        limit: tools.limit
+        prefix: tools.prefix
+        by: tools.by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metadata-channel
+      description: Get metadata of a channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-status.getmetadataofchannel
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-presence-channel
+      description: Get presence of a channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-status.getpresenceofchannel
+      with:
+        clientId: tools.clientId
+        connectionId: tools.connectionId
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

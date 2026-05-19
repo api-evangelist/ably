@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Control API v1 — tokens
+  description: 'Control API v1 — tokens. 1 operations. Lead operation: Get token details. Self-contained Naftiko capability
+    covering one Ably business surface.'
+  tags:
+  - Ably
+  - tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABLY_API_KEY: ABLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-tokens
+    baseUri: https://control.ably.net/v1
+    description: Control API v1 — tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: me
+      path: /me
+      operations:
+      - name: get
+        method: GET
+        description: Get token details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ABLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: control-tokens-rest
+    port: 8080
+    description: REST adapter for Control API v1 — tokens. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/me
+      name: me
+      description: REST surface for me.
+      operations:
+      - method: GET
+        name: get
+        description: Get token details
+        call: control-tokens.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Control API v1 — tokens. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-token-details
+      description: Get token details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-tokens.get
+      outputParameters:
+      - type: object
+        mapping: $.
