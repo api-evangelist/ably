@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error",
+  "title": "error",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The error message."
+    },
+    "code": {
+      "type": "integer",
+      "description": "The HTTP status code returned."
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "The Ably error code."
+    },
+    "href": {
+      "type": "string",
+      "description": "The URL to documentation about the error code."
+    },
+    "details": {
+      "type": "object",
+      "nullable": true,
+      "description": "Any additional details about the error message."
+    }
+  },
+  "required": [
+    "message",
+    "code",
+    "statusCode",
+    "href"
+  ]
+}

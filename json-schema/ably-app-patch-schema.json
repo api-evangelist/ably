@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/app_patch",
+  "title": "app_patch",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application for your reference only.",
+      "example": "My App"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.",
+      "example": "enabled"
+    },
+    "tlsOnly": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Enforce TLS for all connections.",
+      "example": true
+    },
+    "fcmKey": {
+      "description": "The Firebase Cloud Messaging key.",
+      "type": "string",
+      "nullable": true,
+      "example": "AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I"
+    },
+    "fcmServiceAccount": {
+      "type": "string",
+      "nullable": true,
+      "description": "Used to specify the Firebase Cloud Messaging(FCM) service account credentials used for authentication and enabling communication with FCM to send push notifications to devices.",
+      "example": "service_account"
+    },
+    "fcmProjectId": {
+      "type": "string",
+      "nullable": true,
+      "description": "The unique identifier for the Firebase Cloud Messaging(FCM) project. This ID is used to specify the Firebase project when configuring FCM or other Firebase services.",
+      "example": "notional-armor-405018"
+    },
+    "apnsCertificate": {
+      "type": "string",
+      "nullable": true,
+      "description": "The Apple Push Notification service certificate.",
+      "example": "-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----"
+    },
+    "apnsPrivateKey": {
+      "type": "string",
+      "nullable": true,
+      "description": "The Apple Push Notification service private key.",
+      "example": "-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----"
+    },
+    "apnsUseSandboxEndpoint": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Use the Apple Push Notification service sandbox endpoint.",
+      "example": false
+    }
+  }
+}

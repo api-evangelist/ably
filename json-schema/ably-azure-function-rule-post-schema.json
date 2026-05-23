@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/azure_function_rule_post",
+  "title": "azure_function_rule_post",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "ruleType": {
+      "type": "string",
+      "enum": [
+        "http/azure-function"
+      ],
+      "description": "The type of rule. In this case Microsoft Azure Function. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "example": "http/azure-function"
+    },
+    "requestMode": {
+      "type": "string",
+      "description": "This is Single Request mode or Batch Request mode. Single Request mode sends each event separately to the endpoint specified by the rule. Batch Request mode rolls up multiple events into the same request. You can read more about the difference between single and batched events in the Ably <a href=\"https://ably.com/docs/general/webhooks#batching\">batching docs</a>.",
+      "example": "single"
+    },
+    "source": {
+      "$ref": "#/components/schemas/rule_source"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "azureAppId": {
+          "type": "string",
+          "description": "The Microsoft Azure Application ID. You can find your Microsoft Azure Application ID as shown in this <a href=\"https://dev.applicationinsights.io/documentation/Authorization/API-key-and-App-ID\">article</a>.",
+          "example": "d1e9f419-c438-6032b32df979"
+        },
+        "azureFunctionName": {
+          "type": "string",
+          "description": "The name of your Microsoft Azure Function.",
+          "example": "myFunctionName"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the header.",
+                "example": "User-Agent"
+              },
+              "value": {
+                "type": "string",
+                "description": "The value of the header.",
+                "example": "user-agent-string"
+              }
+            }
+          },
+          "description": "If you have additional information to send, you'll need to include the relevant headers.",
+          "example": [
+            {
+              "name": "User-Agent",
+              "value": "user-agent-string"
+            },
+            {
+              "name": "headerName",
+              "value": "headerValue"
+            }
+          ]
+        },
+        "signingKeyId": {
+          "type": "string",
+          "nullable": true,
+          "description": "The signing key ID for use in `batch` mode. Ably will optionally sign the payload using an API key ensuring your servers can validate the payload using the private API key. See the <a href=\"https://ably.com/docs/general/webhooks#security\">webhooks security docs</a> for more information.",
+          "example": "bw66AB"
+        },
+        "enveloped": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "Delivered messages are wrapped in an Ably envelope by default that contains metadata about the message and its payload. The form of the envelope depends on whether it is part of a Webhook/Function or a Queue/Firehose rule. For everything besides Webhooks, you can ensure you only get the raw payload by unchecking \"Enveloped\" when setting up the rule.",
+          "example": true
+        },
+        "format": {
+          "type": "string",
+          "description": "JSON provides a text-based encoding.",
+          "example": "json"
+        }
+      },
+      "required": [
+        "azureAppId",
+        "azureFunctionName"
+      ]
+    }
+  },
+  "required": [
+    "ruleType",
+    "requestMode",
+    "source",
+    "target"
+  ]
+}

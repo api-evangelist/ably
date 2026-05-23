@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Message",
+  "title": "Message",
+  "type": "object",
+  "description": "Message object.",
+  "properties": {
+    "name": {
+      "description": "The event name, if provided.",
+      "type": "string"
+    },
+    "data": {
+      "description": "The string encoded payload, with the encoding specified below.",
+      "type": "string"
+    },
+    "id": {
+      "description": "A Unique ID that can be specified by the publisher for [idempotent publishing](https://www.ably.io/documentation/rest/messages#idempotent).",
+      "type": "string",
+      "readOnly": true
+    },
+    "timestamp": {
+      "description": "Timestamp when the message was received by the Ably, as milliseconds since the epoch.",
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true
+    },
+    "encoding": {
+      "description": "This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.",
+      "type": "string"
+    },
+    "clientId": {
+      "description": "The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.",
+      "type": "string"
+    },
+    "connectionId": {
+      "description": "The connection ID of the publisher of this message.",
+      "type": "string"
+    },
+    "extras": {
+      "$ref": "#/components/schemas/Extras"
+    }
+  }
+}

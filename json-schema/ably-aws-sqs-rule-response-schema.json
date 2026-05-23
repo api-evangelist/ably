@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/aws_sqs_rule_response",
+  "title": "aws_sqs_rule_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The rule ID.",
+      "example": "83IzAB"
+    },
+    "appId": {
+      "type": "string",
+      "description": "The Ably application ID.",
+      "example": "28GY6a"
+    },
+    "version": {
+      "type": "string",
+      "description": "API version. Events and the format of their payloads are versioned. Please see the <a href=\"https://ably.com/docs/general/webhooks\">webhooks docs</a>.",
+      "example": "1.2"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "created": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of creation of the rule.",
+      "example": 1602844091815
+    },
+    "modified": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of last modification of the rule.",
+      "example": 1614679682091
+    },
+    "_links": {
+      "type": "object",
+      "nullable": true
+    },
+    "ruleType": {
+      "type": "string",
+      "enum": [
+        "aws/sqs"
+      ],
+      "description": "The type of rule. In this case AWS SQS. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "example": "aws/sqs"
+    },
+    "requestMode": {
+      "type": "string",
+      "description": "Single request mode sends each event separately to the endpoint specified by the rule. You can read more about single request mode events in the <a href=\"https://ably.com/docs/general/webhooks#batching\">batching docs</a>.",
+      "example": "single"
+    },
+    "source": {
+      "$ref": "#/components/schemas/rule_source"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "The region is which AWS SQS is hosted. See the <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region\">AWS documentation</a> for more detail.",
+          "example": "us-west-1"
+        },
+        "awsAccountId": {
+          "type": "string",
+          "description": "Your AWS account ID.",
+          "example": "123456789012"
+        },
+        "queueName": {
+          "type": "string",
+          "description": "The AWS SQS queue name.",
+          "example": "MyQueue"
+        },
+        "authentication": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/aws_access_keys_response"
+            },
+            {
+              "$ref": "#/components/schemas/aws_assume_role"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "authenticationMode",
+            "mapping": {
+              "credentials": "#/components/schemas/aws_access_keys_response",
+              "assumeRole": "#/components/schemas/aws_assume_role"
+            }
+          }
+        },
+        "enveloped": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "Delivered messages are wrapped in an Ably envelope by default that contains metadata about the message and its payload. The form of the envelope depends on whether it is part of a Webhook/Function or a Queue/Firehose rule. For everything besides Webhooks, you can ensure you only get the raw payload by unchecking \"Enveloped\" when setting up the rule.",
+          "example": true
+        },
+        "format": {
+          "type": "string",
+          "description": "JSON provides a text-based encoding.",
+          "example": "json"
+        }
+      },
+      "required": [
+        "region",
+        "awsAccountId",
+        "queueName",
+        "authentication"
+      ]
+    }
+  },
+  "required": [
+    "ruleType",
+    "requestMode",
+    "source",
+    "target"
+  ]
+}

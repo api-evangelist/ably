@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ingress_postgres_outbox_rule_post",
+  "title": "ingress_postgres_outbox_rule_post",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "ruleType": {
+      "type": "string",
+      "description": "The type of rule. In this case Postgres. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "enum": [
+        "ingress-postgres-outbox"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Postgres database connection URL.",
+          "example": "postgres://user:password@example.com:5432/your-database-name"
+        },
+        "outboxTableSchema": {
+          "type": "string",
+          "description": "Schema for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#outbox-table\">outbox table</a> in your database which allows for the reliable publication of an ordered sequence of change event messages over Ably.",
+          "example": "public"
+        },
+        "outboxTableName": {
+          "type": "string",
+          "description": "Table name for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#outbox-table\">outbox table</a>.",
+          "example": "outbox"
+        },
+        "nodesTableSchema": {
+          "type": "string",
+          "description": "Schema for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#nodes-table\">outbox table</a> in your database to allow for operation as a cluster to provide fault tolerance.",
+          "example": "public"
+        },
+        "nodesTableName": {
+          "type": "string",
+          "description": "Table name for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#nodes-table\">outbox table</a>.",
+          "example": "nodes"
+        },
+        "sslMode": {
+          "type": "string",
+          "description": "Determines the level of protection provided by the SSL connection.",
+          "example": "prefer",
+          "enum": [
+            "prefer",
+            "require",
+            "verify-ca",
+            "verify-full"
+          ]
+        },
+        "sslRootCert": {
+          "type": "string",
+          "description": "Specifies the SSL certificate authority (CA) certificate(s). Required if sslMode is either `verify-ca` or `verify-full`.",
+          "example": "-----BEGIN CERTIFICATE----- MIIFiTCCA3GgAwIBAgIUYO1Lomxzj7VRawWwEFiQht9OLpUwDQYJKoZIhvcNAQEL BQAwTDELMAkGA1UEBhMCVVMxETAPBgNVBAgMCE1pY2hpZ2FuMQ8wDQYDVQQHDAZX ...snip... TOfReTlUQzgpXRW5h3n2LVXbXQhPGcVitb88Cm2R8cxQwgB1VncM8yvmKhREo2tz 7Y+sUx6eIl4dlNl9kVrH1TD3EwwtGsjUNlFSZhg= -----END CERTIFICATE-----",
+          "nullable": true
+        }
+      },
+      "required": [
+        "url",
+        "outboxTableSchema",
+        "outboxTableName",
+        "nodesTableSchema",
+        "nodesTableName",
+        "sslMode"
+      ]
+    }
+  },
+  "required": [
+    "ruleType",
+    "target"
+  ]
+}

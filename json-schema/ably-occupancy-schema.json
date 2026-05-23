@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Occupancy",
+  "title": "Occupancy",
+  "type": "object",
+  "description": "An Occupancy instance indicating the occupancy of a channel. For events indicating regional activity of a channel this indicates activity in that region, not global activity.",
+  "properties": {
+    "publishers": {
+      "type": "integer",
+      "description": "The number of connections attached to the channel that are authorised to publish."
+    },
+    "subscribers": {
+      "type": "integer",
+      "description": "The number of connections attached that are authorised to subscribe to messages."
+    },
+    "presenceSubscribers": {
+      "type": "integer",
+      "description": "The number of connections that are authorised to subscribe to presence messages."
+    },
+    "presenceConnections": {
+      "type": "integer",
+      "description": "The number of connections that are authorised to enter members into the presence channel."
+    },
+    "presenceMembers": {
+      "type": "integer",
+      "description": "The number of members currently entered into the presence channel."
+    }
+  }
+}

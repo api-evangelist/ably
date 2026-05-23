@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pulsar_token_auth",
+  "title": "pulsar_token_auth",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "authenticationMode": {
+      "type": "string",
+      "description": "Authentication mode, in this case JSON Web Token (JWT).",
+      "enum": [
+        "token"
+      ],
+      "example": "token"
+    },
+    "token": {
+      "type": "string",
+      "description": "The JWT string.",
+      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    }
+  },
+  "required": [
+    "token",
+    "authenticationMode"
+  ]
+}

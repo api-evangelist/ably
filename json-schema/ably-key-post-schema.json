@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/key_post",
+  "title": "key_post",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "description": "The name for your API key. This is a friendly name for your reference.",
+      "type": "string",
+      "example": "My key name"
+    },
+    "capability": {
+      "description": "These are the capability operations described in the <a href=\"https://ably.com/docs/auth/capabilities\">capabilities docs</a>.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "description": "An array of strings setting the capability operations for the resource.",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "example": {
+    "name": "My key name",
+    "capability": {
+      "channel1": [
+        "publish",
+        "subscribe"
+      ],
+      "channel2": [
+        "history"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "capability"
+  ]
+}

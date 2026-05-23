@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Push",
+  "title": "Push",
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).",
+      "type": "string"
+    },
+    "notification": {
+      "$ref": "#/components/schemas/Notification"
+    },
+    "apns": {
+      "description": "Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)",
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/components/schemas/Notification"
+        }
+      }
+    },
+    "fcm": {
+      "description": "Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)",
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/components/schemas/Notification"
+        }
+      }
+    },
+    "web": {
+      "description": "Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)",
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/components/schemas/Notification"
+        }
+      }
+    }
+  }
+}

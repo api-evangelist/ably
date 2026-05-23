@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ifttt_rule_response",
+  "title": "ifttt_rule_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "ruleType": {
+      "type": "string",
+      "enum": [
+        "http/ifttt"
+      ],
+      "description": "The type of rule. In this case IFTTT. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "example": "http/ifttt"
+    },
+    "requestMode": {
+      "type": "string",
+      "description": "Single request mode sends each event separately to the endpoint specified by the rule. You can read more about single request mode events in the <a href=\"https://ably.com/docs/general/webhooks#batching\">batching docs</a>.",
+      "example": "single"
+    },
+    "source": {
+      "$ref": "#/components/schemas/rule_source"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "webhookKey": {
+          "type": "string",
+          "description": "The key in the Webhook Service Documentation page of your IFTTT account.",
+          "example": "aBcd12Ef98-Z1ab3yTe-EXAMPLE"
+        },
+        "eventName": {
+          "type": "string",
+          "description": "The Event name is used to identify the IFTTT applet that will receive the Event, make sure the name matches the name of the IFTTT applet.",
+          "example": "MyAppletName"
+        }
+      },
+      "required": [
+        "webhookKey",
+        "eventName"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "description": "The rule ID.",
+      "example": "83IzAB"
+    },
+    "appId": {
+      "type": "string",
+      "description": "The Ably application ID.",
+      "example": "28GY6a"
+    },
+    "version": {
+      "type": "string",
+      "description": "API version. Events and the format of their payloads are versioned. Please see the <a href=\"https://ably.com/docs/general/webhooks\">webhooks docs</a>.",
+      "example": "1.2"
+    },
+    "created": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of creation of the rule.",
+      "example": 1602844091815
+    },
+    "modified": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of last modification of the rule.",
+      "example": 1614679682091
+    },
+    "_links": {
+      "type": "object",
+      "nullable": true
+    }
+  },
+  "required": [
+    "ruleType",
+    "requestMode",
+    "source",
+    "target"
+  ]
+}

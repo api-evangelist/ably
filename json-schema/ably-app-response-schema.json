@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/app_response",
+  "title": "app_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The ID of your Ably account.",
+      "example": "WgRpOB"
+    },
+    "id": {
+      "type": "string",
+      "description": "The application ID.",
+      "example": "28AB6x"
+    },
+    "name": {
+      "type": "string",
+      "description": "The application name.",
+      "example": "Default"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.",
+      "example": "enabled"
+    },
+    "tlsOnly": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Enforce TLS for all connections. This setting overrides any channel setting.",
+      "example": true
+    },
+    "apnsUseSandboxEndpoint": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Use the Apple Push Notification service sandbox endpoint.",
+      "example": false
+    },
+    "_links": {
+      "type": "object",
+      "nullable": true,
+      "description": "A link self-referencing the app that has been created."
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/aws_assume_role",
+  "title": "aws_assume_role",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "authenticationMode": {
+      "type": "string",
+      "enum": [
+        "assumeRole"
+      ],
+      "description": "Authentication method is using the ARN of an assumable role. See the Ably <a href=\"https://ably.com/docs/general/aws-authentication/\">AWS authentication docs</a> for details.",
+      "example": "assumeRole"
+    },
+    "assumeRoleArn": {
+      "type": "string",
+      "description": "If you are using the \"ARN of an assumable role\" authentication method, this is your Assume Role ARN. See the Ably <a href=\"https://ably.com/docs/general/aws-authentication/\">AWS authentication docs</a> for details.",
+      "example": "arn:aws:iam::123456789012:user/Development/product_1234/*"
+    }
+  },
+  "required": [
+    "assumeRoleArn"
+  ]
+}

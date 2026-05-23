@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/aws_access_keys",
+  "title": "aws_access_keys",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "authenticationMode": {
+      "type": "string",
+      "enum": [
+        "credentials"
+      ],
+      "description": "Authentication method is using AWS credentials (AWS key ID and secret key).",
+      "example": "credentials"
+    },
+    "accessKeyId": {
+      "type": "string",
+      "description": "The AWS key ID for the AWS IAM user. See the Ably <a href=\"https://ably.com/docs/general/aws-authentication/\">AWS authentication docs</a> for details.",
+      "example": "AKIAIOSFODNN7EXAMPLE"
+    },
+    "secretAccessKey": {
+      "type": "string",
+      "description": "The AWS secret key for the AWS IAM user. See the Ably <a href=\"https://ably.com/docs/general/aws-authentication/\">AWS authentication docs</a> for details.",
+      "example": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    }
+  },
+  "required": [
+    "accessKeyId",
+    "secretAccessKey"
+  ]
+}

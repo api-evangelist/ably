@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/queue_response",
+  "title": "queue_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the Ably queue",
+      "example": "28AB6w:us-east-1-a:My queue"
+    },
+    "appId": {
+      "type": "string",
+      "description": "The Ably application ID.",
+      "example": "28AB6w"
+    },
+    "name": {
+      "type": "string",
+      "description": "The friendly name of the queue.",
+      "example": "My queue"
+    },
+    "region": {
+      "type": "string",
+      "description": "The data center region for the queue.",
+      "example": "eu-west-1-a"
+    },
+    "amqp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "URI for the AMQP queue interface.",
+          "example": "amqps://us-east-1-a-queue.ably.io:5671/shared"
+        },
+        "queueName": {
+          "type": "string",
+          "description": "Name of the Ably queue.",
+          "example": "28AB6w:My queue"
+        }
+      }
+    },
+    "stomp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "URI for the STOMP queue interface.",
+          "example": "stomp://us-east-1-a-queue.ably.io:61614"
+        },
+        "host": {
+          "type": "string",
+          "description": "The host type for the queue.",
+          "example": "shared"
+        },
+        "destination": {
+          "type": "string",
+          "description": "Destination queue.",
+          "example": "/amqp/queue/28AB6w:My queue"
+        }
+      }
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the queue.",
+      "example": "Running"
+    },
+    "messages": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Details of messages in the queue.",
+      "properties": {
+        "ready": {
+          "type": "integer",
+          "nullable": true,
+          "description": "The number of ready messages in the queue.",
+          "example": 0
+        },
+        "unacknowledged": {
+          "type": "integer",
+          "nullable": true,
+          "description": "The number of unacknowledged messages in the queue.",
+          "example": 0
+        },
+        "total": {
+          "type": "integer",
+          "nullable": true,
+          "description": "The total number of messages in the queue.",
+          "example": 0
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "publishRate": {
+          "type": "number",
+          "nullable": true,
+          "description": "The rate at which messages are published to the queue. Rate is messages per minute."
+        },
+        "deliveryRate": {
+          "type": "number",
+          "nullable": true,
+          "description": "The rate at which messages are delivered from the queue. Rate is messages per minute."
+        },
+        "acknowledgementRate": {
+          "type": "number",
+          "nullable": true,
+          "description": "The rate at which messages are acknowledged. Rate is messages per minute."
+        }
+      }
+    },
+    "ttl": {
+      "type": "integer",
+      "description": "TTL in minutes.",
+      "example": 60
+    },
+    "maxLength": {
+      "type": "integer",
+      "description": "Message limit in number of messages.",
+      "example": 10000
+    },
+    "deadletter": {
+      "type": "boolean",
+      "description": "A boolean that indicates whether this is a dead letter queue or not.",
+      "example": false
+    },
+    "deadletterId": {
+      "type": "string",
+      "description": "The ID of the dead letter queue.",
+      "nullable": true,
+      "example": "28AB6w:us-east-1-a:deadletter"
+    }
+  }
+}

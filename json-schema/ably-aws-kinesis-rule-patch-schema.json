@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/aws_kinesis_rule_patch",
+  "title": "aws_kinesis_rule_patch",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "ruleType": {
+      "type": "string",
+      "enum": [
+        "aws/kinesis"
+      ],
+      "description": "The type of rule. In this case AWS Kinesis. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "example": "aws/kinesis"
+    },
+    "requestMode": {
+      "type": "string",
+      "description": "Single request mode sends each event separately to the endpoint specified by the rule. You can read more about single request mode events in the <a href=\"https://ably.com/docs/general/webhooks#batching\">batching docs</a>.",
+      "example": "single"
+    },
+    "source": {
+      "$ref": "#/components/schemas/rule_source_patch"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "The region is which AWS Kinesis is hosted. See the <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region\">AWS documentation</a> for more detail.",
+          "example": "us-west-1"
+        },
+        "streamName": {
+          "type": "string",
+          "description": "The name of your AWS Kinesis Stream.",
+          "example": "myStreamName"
+        },
+        "partitionKey": {
+          "type": "string",
+          "description": "The AWS Kinesis partition key. The partition key is used by Kinesis to route messages to one of the stream shards. See this <a href=\"https://faqs.ably.com/what-is-the-format-of-the-routingkey-for-an-amqp-or-kinesis-reactor-rule\">Ably FAQs</a> for details.",
+          "example": "message name: #{message.name}, clientId: #{message.clientId}"
+        },
+        "authentication": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/aws_access_keys"
+            },
+            {
+              "$ref": "#/components/schemas/aws_assume_role"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "authenticationMode",
+            "mapping": {
+              "credentials": "#/components/schemas/aws_access_keys",
+              "assumeRole": "#/components/schemas/aws_assume_role"
+            }
+          }
+        },
+        "enveloped": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "Delivered messages are wrapped in an Ably envelope by default that contains metadata about the message and its payload. The form of the envelope depends on whether it is part of a Webhook/Function or a Queue/Firehose rule. For everything besides Webhooks, you can ensure you only get the raw payload by unchecking \"Enveloped\" when setting up the rule.",
+          "example": true
+        },
+        "format": {
+          "type": "string",
+          "description": "JSON provides a text-based encoding.",
+          "example": "json"
+        }
+      }
+    }
+  },
+  "required": [
+    "ruleType"
+  ]
+}

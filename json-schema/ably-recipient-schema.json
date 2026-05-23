@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Recipient",
+  "title": "Recipient",
+  "type": "object",
+  "description": "Push recipient details for a device.",
+  "properties": {
+    "transportType": {
+      "type": "string",
+      "description": "Defines which push platform is being used.",
+      "enum": [
+        "apns",
+        "fcm",
+        "gcm",
+        "web"
+      ]
+    },
+    "deviceToken": {
+      "type": "string",
+      "description": "when using APNs, specifies the required device token."
+    },
+    "registrationToken": {
+      "type": "string",
+      "description": "when using GCM or FCM, specifies the required registration token.",
+      "properties": {
+        "auth": {
+          "type": "string",
+          "description": "An Elliptic curve Diffie-Hellman public key on the P-256 curve. Obtained from a PushDescription using the `getKey` method."
+        },
+        "p256dh": {
+          "type": "string",
+          "description": "An authentication secret, as described by [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08)."
+        }
+      }
+    },
+    "encryptionKey": {
+      "type": "object",
+      "description": "when using web push, specifies the required encryptionKey."
+    },
+    "clientId": {
+      "type": "string",
+      "description": "Client ID of recipient",
+      "writeOnly": true
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "Client ID of recipient",
+      "writeOnly": true
+    }
+  }
+}

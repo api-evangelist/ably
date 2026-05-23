@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/key_response",
+  "title": "key_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "appId": {
+      "description": "The Ably application ID which this key is associated with.",
+      "type": "string",
+      "example": "28GY6a"
+    },
+    "id": {
+      "description": "The key ID.",
+      "type": "string",
+      "example": "G8dabc"
+    },
+    "name": {
+      "description": "The name for your API key. This is a friendly name for your reference.",
+      "type": "string",
+      "example": "My key name"
+    },
+    "status": {
+      "description": "The status of the key. `0` is enabled, `1` is revoked.",
+      "type": "integer"
+    },
+    "key": {
+      "description": "The complete API key including API secret.",
+      "type": "string"
+    },
+    "capability": {
+      "description": "The capabilities that this key has. More information on capabilities can be found in the Ably <a href=\"https://ably.com/docs/auth/capabilities\">capabilities docs</a>.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "description": "An array of strings setting the capability operations for the resource.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "channel1": [
+          "publish",
+          "subscribe"
+        ],
+        "channel2": [
+          "history"
+        ]
+      }
+    },
+    "created": {
+      "type": "integer",
+      "description": "Unix timestamp representing the date and time of creation of the key.",
+      "example": 1602844091815
+    },
+    "modified": {
+      "type": "integer",
+      "description": "Unix timestamp representing the date and time of the last modification of the key.",
+      "example": 1614679682091
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "operationId": "subscribePushDeviceToChannel",
+  "method": "POST",
+  "path": "/push/channelSubscriptions",
+  "summary": "Subscribe a device to a channel",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "channel": "my:channel",
+        "clientId": "myClientId"
+      }
+    },
+    {
+      "contentType": "application/x-msgpack",
+      "example": {
+        "channel": "my:channel",
+        "clientId": "myClientId"
+      }
+    },
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "example": {
+        "channel": "my:channel",
+        "clientId": "myClientId"
+      }
+    }
+  ],
+  "responseExamples": []
+}

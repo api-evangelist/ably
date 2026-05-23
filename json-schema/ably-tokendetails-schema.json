@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenDetails",
+  "title": "TokenDetails",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "The Ably Token."
+    },
+    "keyName": {
+      "type": "string",
+      "description": "Name of the key used to create the token"
+    },
+    "issued": {
+      "type": "integer",
+      "description": "Timestamp of token creation."
+    },
+    "expires": {
+      "type": "integer",
+      "description": "Timestamp of token expiration."
+    },
+    "capability": {
+      "type": "string",
+      "description": "Regular expression representation of the capabilities of the token."
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ingress_postgres_outbox_rule_response",
+  "title": "ingress_postgres_outbox_rule_response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The rule ID.",
+      "example": "83IzAB"
+    },
+    "appId": {
+      "type": "string",
+      "description": "The Ably application ID.",
+      "example": "28GY6a"
+    },
+    "version": {
+      "type": "string",
+      "description": "API version. Events and the format of their payloads are versioned. Please see the Ably <a href=\"https://ably.com/docs/general/webhooks\">webhooks docs</a>.",
+      "example": "1.2"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the rule. Rules can be enabled or disabled.",
+      "example": "enabled"
+    },
+    "created": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of creation of the rule.",
+      "example": 1602844091815
+    },
+    "modified": {
+      "type": "number",
+      "description": "Unix timestamp representing the date and time of last modification of the rule.",
+      "example": 1602844091815
+    },
+    "_links": {
+      "type": "object",
+      "nullable": true
+    },
+    "ruleType": {
+      "type": "string",
+      "description": "The type of rule. See the Ably <a href=\"https://ably.com/docs/general/integrations\">integrations docs</a> for further information.",
+      "enum": [
+        "ingress-postgres-outbox"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Postgres database connection URL.",
+          "example": "postgres://user:password@example.com:5432/your-database-name"
+        },
+        "outboxTableSchema": {
+          "type": "string",
+          "description": "Schema for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#outbox-table\">outbox table</a> in your database which allows for the reliable publication of an ordered sequence of change event messages over Ably.",
+          "example": "public"
+        },
+        "outboxTableName": {
+          "type": "string",
+          "description": "Table name for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#outbox-table\">outbox table</a>.",
+          "example": "outbox"
+        },
+        "nodesTableSchema": {
+          "type": "string",
+          "description": "Schema for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#nodes-table\">nodes table</a>, which is used to store available nodes. The nodes are used to automatically redistribute work in the event of failures.",
+          "example": "public"
+        },
+        "nodesTableName": {
+          "type": "string",
+          "description": "Table name for the <a href=\"https://ably.com/docs/livesync/outbox-nodes-tables#nodes-table\">nodes table</a>.",
+          "example": "nodes"
+        },
+        "sslMode": {
+          "type": "string",
+          "description": "Determines the level of protection provided by the SSL connection.",
+          "example": "prefer",
+          "enum": [
+            "prefer",
+            "require",
+            "verify-ca",
+            "verify-full"
+          ]
+        },
+        "sslRootCert": {
+          "type": "string",
+          "description": "Specifies the SSL certificate authority (CA) certificate(s). Required if sslMode is either `verify-ca` or `verify-full`.",
+          "example": "-----BEGIN CERTIFICATE----- MIIFiTCCA3GgAwIBAgIUYO1Lomxzj7VRawWwEFiQht9OLpUwDQYJKoZIhvcNAQEL BQAwTDELMAkGA1UEBhMCVVMxETAPBgNVBAgMCE1pY2hpZ2FuMQ8wDQYDVQQHDAZX ...snip... TOfReTlUQzgpXRW5h3n2LVXbXQhPGcVitb88Cm2R8cxQwgB1VncM8yvmKhREo2tz 7Y+sUx6eIl4dlNl9kVrH1TD3EwwtGsjUNlFSZhg= -----END CERTIFICATE-----",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "ruleType",
+    "target"
+  ]
+}

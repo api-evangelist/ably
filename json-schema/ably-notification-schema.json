@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Notification",
+  "title": "Notification",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "Title to display at the notification.",
+      "type": "string"
+    },
+    "body": {
+      "description": "Text below title on the expanded notification.",
+      "type": "string"
+    },
+    "icon": {
+      "description": "Platform-specific icon for the notification.",
+      "type": "string"
+    },
+    "sound": {
+      "description": "Platform-specific sound for the notification.",
+      "type": "string"
+    },
+    "collapseKey": {
+      "description": "Platform-specific, used to group notifications together.",
+      "type": "string"
+    }
+  }
+}

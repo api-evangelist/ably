@@ -1,0 +1,807 @@
+{
+  "provider": "Ably",
+  "providerId": "ably",
+  "kind": "json-structure",
+  "description": "Structural overview of the Ably API surface; extracted from openapi/.",
+  "schemaCount": 66,
+  "operationCount": 22,
+  "schemas": [
+    {
+      "name": "rule_source",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "channelFilter",
+        "type"
+      ]
+    },
+    {
+      "name": "rule_source_patch",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "rule_post",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "rule_patch",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "rule_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "http_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "http_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "http_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "ifttt_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "ifttt_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "ifttt_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "zapier_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "zapier_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "zapier_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "cloudflare_worker_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "cloudflare_worker_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "cloudflare_worker_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "azure_function_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "azure_function_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "azure_function_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "google_cloud_function_rule_post",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "google_cloud_function_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "google_cloud_function_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_access_keys",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "accessKeyId",
+        "secretAccessKey"
+      ]
+    },
+    {
+      "name": "aws_access_keys_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "aws_assume_role",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assumeRoleArn"
+      ]
+    },
+    {
+      "name": "aws_lambda_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_lambda_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "aws_lambda_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_kinesis_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_kinesis_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "aws_kinesis_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_sqs_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "aws_sqs_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "aws_sqs_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "amqp_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "amqp_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "amqp_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "amqp_external_rule_post",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "amqp_external_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "amqp_external_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "kafka_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "kafka_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "kafka_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "pulsar_token_auth",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "token",
+        "authenticationMode"
+      ]
+    },
+    {
+      "name": "pulsar_rule_post",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "pulsar_rule_patch",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "ruleType"
+      ]
+    },
+    {
+      "name": "pulsar_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "ingress_postgres_outbox_rule_post",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "ruleType",
+        "target"
+      ]
+    },
+    {
+      "name": "ingress_postgres_outbox_rule_patch",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "ruleType",
+        "target"
+      ]
+    },
+    {
+      "name": "ingress_postgres_outbox_rule_response",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "ruleType",
+        "target"
+      ]
+    },
+    {
+      "name": "unsupported_rule_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "ruleType",
+        "requestMode",
+        "source",
+        "target"
+      ]
+    },
+    {
+      "name": "queue",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "ttl",
+        "maxLength",
+        "region"
+      ]
+    },
+    {
+      "name": "queue_response",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "namespace_post",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "namespace_patch",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "namespace_response",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "app_post",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "app_patch",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "app_pkcs12",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "p12File",
+        "p12Pass"
+      ]
+    },
+    {
+      "name": "app_response",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "key_post",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "capability"
+      ]
+    },
+    {
+      "name": "key_patch",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "key_response",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "me",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "error",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "message",
+        "code",
+        "statusCode",
+        "href"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/accounts/{account_id}/apps",
+      "operationId": null,
+      "summary": "Lists account apps",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts/{account_id}/apps",
+      "operationId": null,
+      "summary": "Creates an app",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/apps/{id}",
+      "operationId": null,
+      "summary": "Deletes an app",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/apps/{id}",
+      "operationId": null,
+      "summary": "Updates an app",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{id}/pkcs12",
+      "operationId": null,
+      "summary": "Updates app's APNs info from a `.p12` file",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apps/{app_id}/keys",
+      "operationId": null,
+      "summary": "Lists app keys",
+      "tags": [
+        "keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{app_id}/keys",
+      "operationId": null,
+      "summary": "Creates a key",
+      "tags": [
+        "keys"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/apps/{app_id}/keys/{key_id}",
+      "operationId": null,
+      "summary": "Updates a key",
+      "tags": [
+        "keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{app_id}/keys/{key_id}/revoke",
+      "operationId": null,
+      "summary": "Revokes a key",
+      "tags": [
+        "keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apps/{app_id}/namespaces",
+      "operationId": null,
+      "summary": "Lists namespaces",
+      "tags": [
+        "namespaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{app_id}/namespaces",
+      "operationId": null,
+      "summary": "Creates a namespace",
+      "tags": [
+        "namespaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/apps/{app_id}/namespaces/{namespace_id}",
+      "operationId": null,
+      "summary": "Deletes a namespace",
+      "tags": [
+        "namespaces"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/apps/{app_id}/namespaces/{namespace_id}",
+      "operationId": null,
+      "summary": "Updates a namespace",
+      "tags": [
+        "namespaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apps/{app_id}/queues",
+      "operationId": null,
+      "summary": "Lists queues",
+      "tags": [
+        "queues"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{app_id}/queues",
+      "operationId": null,
+      "summary": "Creates a queue",
+      "tags": [
+        "queues"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/apps/{app_id}/queues/{queue_id}",
+      "operationId": null,
+      "summary": "Deletes a queue",
+      "tags": [
+        "queues"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apps/{app_id}/rules",
+      "operationId": null,
+      "summary": "Lists rules",
+      "tags": [
+        "rules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/apps/{app_id}/rules",
+      "operationId": null,
+      "summary": "Creates a rule",
+      "tags": [
+        "rules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apps/{app_id}/rules/{rule_id}",
+      "operationId": null,
+      "summary": "Gets a rule using a rule ID",
+      "tags": [
+        "rules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/apps/{app_id}/rules/{rule_id}",
+      "operationId": null,
+      "summary": "Deletes a rule",
+      "tags": [
+        "rules"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/apps/{app_id}/rules/{rule_id}",
+      "operationId": null,
+      "summary": "Updates a Rule",
+      "tags": [
+        "rules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "operationId": null,
+      "summary": "Get token details",
+      "tags": [
+        "tokens"
+      ]
+    }
+  ]
+}

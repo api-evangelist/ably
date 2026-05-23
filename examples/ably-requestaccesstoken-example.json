@@ -1,0 +1,25 @@
+{
+  "operationId": "requestAccessToken",
+  "method": "POST",
+  "path": "/keys/{keyName}/requestToken",
+  "summary": "Request an access token",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "keyName": "YourKey.Name",
+        "timestamp": "1559124196551",
+        "capability": {
+          "channel1": [
+            "publish",
+            "subscribe"
+          ],
+          "wildcard:channels:*": [
+            "publish"
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

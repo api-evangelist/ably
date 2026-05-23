@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/me",
+  "title": "me",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The token ID.",
+          "example": 12345
+        },
+        "name": {
+          "type": "string",
+          "description": "The friendly name for the token.",
+          "example": "My Token"
+        },
+        "capabilities": {
+          "type": "array",
+          "description": "An array containing the access capabilities associated with the access token.",
+          "example": [
+            "write:namespace",
+            "read:namespace",
+            "write:queue",
+            "read:queue",
+            "write:rule",
+            "read:rule",
+            "write:key",
+            "read:key",
+            "write:app",
+            "read:app"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "capabilities"
+      ]
+    },
+    "user": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The user ID associated with the account.",
+          "example": 12345
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user associated with the account.",
+          "example": "user@example.com"
+        }
+      },
+      "required": [
+        "id",
+        "email"
+      ]
+    },
+    "account": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The account ID.",
+          "example": "VpWaOA"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the account.",
+          "example": "Free account"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    }
+  }
+}
