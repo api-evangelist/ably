@@ -119,6 +119,8 @@ common:
   url: rate-limits/ably-rate-limits.yml
 - type: FinOps
   url: finops/ably-finops.yml
+- type: LLMsTxt
+  url: https://ably.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
