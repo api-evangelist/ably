@@ -1,0 +1,612 @@
+asyncapi: 3.0.0
+info:
+  title: Ably Realtime Protocol
+  version: 1.2.0
+  description: |
+    AsyncAPI 3.0 description of the Ably realtime messaging surface. Ably exposes
+    pub/sub channels, presence, push notifications, and history over a native
+    WebSocket-based protocol, with additional access via Server-Sent Events (SSE)
+    and protocol adapters (MQTT, AMQP, STOMP, Pusher, PubNub).
+
+    This document covers the native Ably realtime protocol (WebSocket) and the
+    SSE streaming endpoint. ProtocolMessage actions, channel state lifecycle,
+    presence actions, and message envelopes are modeled directly from the
+    official Ably documentation at https://ably.com/docs.
+  contact:
+    name: Ably
+    url: https://ably.com/docs
+    email: support@ably.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  externalDocs:
+    description: Ably documentation index
+    url: https://ably.com/docs
+  tags:
+    - name: realtime
+    - name: pubsub
+    - name: websocket
+    - name: sse
+    - name: presence
+    - name: push
+
+defaultContentType: application/json
+
+servers:
+  realtime:
+    host: realtime.ably.io
+    pathname: /
+    protocol: wss
+    protocolVersion: '2'
+    title: Ably Realtime WebSocket
+    summary: Native Ably realtime protocol over secure WebSocket
+    description: |
+      The primary Ably realtime endpoint. Clients establish a single persistent
+      WebSocket connection to multiplex any number of channels. The connection
+      query string carries authentication and connection options (see bindings).
+    security:
+      - $ref: '#/components/securitySchemes/apiKey'
+      - $ref: '#/components/securitySchemes/token'
+    tags:
+      - name: websocket
+      - name: realtime
+    bindings:
+      ws:
+        query:
+          type: object
+          properties:
+            key:
+              type: string
+              description: API key for Basic auth (format `appID.keyID:secret`).
+            accessToken:
+              type: string
+              description: Ably Token or JWT for token authentication.
+            clientId:
+              type: string
+              description: Identifies the client to the Ably service.
+            format:
+              type: string
+              enum: [json, msgpack]
+              default: json
+              description: Wire protocol encoding.
+            heartbeats:
+              type: string
+              enum: ['true', 'false']
+              description: Whether to use Ably protocol-level heartbeats.
+            v:
+              type: string
+              description: Protocol version (e.g. '2').
+            lib:
+              type: string
+              description: Client library identifier.
+            echo:
+              type: string
+              enum: ['true', 'false']
+              description: Whether messages from this connection are echoed back.
+            recover:
+              type: string
+              description: Recovery key from a previous connection to resume.
+        bindingVersion: 0.1.0
+  sse:
+    host: realtime.ably.io
+    pathname: /sse
+    protocol: https
+    title: Ably SSE Streaming
+    summary: Server-Sent Events stream for one-way subscribe
+    description: |
+      Ably exposes a Server-Sent Events endpoint for lightweight one-way
+      subscription. event.data is a JSON-encoded Ably Message. Supports
+      `channels`, `v`, `key`, `accessToken`, `lastEvent`, `enveloped`,
+      `rewind`, and `delta` query parameters.
+    security:
+      - $ref: '#/components/securitySchemes/apiKey'
+      - $ref: '#/components/securitySchemes/token'
+    tags:
+      - name: sse
+      - name: streaming
+
+channels:
+  connection:
+    address: '/'
+    title: Connection lifecycle
+    description: |
+      Control-plane ProtocolMessages exchanged on the WebSocket connection
+      itself (not scoped to a channel). Carries CONNECT, CONNECTED, HEARTBEAT,
+      DISCONNECT, DISCONNECTED, CLOSE, CLOSED, ERROR, and AUTH actions.
+    servers:
+      - $ref: '#/servers/realtime'
+    messages:
+      connected:
+        $ref: '#/components/messages/Connected'
+      heartbeat:
+        $ref: '#/components/messages/Heartbeat'
+      disconnect:
+        $ref: '#/components/messages/Disconnect'
+      disconnected:
+        $ref: '#/components/messages/Disconnected'
+      close:
+        $ref: '#/components/messages/Close'
+      closed:
+        $ref: '#/components/messages/Closed'
+      error:
+        $ref: '#/components/messages/Error'
+      auth:
+        $ref: '#/components/messages/Auth'
+
+  channel:
+    address: '{channelName}'
+    title: Pub/Sub channel
+    description: |
+      A named Ably channel. Channels are identified by an arbitrary string name
+      and may live inside a namespace (e.g. `chat:room42`). Clients ATTACH to
+      a channel before publishing or subscribing, and DETACH when finished.
+      The channel address travels in the `channel` field of every ProtocolMessage
+      for actions ATTACH, ATTACHED, DETACH, DETACHED, MESSAGE, PRESENCE, SYNC.
+    parameters:
+      channelName:
+        description: Channel name, optionally namespaced (e.g. `chat:room42`).
+    servers:
+      - $ref: '#/servers/realtime'
+    messages:
+      attach:
+        $ref: '#/components/messages/Attach'
+      attached:
+        $ref: '#/components/messages/Attached'
+      detach:
+        $ref: '#/components/messages/Detach'
+      detached:
+        $ref: '#/components/messages/Detached'
+      message:
+        $ref: '#/components/messages/Message'
+      presence:
+        $ref: '#/components/messages/PresenceMessage'
+      sync:
+        $ref: '#/components/messages/Sync'
+      channelError:
+        $ref: '#/components/messages/Error'
+
+  sseStream:
+    address: '/sse'
+    title: SSE event stream
+    description: |
+      Server-Sent Events stream for subscribing to one or more channels.
+      Each event has `id`, `event`, `data` (JSON-encoded Ably Message) and
+      `lastEventId` for resumption via the `lastEvent` query parameter.
+    servers:
+      - $ref: '#/servers/sse'
+    messages:
+      sseMessage:
+        $ref: '#/components/messages/SseMessage'
+
+operations:
+  connectClient:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    title: Open realtime connection
+    summary: Client opens the WebSocket and authenticates.
+    description: |
+      The client initiates the WebSocket handshake to `wss://realtime.ably.io/`
+      with auth and options in the query string. Ably responds with a CONNECTED
+      ProtocolMessage carrying the assigned `connectionId` and `connectionKey`.
+    messages:
+      - $ref: '#/channels/connection/messages/connected'
+
+  receiveConnectionEvents:
+    action: receive
+    channel:
+      $ref: '#/channels/connection'
+    title: Receive connection control messages
+    summary: Server-pushed CONNECTED / HEARTBEAT / DISCONNECTED / CLOSED / ERROR / AUTH frames.
+    messages:
+      - $ref: '#/channels/connection/messages/connected'
+      - $ref: '#/channels/connection/messages/heartbeat'
+      - $ref: '#/channels/connection/messages/disconnected'
+      - $ref: '#/channels/connection/messages/closed'
+      - $ref: '#/channels/connection/messages/error'
+      - $ref: '#/channels/connection/messages/auth'
+
+  closeConnection:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    title: Close realtime connection
+    summary: Client sends CLOSE to gracefully terminate the connection.
+    messages:
+      - $ref: '#/channels/connection/messages/close'
+
+  attachChannel:
+    action: send
+    channel:
+      $ref: '#/channels/channel'
+    title: Attach to a channel
+    summary: Send ATTACH ProtocolMessage to begin pub/sub on a channel.
+    description: |
+      Transitions the channel from `initialized` (or `detached`/`suspended`) to
+      `attaching`. On success the server replies with ATTACHED.
+    messages:
+      - $ref: '#/channels/channel/messages/attach'
+
+  detachChannel:
+    action: send
+    channel:
+      $ref: '#/channels/channel'
+    title: Detach from a channel
+    summary: Send DETACH ProtocolMessage to leave a channel.
+    messages:
+      - $ref: '#/channels/channel/messages/detach'
+
+  publishMessage:
+    action: send
+    channel:
+      $ref: '#/channels/channel'
+    title: Publish a message
+    summary: Publish a MESSAGE ProtocolMessage to a channel.
+    description: |
+      Carries one or more Message objects in the `messages` array. Each Message
+      has `name`, `data`, optional `clientId`, and optional `extras` (push,
+      headers, ephemeral, privileged).
+    messages:
+      - $ref: '#/channels/channel/messages/message'
+
+  subscribeChannel:
+    action: receive
+    channel:
+      $ref: '#/channels/channel'
+    title: Subscribe to channel events
+    summary: Receive MESSAGE / PRESENCE / ATTACHED / DETACHED / SYNC / ERROR frames for a channel.
+    messages:
+      - $ref: '#/channels/channel/messages/attached'
+      - $ref: '#/channels/channel/messages/detached'
+      - $ref: '#/channels/channel/messages/message'
+      - $ref: '#/channels/channel/messages/presence'
+      - $ref: '#/channels/channel/messages/sync'
+      - $ref: '#/channels/channel/messages/channelError'
+
+  enterPresence:
+    action: send
+    channel:
+      $ref: '#/channels/channel'
+    title: Enter / update / leave presence
+    summary: Send PRESENCE ProtocolMessage to enter, update, or leave a channel's presence set.
+    messages:
+      - $ref: '#/channels/channel/messages/presence'
+
+  receiveSse:
+    action: receive
+    channel:
+      $ref: '#/channels/sseStream'
+    title: Receive SSE events
+    summary: Stream of `message` events whose `data` is a JSON-encoded Ably Message.
+    messages:
+      - $ref: '#/channels/sseStream/messages/sseMessage'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: userPassword
+      description: |
+        Basic authentication using an Ably API key in `appID.keyID:secret`
+        form. Intended for trusted server environments only.
+    token:
+      type: httpApiKey
+      in: query
+      name: accessToken
+      description: |
+        Ably Token or JWT passed via the `accessToken` query parameter on the
+        WebSocket or SSE request. Tokens are short-lived and carry capability
+        and clientId claims.
+
+  messages:
+    Connected:
+      name: connected
+      title: CONNECTED
+      summary: Server confirmation that the realtime connection is established.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+      examples:
+        - name: connected
+          payload:
+            action: 4
+            connectionId: ABC123
+            connectionDetails:
+              clientId: alice
+              connectionKey: 12345!abc
+              maxMessageSize: 65536
+              maxInboundRate: 1000
+              maxOutboundRate: 1000
+              connectionStateTtl: 120000
+              maxIdleInterval: 15000
+
+    Heartbeat:
+      name: heartbeat
+      title: HEARTBEAT
+      summary: Keep-alive ping. Ably sends heartbeats every 15s by default.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Disconnect:
+      name: disconnect
+      title: DISCONNECT
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Disconnected:
+      name: disconnected
+      title: DISCONNECTED
+      summary: Connection has dropped. SDK will attempt to reconnect.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Close:
+      name: close
+      title: CLOSE
+      summary: Client request to gracefully close the connection.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Closed:
+      name: closed
+      title: CLOSED
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Error:
+      name: error
+      title: ERROR
+      summary: Protocol-level or channel-scoped error.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Auth:
+      name: auth
+      title: AUTH
+      summary: Mid-connection auth refresh (token reauth).
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Attach:
+      name: attach
+      title: ATTACH
+      summary: Client request to attach to a channel.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Attached:
+      name: attached
+      title: ATTACHED
+      summary: Server confirmation that the channel is attached.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Detach:
+      name: detach
+      title: DETACH
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Detached:
+      name: detached
+      title: DETACHED
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Message:
+      name: message
+      title: MESSAGE
+      summary: Carries one or more user-published Message objects on a channel.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+      examples:
+        - name: publish
+          payload:
+            action: 15
+            channel: chat:room42
+            messages:
+              - name: chat.message
+                clientId: alice
+                data: { text: 'hello world' }
+
+    PresenceMessage:
+      name: presence
+      title: PRESENCE
+      summary: |
+        Carries one or more PresenceMessage objects. Action enum:
+        0 ABSENT, 1 PRESENT, 2 ENTER, 3 LEAVE, 4 UPDATE.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    Sync:
+      name: sync
+      title: SYNC
+      summary: Presence set synchronization frames.
+      payload:
+        $ref: '#/components/schemas/ProtocolMessage'
+
+    SseMessage:
+      name: sseMessage
+      title: SSE message event
+      contentType: text/event-stream
+      summary: A single SSE event whose `data` field is a JSON-encoded Ably Message.
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: SSE event id (also the Ably message id).
+          event:
+            type: string
+            description: Event type, typically `message`.
+          data:
+            $ref: '#/components/schemas/Message'
+          lastEventId:
+            type: string
+
+  schemas:
+    ProtocolMessage:
+      type: object
+      description: |
+        The native Ably wire envelope exchanged over the WebSocket. Every frame
+        in the realtime protocol is a ProtocolMessage; the `action` field
+        identifies the operation.
+      properties:
+        action:
+          type: integer
+          description: |
+            Action enum (Ably protocol):
+            0 HEARTBEAT, 1 ACK, 2 NACK,
+            3 CONNECT, 4 CONNECTED,
+            5 DISCONNECT, 6 DISCONNECTED,
+            7 CLOSE, 8 CLOSED,
+            9 ERROR,
+            10 ATTACH, 11 ATTACHED, 12 DETACH, 13 DETACHED,
+            14 PRESENCE, 15 MESSAGE,
+            16 SYNC, 17 AUTH.
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+        id:
+          type: string
+        channel:
+          type: string
+          description: Channel name (required for channel-scoped actions).
+        channelSerial:
+          type: string
+        connectionId:
+          type: string
+        connectionKey:
+          type: string
+        msgSerial:
+          type: integer
+          format: int64
+        timestamp:
+          type: integer
+          format: int64
+        count:
+          type: integer
+        flags:
+          type: integer
+          description: Bitfield of channel/message flags (PRESENCE, PUBLISH, SUBSCRIBE, PRESENCE_SUBSCRIBE, RESUMED, HAS_PRESENCE, HAS_BACKLOG, etc.).
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        presence:
+          type: array
+          items:
+            $ref: '#/components/schemas/PresenceItem'
+        connectionDetails:
+          $ref: '#/components/schemas/ConnectionDetails'
+        auth:
+          type: object
+          properties:
+            accessToken:
+              type: string
+      required:
+        - action
+
+    Message:
+      type: object
+      description: A user message published to a channel.
+      properties:
+        id:
+          type: string
+          description: Unique message ID assigned by Ably.
+        clientId:
+          type: string
+          description: Publisher's client identifier.
+        connectionId:
+          type: string
+          description: Publisher's connection identifier.
+        timestamp:
+          type: integer
+          format: int64
+          description: Milliseconds since epoch at which Ably first received the message.
+        name:
+          type: string
+          description: Event name (optional).
+        data:
+          description: Message payload (string, buffer, or JSON-serializable).
+        encoding:
+          type: string
+          description: Remaining unapplied encodings, e.g. `json`, `utf-8`, `base64`, `cipher+aes-256-cbc`.
+        extras:
+          type: object
+          description: Optional metadata.
+          properties:
+            push:
+              type: object
+              description: Push notification payload (FCM/APNs/Web).
+            headers:
+              type: object
+              additionalProperties:
+                type: string
+              description: Customer metadata map of string-keyed string values.
+            ephemeral:
+              type: object
+              description: Marks the message as ephemeral (not persisted to history).
+            privileged:
+              type: object
+              description: Reserved for Ably integrations.
+
+    PresenceItem:
+      type: object
+      description: A single presence event item.
+      properties:
+        id:
+          type: string
+        action:
+          type: integer
+          description: 0 ABSENT, 1 PRESENT, 2 ENTER, 3 LEAVE, 4 UPDATE.
+          enum: [0, 1, 2, 3, 4]
+        clientId:
+          type: string
+        connectionId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        data:
+          description: Optional member data.
+        encoding:
+          type: string
+
+    ConnectionDetails:
+      type: object
+      properties:
+        clientId:
+          type: string
+        connectionKey:
+          type: string
+        connectionStateTtl:
+          type: integer
+          description: Milliseconds the server preserves connection state for resume.
+        maxIdleInterval:
+          type: integer
+          description: Maximum interval between server activity before client must assume disconnect.
+        maxMessageSize:
+          type: integer
+        maxFrameSize:
+          type: integer
+        maxInboundRate:
+          type: integer
+        maxOutboundRate:
+          type: integer
+        serverId:
+          type: string
+
+    ErrorInfo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Ably error code (see https://github.com/ably/ably-common/blob/main/protocol/errors.json).
+        statusCode:
+          type: integer
+          description: HTTP status code equivalent.
+        message:
+          type: string
+        href:
+          type: string
+        cause:
+          $ref: '#/components/schemas/ErrorInfo'

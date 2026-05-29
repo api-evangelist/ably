@@ -13,7 +13,7 @@ tags:
 - Chat
 - LiveSync
 created: '2026-05-08'
-modified: '2026-05-19'
+modified: '2026-05-29'
 specificationVersion: '0.19'
 description: Ably is a realtime messaging platform offering pub/sub, presence, push notifications, chat, LiveSync, and integrations
   over WebSocket and HTTP. Ably publishes its OpenAPI specifications publicly via the ably/open-specs GitHub repository, with
@@ -37,6 +37,8 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: OpenAPI
     url: openapi/ably-platform-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/ably-asyncapi.yml
   - type: WebSocket
     url: wss://realtime.ably.io
   - type: NaftikoCapability
