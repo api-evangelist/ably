@@ -1,0 +1,849 @@
+"""
+Ably GraphQL Schema
+Covers the Ably Platform API (rest.ably.io) and Ably Control API (control.ably.net/v1).
+Source: https://ably.com/docs/api/rest-api  |  https://ably.com/docs/api/control-api
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar Long
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum PresenceAction {
+  ABSENT
+  PRESENT
+  ENTER
+  LEAVE
+  UPDATE
+}
+
+enum MessageEncoding {
+  UTF8
+  JSON
+  BASE64
+  CIPHER_PLUS_BASE64
+  CIPHER_PLUS_UTF8
+}
+
+enum DevicePlatform {
+  IOS
+  ANDROID
+  BROWSER
+}
+
+enum PushState {
+  ACTIVE
+  FAILED
+  UNREGISTERED
+}
+
+enum RuleType {
+  HTTP
+  AMQP
+  KINESIS
+  KAFKA
+  SQS
+  PULSAR
+  ZAPIER
+  CLOUDMATICS
+}
+
+enum QueueRegion {
+  US_EAST_1
+  EU_WEST_1
+  AP_SOUTHEAST_1
+  AP_NORTHEAST_1
+}
+
+enum StatsInterval {
+  MINUTE
+  HOUR
+  DAY
+  MONTH
+}
+
+enum ChannelState {
+  INITIALIZED
+  ATTACHING
+  ATTACHED
+  DETACHING
+  DETACHED
+  SUSPENDED
+  FAILED
+}
+
+enum ConnectionState {
+  INITIALIZED
+  CONNECTING
+  CONNECTED
+  DISCONNECTED
+  SUSPENDED
+  CLOSING
+  CLOSED
+  FAILED
+}
+
+enum KeyStatus {
+  ENABLED
+  REVOKED
+}
+
+enum AppStatus {
+  ENABLED
+  DISABLED
+}
+
+# ---------------------------------------------------------------------------
+# App & Account types
+# ---------------------------------------------------------------------------
+
+type App {
+  id: ID!
+  name: String!
+  status: AppStatus!
+  details: AppDetails
+  keys: [AppKey!]
+  stats: [Stats!]
+  namespaces: [Namespace!]
+  queues: [Queue!]
+  rules: [Rule!]
+}
+
+type AppDetails {
+  id: ID!
+  accountId: String!
+  name: String!
+  status: AppStatus!
+  tlsOnly: Boolean!
+  apnsUseSandboxEndpoint: Boolean!
+  created: DateTime!
+  modified: DateTime!
+}
+
+type AppKey {
+  id: ID!
+  appId: String!
+  name: String!
+  key: String!
+  status: KeyStatus!
+  details: KeyDetails
+  capability: KeyCapability!
+  created: DateTime!
+  modified: DateTime!
+  revoked: DateTime
+}
+
+type AppStats {
+  all: StatsDetails!
+  inbound: StatsDetails!
+  outbound: StatsDetails!
+  persisted: StatsDetails!
+  connections: ConnectionDetails!
+  channels: ChannelDetails!
+  apiRequests: StatsDetails!
+  tokenRequests: StatsDetails!
+}
+
+# ---------------------------------------------------------------------------
+# Key types
+# ---------------------------------------------------------------------------
+
+type Key {
+  id: ID!
+  appId: String!
+  name: String!
+  key: String!
+  status: KeyStatus!
+  details: KeyDetails!
+  capability: KeyCapability!
+}
+
+type KeyDetails {
+  id: ID!
+  appId: String!
+  name: String!
+  key: String!
+  status: KeyStatus!
+  revocableTokens: Boolean
+  created: DateTime!
+  modified: DateTime!
+}
+
+type KeyCapability {
+  channels: [String!]
+  permissions: [String!]
+}
+
+# ---------------------------------------------------------------------------
+# Channel types
+# ---------------------------------------------------------------------------
+
+type Channel {
+  id: ID!
+  name: String!
+  status: ChannelStatus!
+  details: ChannelDetails
+  presence: ChannelPresence
+  metadata: ChannelMetadata
+  occupancy: ChannelOccupancy
+  history(start: DateTime, end: DateTime, limit: Int, direction: String): HistoryPage
+  messages(limit: Int): [Message!]
+}
+
+type ChannelDetails {
+  channelId: String!
+  status: ChannelStatus!
+  occupancy: ChannelOccupancy
+  isGlobalMaster: Boolean
+  region: String
+}
+
+type ChannelStatus {
+  isActive: Boolean!
+  occupancy: ChannelOccupancy
+}
+
+type ChannelPresence {
+  members: [PresenceMember!]!
+  total: Int!
+}
+
+type ChannelMetadata {
+  channelId: String!
+  status: ChannelStatus!
+  occupancy: ChannelOccupancy
+}
+
+type ChannelOccupancy {
+  metrics: OccupancyMetrics!
+}
+
+type OccupancyMetrics {
+  connections: Int!
+  publishers: Int!
+  subscribers: Int!
+  presenceConnections: Int!
+  presenceMembers: Int!
+  presenceSubscribers: Int!
+}
+
+# ---------------------------------------------------------------------------
+# Message types
+# ---------------------------------------------------------------------------
+
+type Message {
+  id: ID!
+  name: MessageName
+  data: MessageData
+  encoding: MessageEncoding
+  extras: JSON
+  timestamp: DateTime!
+  clientId: String
+  connectionId: String
+  details: MessageDetails
+}
+
+type MessageDetails {
+  id: ID!
+  name: MessageName
+  data: MessageData
+  encoding: MessageEncoding
+  extras: JSON
+  timestamp: DateTime!
+  clientId: String
+  connectionId: String
+}
+
+type MessageName {
+  value: String!
+}
+
+type MessageData {
+  raw: String
+  parsed: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Presence types
+# ---------------------------------------------------------------------------
+
+type PresenceMessage {
+  id: ID!
+  action: PresenceAction!
+  clientId: String!
+  connectionId: String!
+  data: MessageData
+  encoding: MessageEncoding
+  timestamp: DateTime!
+  details: PresenceDetails
+}
+
+type PresenceDetails {
+  id: ID!
+  action: PresenceAction!
+  clientId: String!
+  connectionId: String!
+  data: MessageData
+  encoding: MessageEncoding
+  timestamp: DateTime!
+}
+
+type PresenceMember {
+  clientId: String!
+  connectionId: String!
+  data: MessageData
+  encoding: MessageEncoding
+  action: PresenceAction!
+  timestamp: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# History types
+# ---------------------------------------------------------------------------
+
+type History {
+  channelName: String!
+  messages: [Message!]!
+  details: HistoryDetails
+}
+
+type HistoryDetails {
+  channelName: String!
+  start: DateTime
+  end: DateTime
+  limit: Int
+  direction: String
+}
+
+type HistoryPage {
+  items: [Message!]!
+  hasNext: Boolean!
+  details: HistoryDetails
+}
+
+# ---------------------------------------------------------------------------
+# Token & Auth types
+# ---------------------------------------------------------------------------
+
+type Token {
+  token: String!
+  keyName: String!
+  issued: DateTime!
+  expires: DateTime!
+  capability: TokenCapability!
+  clientId: String
+  details: TokenDetails
+}
+
+type TokenDetails {
+  token: String!
+  keyName: String!
+  issued: Long!
+  expires: Long!
+  capability: TokenCapability!
+  clientId: String
+}
+
+type TokenCapability {
+  raw: JSON!
+  channels: [String!]
+  permissions: [String!]
+}
+
+type TokenExpiry {
+  token: String!
+  expires: DateTime!
+  ttl: Int!
+}
+
+type AuthRequest {
+  keyName: String!
+  timestamp: Long!
+  nonce: String!
+  mac: String!
+  clientId: String
+  capability: JSON
+  details: AuthDetails
+}
+
+type AuthDetails {
+  keyName: String!
+  timestamp: Long!
+  nonce: String!
+  mac: String!
+  clientId: String
+  capability: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Queue types
+# ---------------------------------------------------------------------------
+
+type Queue {
+  id: ID!
+  name: String!
+  appId: String!
+  region: QueueRegion!
+  state: String!
+  details: QueueDetails
+  messages: [QueueMessage!]
+  rules: [QueueRule!]
+}
+
+type QueueDetails {
+  id: ID!
+  name: String!
+  appId: String!
+  region: QueueRegion!
+  amqp: QueueAmqpConfig
+  stomp: QueueStompConfig
+  state: String!
+  messages: QueueMessageStats!
+  stats: QueueStats!
+  ttl: Int!
+  maxLength: Int!
+  deadletter: Boolean!
+  deadletterId: String
+}
+
+type QueueAmqpConfig {
+  uri: String!
+  queueName: String!
+}
+
+type QueueStompConfig {
+  uri: String!
+  host: String!
+  destination: String!
+}
+
+type QueueMessageStats {
+  ready: Int!
+  unacknowledged: Int!
+  total: Int!
+}
+
+type QueueStats {
+  publishRate: Float
+  deliveryRate: Float
+  acknowledgementRate: Float
+}
+
+type QueueMessage {
+  id: ID!
+  payload: MessageData
+  timestamp: DateTime!
+  attributes: JSON
+}
+
+type QueueRule {
+  id: ID!
+  queueId: String!
+  channelFilter: String
+  ruleId: String!
+}
+
+# ---------------------------------------------------------------------------
+# Rule (Integration) types
+# ---------------------------------------------------------------------------
+
+type Rule {
+  id: ID!
+  appId: String!
+  status: String!
+  ruleType: RuleType!
+  requestMode: String!
+  channelFilter: String
+  details: RuleDetails
+}
+
+type RuleDetails {
+  id: ID!
+  appId: String!
+  status: String!
+  ruleType: RuleType!
+  requestMode: String!
+  channelFilter: String
+  source: RuleSource
+  target: RuleTarget
+  version: String
+  created: DateTime!
+  modified: DateTime!
+}
+
+type RuleSource {
+  channelFilter: String
+  type: String
+}
+
+type RuleTarget {
+  url: String
+  headers: [RuleHeader!]
+  signingKeyId: String
+  enveloped: Boolean
+  format: String
+}
+
+type RuleHeader {
+  name: String!
+  value: String!
+}
+
+# ---------------------------------------------------------------------------
+# Push Notification types
+# ---------------------------------------------------------------------------
+
+type PushChannel {
+  channelName: String!
+  clientId: String
+  deviceId: String
+  subscriptions: [PushChannelSubscription!]
+}
+
+type PushTarget {
+  transportType: String!
+  details: PushDetails
+}
+
+type PushPayload {
+  notification: PushNotification
+  data: JSON
+  apns: JSON
+  fcm: JSON
+}
+
+type PushNotification {
+  title: String
+  body: String
+  icon: String
+  sound: String
+  collapseKey: String
+  badge: String
+}
+
+type PushDetails {
+  registrationToken: String
+  deviceToken: String
+  recipientType: String
+}
+
+type PushState {
+  deviceId: String!
+  state: String!
+  errorReason: ErrorInfo
+}
+
+type PushChannelSubscription {
+  channel: String!
+  clientId: String
+  deviceId: String
+}
+
+# ---------------------------------------------------------------------------
+# Device Registration types
+# ---------------------------------------------------------------------------
+
+type DeviceRegistration {
+  id: ID!
+  platform: DevicePlatform!
+  formFactor: String!
+  clientId: String
+  details: DeviceDetails
+  pushState: String
+}
+
+type DeviceDetails {
+  id: ID!
+  platform: DevicePlatform!
+  formFactor: String!
+  clientId: String
+  metadata: JSON
+  push: DevicePushDetails
+  created: DateTime!
+  modified: DateTime!
+}
+
+type DevicePushDetails {
+  recipient: PushTarget!
+  state: String!
+  errorReason: ErrorInfo
+}
+
+# ---------------------------------------------------------------------------
+# Stats types
+# ---------------------------------------------------------------------------
+
+type Stats {
+  unit: StatsInterval!
+  intervalId: String!
+  all: AppStats!
+  details: StatsDetails
+  interval: Interval
+}
+
+type StatsDetails {
+  messages: MessageCount!
+  all: MessageCount!
+  presence: MessageCount!
+}
+
+type MessageCount {
+  count: Long!
+  data: Long!
+}
+
+type Interval {
+  unit: StatsInterval!
+  intervalId: String!
+  details: IntervalDetails
+}
+
+type IntervalDetails {
+  unit: StatsInterval!
+  start: DateTime!
+  end: DateTime!
+  intervalId: String!
+}
+
+# ---------------------------------------------------------------------------
+# Connection types
+# ---------------------------------------------------------------------------
+
+type Connection {
+  id: ID!
+  state: ConnectionState!
+  details: ConnectionDetails
+  errorReason: ErrorInfo
+}
+
+type ConnectionDetails {
+  clientId: String
+  connectionKey: String!
+  maxMessageSize: Int!
+  maxInboundRate: Int!
+  maxOutboundRate: Int!
+  connectionStateTtl: Int!
+  maxIdleInterval: Int!
+  serverId: String
+}
+
+# ---------------------------------------------------------------------------
+# Namespace types
+# ---------------------------------------------------------------------------
+
+type Namespace {
+  id: ID!
+  appId: String!
+  persisted: Boolean!
+  authenticated: Boolean!
+  details: NamespaceDetails
+}
+
+type NamespaceDetails {
+  id: ID!
+  appId: String!
+  persisted: Boolean!
+  authenticated: Boolean!
+  persistLast: Boolean!
+  pushEnabled: Boolean!
+  tlsOnly: Boolean!
+  exposeTimeserial: Boolean!
+  created: DateTime!
+  modified: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# API Key types (alias for Control API context)
+# ---------------------------------------------------------------------------
+
+type APIKey {
+  id: ID!
+  appId: String!
+  name: String!
+  key: String!
+  status: KeyStatus!
+  capability: KeyCapability!
+  revocableTokens: Boolean!
+  created: DateTime!
+  modified: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Webhook types
+# ---------------------------------------------------------------------------
+
+type Webhook {
+  id: ID!
+  appId: String!
+  url: String!
+  headers: [RuleHeader!]
+  signingKeyId: String
+  enveloped: Boolean!
+  format: String!
+  channelFilter: String
+  events: [WebhookEvent!]!
+  status: String!
+  details: WebhookDetails
+}
+
+type WebhookDetails {
+  id: ID!
+  appId: String!
+  url: String!
+  headers: [RuleHeader!]
+  signingKeyId: String
+  enveloped: Boolean!
+  format: String!
+  channelFilter: String
+  events: [WebhookEvent!]!
+  status: String!
+  created: DateTime!
+  modified: DateTime!
+}
+
+type WebhookEvent {
+  name: String!
+  filter: String
+}
+
+# ---------------------------------------------------------------------------
+# Error type
+# ---------------------------------------------------------------------------
+
+type ErrorInfo {
+  code: Int!
+  statusCode: Int!
+  message: String!
+  href: String
+}
+
+# ---------------------------------------------------------------------------
+# Query
+# ---------------------------------------------------------------------------
+
+type Query {
+  # App queries (Control API)
+  apps: [App!]!
+  app(id: ID!): App
+
+  # Key queries (Control API)
+  appKeys(appId: ID!): [APIKey!]!
+  appKey(appId: ID!, keyId: ID!): APIKey
+
+  # Namespace queries (Control API)
+  namespaces(appId: ID!): [Namespace!]!
+  namespace(appId: ID!, namespaceId: ID!): Namespace
+
+  # Queue queries (Control API)
+  queues(appId: ID!): [Queue!]!
+  queue(appId: ID!, queueId: ID!): Queue
+
+  # Rule queries (Control API)
+  rules(appId: ID!): [Rule!]!
+  rule(appId: ID!, ruleId: ID!): Rule
+
+  # Channel queries (Platform API)
+  channels(appId: ID!): [Channel!]!
+  channel(channelName: String!): Channel
+  channelStatus(channelName: String!): ChannelStatus
+  channelPresence(channelName: String!): ChannelPresence
+  channelOccupancy(channelName: String!): ChannelOccupancy
+
+  # Message / history queries (Platform API)
+  channelHistory(
+    channelName: String!
+    start: DateTime
+    end: DateTime
+    limit: Int
+    direction: String
+  ): HistoryPage
+
+  presenceHistory(
+    channelName: String!
+    start: DateTime
+    end: DateTime
+    limit: Int
+  ): [PresenceMessage!]
+
+  # Token queries (Platform API)
+  requestToken(appId: ID!, keyId: ID!): Token
+
+  # Stats queries
+  appStats(
+    appId: ID!
+    start: DateTime
+    end: DateTime
+    unit: StatsInterval
+    limit: Int
+  ): [Stats!]
+
+  # Push queries (Platform API)
+  pushChannelSubscriptions(channelName: String!): [PushChannelSubscription!]
+  deviceRegistration(deviceId: ID!): DeviceRegistration
+  deviceRegistrations: [DeviceRegistration!]
+
+  # Connection queries
+  connection(id: ID!): Connection
+}
+
+# ---------------------------------------------------------------------------
+# Mutation
+# ---------------------------------------------------------------------------
+
+type Mutation {
+  # App mutations (Control API)
+  createApp(name: String!, status: AppStatus): App
+  updateApp(id: ID!, name: String, status: AppStatus): App
+  deleteApp(id: ID!): Boolean!
+
+  # Key mutations (Control API)
+  createAppKey(appId: ID!, name: String!, capability: JSON): APIKey
+  updateAppKey(appId: ID!, keyId: ID!, name: String, capability: JSON): APIKey
+  revokeAppKey(appId: ID!, keyId: ID!): APIKey
+
+  # Namespace mutations (Control API)
+  createNamespace(appId: ID!, id: String!, persisted: Boolean, authenticated: Boolean): Namespace
+  updateNamespace(appId: ID!, namespaceId: ID!, persisted: Boolean, authenticated: Boolean): Namespace
+  deleteNamespace(appId: ID!, namespaceId: ID!): Boolean!
+
+  # Queue mutations (Control API)
+  createQueue(appId: ID!, name: String!, region: QueueRegion!, ttl: Int, maxLength: Int): Queue
+  deleteQueue(appId: ID!, queueId: ID!): Boolean!
+
+  # Rule mutations (Control API)
+  createRule(appId: ID!, ruleType: RuleType!, channelFilter: String, target: JSON): Rule
+  updateRule(appId: ID!, ruleId: ID!, status: String, channelFilter: String, target: JSON): Rule
+  deleteRule(appId: ID!, ruleId: ID!): Boolean!
+
+  # Publish (Platform API)
+  publishMessage(channelName: String!, name: String, data: JSON, encoding: String, extras: JSON): Message
+
+  # Push mutations (Platform API)
+  publishPush(channelName: String!, payload: JSON!): Boolean!
+  registerDevice(platform: DevicePlatform!, formFactor: String!, clientId: String, push: JSON): DeviceRegistration
+  unregisterDevice(deviceId: ID!): Boolean!
+  subscribeToPushChannel(channelName: String!, deviceId: ID): PushChannelSubscription
+  unsubscribeFromPushChannel(channelName: String!, deviceId: ID): Boolean!
+
+  # Token mutations (Platform API)
+  createToken(keyId: ID!, ttl: Int, capability: JSON, clientId: String): Token
+  revokeToken(keyName: String!, tokenSuffix: String!): Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Subscription
+# ---------------------------------------------------------------------------
+
+type Subscription {
+  channelMessages(channelName: String!, clientId: String): Message
+  channelPresence(channelName: String!): PresenceMessage
+  channelOccupancy(channelName: String!): ChannelOccupancy
+  connectionState(connectionId: ID!): Connection
+}
