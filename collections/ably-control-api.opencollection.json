@@ -1,0 +1,644 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists account apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/accounts/:account_id/apps",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID for which to retrieve the associated applications."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all Ably applications for the specified account ID."
+        },
+        {
+          "info": {
+            "name": "Creates an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/accounts/:account_id/apps",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID of the account in which to create the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an application with the specified properties."
+        },
+        {
+          "info": {
+            "name": "Updates an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of application to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Updates app's APNs info from a `.p12` file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:id/pkcs12",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the application's Apple Push Notification service (APNs) information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists app keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the API keys associated with the application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an API key for the application specified."
+        },
+        {
+          "info": {
+            "name": "Updates a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys/:key_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The API key ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the API key with the specified key ID, for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Revokes a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys/:key_id/revoke",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The key ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revokes the API key with the specified ID, with the Application ID. This deletes the key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the <a href=\"https://ably.com/docs/channels#namespaces\">namespaces</a> for the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> for the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Updates a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces/:namespace_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "namespace_id",
+                "value": "",
+                "type": "path",
+                "description": "The namespace ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces/:namespace_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "namespace_id",
+                "value": "",
+                "type": "path",
+                "description": "The namespace ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the specified application ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the <a href=\"https://ably.com/docs/general/queues\">queues</a> associated with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/general/queues\">queue</a> for the application specified by application ID. The properties for the queue to be created are specified in the request body."
+        },
+        {
+          "info": {
+            "name": "Deletes a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues/:queue_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "The queue ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete the <a href=\"https://ably.com/docs/general/queues\">queue</a> with the specified queue name, from the application with the specified application ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the <a href=\"https://ably.com/docs/general/webhooks\">rules</a> for the application specified by the application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/general/webhooks\">rule</a> for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Gets a rule using a rule ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        },
+        {
+          "info": {
+            "name": "Updates a Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve information about the <a href=\"https://ably.com/docs/account/control-api#authentication\">token</a> the current user authenticates with."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
