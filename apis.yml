@@ -2,7 +2,7 @@ aid: ably
 url: https://raw.githubusercontent.com/api-evangelist/ably/refs/heads/main/apis.yml
 name: Ably
 kind: company
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Realtime
 - WebSockets
@@ -29,7 +29,7 @@ apis:
   - WebSockets
   - REST
   - Streaming
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://rest.ably.io
   humanURL: https://ably.com/docs/api/rest-api
   description: The Ably Platform API exposes pub/sub messaging, presence, history,
@@ -65,7 +65,7 @@ apis:
   - Keys
   - Namespaces
   - Integrations
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://control.ably.net/v1
   humanURL: https://ably.com/docs/api/control-api
   description: The Ably Control API manages accounts, apps, API keys, namespaces,
