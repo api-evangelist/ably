@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://security.ably.com/
+url: https://security.ably.com/
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://security.ably.com/
+  keywords:
+  - soc 2
+  - trust center
+  - gdpr

@@ -86,6 +86,14 @@ apis:
   - Multi-tenant Ably provisioning
   - CI/CD environment setup
 common:
+- type: TrustCenter
+  url: security/ably-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/ably-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/ably-domain-security.yml
+- type: Authentication
+  url: authentication/ably-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/ably-realtime
 - type: Portal
@@ -106,6 +114,8 @@ common:
   url: finops/ably-finops.yml
 - type: LlmsText
   url: https://ably.com/llms.txt
+- type: Blog
+  url: https://voltaire.ably.com/blog/rss.xml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

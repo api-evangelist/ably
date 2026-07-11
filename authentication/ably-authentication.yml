@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ably-control-api-openapi.yml, openapi/ably-platform-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearer_auth
+  type: http
+  scheme: bearer
+  description: Control API uses bearer authentication. You need to generate an access token
+    for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably
+    docs</a>.
+  sources:
+  - openapi/ably-control-api-openapi.yml
+  - openapi/ably-platform-api-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Basic Authentication using an [API key](https://www.ably.io/documentation/core-features/authentication#basic-authentication).
+  sources:
+  - openapi/ably-platform-api-openapi.yml
