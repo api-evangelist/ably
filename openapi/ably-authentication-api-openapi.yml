@@ -1,0 +1,199 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps Authentication API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: Authentication
+paths:
+  /keys/{keyName}/requestToken:
+    parameters:
+    - $ref: '#/components/parameters/versionHeader'
+    - $ref: '#/components/parameters/responseFormat'
+    post:
+      summary: Request an access token
+      operationId: requestAccessToken
+      description: This is the means by which clients obtain access tokens to use the service. You can see how to construct an Ably TokenRequest in the [Ably TokenRequest spec](https://www.ably.io/documentation/rest-api/token-request-spec) documentation, although we recommend you use an Ably SDK rather to create a TokenRequest, as the construction of a TokenRequest is complex. The resulting token response object contains the token properties as defined in Ably TokenRequest spec. Authentication is not required if using a Signed TokenRequest.
+      tags:
+      - Authentication
+      parameters:
+      - $ref: '#/components/parameters/key_name'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/TokenRequest'
+              - $ref: '#/components/schemas/SignedTokenRequest'
+            example:
+              keyName: YourKey.Name
+              timestamp: '1559124196551'
+              capability:
+                channel1:
+                - publish
+                - subscribe
+                wildcard:channels:*:
+                - publish
+      responses:
+        2XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenDetails'
+            application/x-msgpack:
+              schema:
+                $ref: '#/components/schemas/TokenDetails'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+  schemas:
+    SignedTokenRequest:
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          mac:
+            type: string
+            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
+        required:
+        - mac
+    TokenRequest:
+      type: object
+      properties:
+        keyName:
+          type: string
+          description: Name of the key used for the TokenRequest. The keyName comprises of the app ID and key ID on an API Key.
+          example: xVLyHw.LMJZxw
+        capability:
+          type: object
+          description: The [capabilities](https://www.ably.io/documentation/core-features/authentication#capabilities-explained) (i.e. a set of channel names/namespaces and, for each, a set of operations) which should be a subset of the set of capabilities associated with the key specified in keyName.
+          example:
+            channel1:
+            - publish
+            - subscribe
+        clientId:
+          type: string
+          description: The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) to be assosciated with the token. Can be set to * to allow for any client ID to be used.
+        timestamp:
+          type: integer
+          description: Time of creation of the Ably TokenRequest.
+        nonce:
+          type: string
+          description: An unquoted, un-escaped random string of at least 16 characters. Used to ensure the Ably TokenRequest cannot be reused.
+      required:
+      - keyName
+      - capability
+      - timestamp
+      - nonce
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+    TokenDetails:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The Ably Token.
+        keyName:
+          type: string
+          description: Name of the key used to create the token
+        issued:
+          type: integer
+          description: Timestamp of token creation.
+        expires:
+          type: integer
+          description: Timestamp of token expiration.
+        capability:
+          type: string
+          description: Regular expression representation of the capabilities of the token.
+  parameters:
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    key_name:
+      name: keyName
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/x-msgpack:
+          schema:
+            $ref: '#/components/schemas/Error'
+        text/html:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        x-ably-errorcode:
+          $ref: '#/components/headers/ErrorCode'
+        x-ably-errormessage:
+          $ref: '#/components/headers/ErrorMessage'
+        x-ably-serverid:
+          $ref: '#/components/headers/ServerId'
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.

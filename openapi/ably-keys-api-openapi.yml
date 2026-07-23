@@ -1,0 +1,367 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps keys API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: keys
+paths:
+  /apps/{app_id}/keys:
+    get:
+      summary: Lists app keys
+      description: Lists the API keys associated with the application ID.
+      tags:
+      - keys
+      parameters:
+      - name: app_id
+        description: The application ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Key list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/key_response'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '504':
+          description: Gateway timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: Creates a key
+      description: Creates an API key for the application specified.
+      tags:
+      - keys
+      parameters:
+      - name: app_id
+        description: The application ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '201':
+          description: Key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/key_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/key_post'
+  /apps/{app_id}/keys/{key_id}:
+    patch:
+      summary: Updates a key
+      description: Update the API key with the specified key ID, for the application with the specified application ID.
+      tags:
+      - keys
+      parameters:
+      - name: app_id
+        description: The application ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: key_id
+        description: The API key ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Key updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/key_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '504':
+          description: Gateway timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/key_patch'
+  /apps/{app_id}/keys/{key_id}/revoke:
+    post:
+      summary: Revokes a key
+      description: Revokes the API key with the specified ID, with the Application ID. This deletes the key.
+      tags:
+      - keys
+      parameters:
+      - name: app_id
+        description: The application ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: key_id
+        description: The key ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Key revoked
+          content: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '504':
+          description: Gateway timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    key_response:
+      type: object
+      additionalProperties: false
+      properties:
+        appId:
+          description: The Ably application ID which this key is associated with.
+          type: string
+          example: 28GY6a
+        id:
+          description: The key ID.
+          type: string
+          example: G8dabc
+        name:
+          description: The name for your API key. This is a friendly name for your reference.
+          type: string
+          example: My key name
+        status:
+          description: The status of the key. `0` is enabled, `1` is revoked.
+          type: integer
+        key:
+          description: The complete API key including API secret.
+          type: string
+        capability:
+          description: The capabilities that this key has. More information on capabilities can be found in the Ably <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
+          type: object
+          additionalProperties:
+            type: array
+            description: An array of strings setting the capability operations for the resource.
+            items:
+              type: string
+          example:
+            channel1:
+            - publish
+            - subscribe
+            channel2:
+            - history
+        created:
+          type: integer
+          description: Unix timestamp representing the date and time of creation of the key.
+          example: 1602844091815
+        modified:
+          type: integer
+          description: Unix timestamp representing the date and time of the last modification of the key.
+          example: 1614679682091
+    key_post:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          description: The name for your API key. This is a friendly name for your reference.
+          type: string
+          example: My key name
+        capability:
+          description: These are the capability operations described in the <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
+          type: object
+          additionalProperties:
+            type: array
+            description: An array of strings setting the capability operations for the resource.
+            items:
+              type: string
+      example:
+        name: My key name
+        capability:
+          channel1:
+          - publish
+          - subscribe
+          channel2:
+          - history
+      required:
+      - name
+      - capability
+    key_patch:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          description: The name for your API key. This is a friendly name for your reference.
+          type: string
+          example: My key name
+        capability:
+          description: These are the capability operations described in the Ably <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
+          type: object
+          additionalProperties:
+            type: array
+            description: An array of strings setting the capability operations for the resource.
+            items:
+              type: string
+      example:
+        name: My key name
+        capability:
+          channel1:
+          - publish
+          - subscribe
+          channel2:
+          - history
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type: object
+          nullable: true
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.

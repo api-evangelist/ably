@@ -1,0 +1,239 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps Publishing API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: Publishing
+paths:
+  /channels/{channel_id}/messages:
+    parameters:
+    - $ref: '#/components/parameters/versionHeader'
+    - $ref: '#/components/parameters/responseFormat'
+    post:
+      summary: Publish a message to a channel
+      operationId: publishMessagesToChannel
+      description: Publish a message to the specified channel
+      tags:
+      - Publishing
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+          application/x-msgpack:
+            schema:
+              $ref: '#/components/schemas/Message'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        2XX:
+          description: OK
+          headers:
+            x-ably-serverid:
+              $ref: '#/components/headers/ServerId'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  channel:
+                    type: string
+                  messageId:
+                    type: string
+            application/x-msgpack:
+              schema:
+                type: object
+                properties:
+                  channel:
+                    type: string
+                  messageId:
+                    type: string
+            text/html:
+              schema:
+                type: object
+                properties:
+                  channel:
+                    type: string
+                  messageId:
+                    type: string
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Extras:
+      type: object
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
+      properties:
+        push:
+          $ref: '#/components/schemas/Push'
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+    Message:
+      type: object
+      description: Message object.
+      properties:
+        name:
+          description: The event name, if provided.
+          type: string
+        data:
+          description: The string encoded payload, with the encoding specified below.
+          type: string
+        id:
+          description: A Unique ID that can be specified by the publisher for [idempotent publishing](https://www.ably.io/documentation/rest/messages#idempotent).
+          type: string
+          readOnly: true
+        timestamp:
+          description: Timestamp when the message was received by the Ably, as milliseconds since the epoch.
+          type: integer
+          format: int64
+          readOnly: true
+        encoding:
+          description: This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.
+          type: string
+        clientId:
+          description: The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.
+          type: string
+        connectionId:
+          description: The connection ID of the publisher of this message.
+          type: string
+        extras:
+          $ref: '#/components/schemas/Extras'
+    Notification:
+      type: object
+      properties:
+        title:
+          description: Title to display at the notification.
+          type: string
+        body:
+          description: Text below title on the expanded notification.
+          type: string
+        icon:
+          description: Platform-specific icon for the notification.
+          type: string
+        sound:
+          description: Platform-specific sound for the notification.
+          type: string
+        collapseKey:
+          description: Platform-specific, used to group notifications together.
+          type: string
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+  parameters:
+    channelId:
+      name: channel_id
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+  headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/x-msgpack:
+          schema:
+            $ref: '#/components/schemas/Error'
+        text/html:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        x-ably-errorcode:
+          $ref: '#/components/headers/ErrorCode'
+        x-ably-errormessage:
+          $ref: '#/components/headers/ErrorMessage'
+        x-ably-serverid:
+          $ref: '#/components/headers/ServerId'
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.

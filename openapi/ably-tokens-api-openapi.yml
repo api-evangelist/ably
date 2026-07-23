@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps tokens API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: tokens
+paths:
+  /me:
+    get:
+      summary: Get token details
+      description: Retrieve information about the <a href="https://ably.com/docs/account/control-api#authentication">token</a> the current user authenticates with.
+      tags:
+      - tokens
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/me'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type: object
+          nullable: true
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
+    me:
+      type: object
+      additionalProperties: false
+      properties:
+        token:
+          type: object
+          additionalProperties: false
+          properties:
+            id:
+              type: integer
+              description: The token ID.
+              example: 12345
+            name:
+              type: string
+              description: The friendly name for the token.
+              example: My Token
+            capabilities:
+              type: array
+              description: An array containing the access capabilities associated with the access token.
+              example:
+              - write:namespace
+              - read:namespace
+              - write:queue
+              - read:queue
+              - write:rule
+              - read:rule
+              - write:key
+              - read:key
+              - write:app
+              - read:app
+              items:
+                type: string
+          required:
+          - id
+          - name
+          - capabilities
+        user:
+          type: object
+          additionalProperties: false
+          properties:
+            id:
+              type: integer
+              description: The user ID associated with the account.
+              example: 12345
+            email:
+              type: string
+              description: Email address of the user associated with the account.
+              example: user@example.com
+          required:
+          - id
+          - email
+        account:
+          type: object
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+              description: The account ID.
+              example: VpWaOA
+            name:
+              type: string
+              description: The name of the account.
+              example: Free account
+          required:
+          - id
+          - name
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.

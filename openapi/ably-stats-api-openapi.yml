@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps Stats API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: Stats
+paths:
+  /stats:
+    parameters:
+    - $ref: '#/components/parameters/versionHeader'
+    - $ref: '#/components/parameters/responseFormat'
+    get:
+      summary: Retrieve usage statistics for an application
+      operationId: getStats
+      description: The Ably system can be queried to obtain usage statistics for a given application, and results are provided aggregated across all channels in use in the application in the specified period. Stats may be used to track usage against account quotas.
+      tags:
+      - Stats
+      parameters:
+      - $ref: '#/components/parameters/filterStart'
+      - $ref: '#/components/parameters/filterLimit'
+      - $ref: '#/components/parameters/filterEnd'
+      - $ref: '#/components/parameters/filterDirection'
+      - name: unit
+        in: query
+        description: Specifies the unit of aggregation in the returned results.
+        schema:
+          type: string
+          default: minute
+          enum:
+          - minute
+          - hour
+          - day
+          - month
+      responses:
+        2XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        default:
+          $ref: '#/components/responses/Error'
+  /time:
+    parameters:
+    - $ref: '#/components/parameters/versionHeader'
+    - $ref: '#/components/parameters/responseFormat'
+    get:
+      security: []
+      summary: Get the service time
+      operationId: getTime
+      description: This returns the service time in milliseconds since the epoch.
+      tags:
+      - Stats
+      responses:
+        2XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+            application/x-msgpack:
+              schema:
+                type: array
+                items:
+                  type: integer
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  parameters:
+    filterEnd:
+      name: end
+      in: query
+      schema:
+        type: string
+        default: now
+    filterStart:
+      name: start
+      in: query
+      schema:
+        type: string
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    filterLimit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: '100'
+    filterDirection:
+      name: direction
+      in: query
+      schema:
+        type: string
+        default: backwards
+        enum:
+        - forwards
+        - backwards
+  headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/x-msgpack:
+          schema:
+            $ref: '#/components/schemas/Error'
+        text/html:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        x-ably-errorcode:
+          $ref: '#/components/headers/ErrorCode'
+        x-ably-errormessage:
+          $ref: '#/components/headers/ErrorMessage'
+        x-ably-serverid:
+          $ref: '#/components/headers/ServerId'
+  schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.

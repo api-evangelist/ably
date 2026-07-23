@@ -1,0 +1,445 @@
+openapi: 3.0.1
+info:
+  title: Control API v1 apps API
+  version: 1.0.32
+  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
+
+
+    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+
+
+    Control API is currently in Preview.
+
+    '
+servers:
+- url: https://control.ably.net/v1
+tags:
+- name: apps
+paths:
+  /accounts/{account_id}/apps:
+    get:
+      summary: Lists account apps
+      description: List all Ably applications for the specified account ID.
+      tags:
+      - apps
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        description: The account ID for which to retrieve the associated applications.
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: List of apps for the specified account are returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/app_response'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: Creates an app
+      description: Creates an application with the specified properties.
+      tags:
+      - apps
+      parameters:
+      - name: account_id
+        description: The account ID of the account in which to create the application.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '201':
+          description: App created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/app_post'
+  /apps/{id}:
+    patch:
+      summary: Updates an app
+      description: Updates the application with the specified application ID.
+      tags:
+      - apps
+      parameters:
+      - name: id
+        description: The ID of application to be updated.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: App updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Invalid resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/app_patch'
+    delete:
+      summary: Deletes an app
+      description: Deletes the application with the specified application ID.
+      tags:
+      - apps
+      parameters:
+      - name: id
+        description: The ID of the application to be deleted.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: App deleted
+          content: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /apps/{id}/pkcs12:
+    post:
+      summary: Updates app's APNs info from a `.p12` file
+      description: Updates the application's Apple Push Notification service (APNs) information.
+      tags:
+      - apps
+      parameters:
+      - name: id
+        description: The application ID.
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: App updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: App not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/app_pkcs12'
+components:
+  schemas:
+    app_pkcs12:
+      type: object
+      additionalProperties: false
+      properties:
+        p12File:
+          type: string
+          format: binary
+          description: The `.p12` file containing the app's APNs information.
+          example: example.p12
+        p12Pass:
+          type: string
+          description: The password for the corresponding `.p12` file.
+          example: secret
+      required:
+      - p12File
+      - p12Pass
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type: object
+          nullable: true
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
+    app_response:
+      type: object
+      additionalProperties: false
+      properties:
+        accountId:
+          type: string
+          description: The ID of your Ably account.
+          example: WgRpOB
+        id:
+          type: string
+          description: The application ID.
+          example: 28AB6x
+        name:
+          type: string
+          description: The application name.
+          example: Default
+        status:
+          type: string
+          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
+          example: enabled
+        tlsOnly:
+          type: boolean
+          nullable: true
+          description: Enforce TLS for all connections. This setting overrides any channel setting.
+          example: true
+        apnsUseSandboxEndpoint:
+          type: boolean
+          nullable: true
+          description: Use the Apple Push Notification service sandbox endpoint.
+          example: false
+        _links:
+          type: object
+          nullable: true
+          description: A link self-referencing the app that has been created.
+    app_patch:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          description: The name of the application for your reference only.
+          example: My App
+        status:
+          type: string
+          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
+          example: enabled
+        tlsOnly:
+          type: boolean
+          nullable: true
+          description: Enforce TLS for all connections.
+          example: true
+        fcmKey:
+          description: The Firebase Cloud Messaging key.
+          type: string
+          nullable: true
+          example: AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I
+        fcmServiceAccount:
+          type: string
+          nullable: true
+          description: Used to specify the Firebase Cloud Messaging(FCM) service account credentials used for authentication and enabling communication with FCM to send push notifications to devices.
+          example: service_account
+        fcmProjectId:
+          type: string
+          nullable: true
+          description: The unique identifier for the Firebase Cloud Messaging(FCM) project. This ID is used to specify the Firebase project when configuring FCM or other Firebase services.
+          example: notional-armor-405018
+        apnsCertificate:
+          type: string
+          nullable: true
+          description: The Apple Push Notification service certificate.
+          example: '-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----'
+        apnsPrivateKey:
+          type: string
+          nullable: true
+          description: The Apple Push Notification service private key.
+          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+        apnsUseSandboxEndpoint:
+          type: boolean
+          nullable: true
+          description: Use the Apple Push Notification service sandbox endpoint.
+          example: false
+    app_post:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          description: The name of the application for your reference only.
+          example: My App
+        status:
+          type: string
+          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
+          example: enabled
+          deprecated: true
+        tlsOnly:
+          type: boolean
+          nullable: true
+          description: Enforce TLS for all connections.
+          example: true
+        fcmKey:
+          description: The Firebase Cloud Messaging key.
+          type: string
+          nullable: true
+          example: AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I
+        fcmServiceAccount:
+          type: string
+          nullable: true
+          description: Used to specify the Firebase Cloud Messaging(FCM) service account credentials used for authentication and enabling communication with FCM to send push notifications to devices.
+          example: service_account
+        fcmProjectId:
+          type: string
+          nullable: true
+          description: The unique identifier for the Firebase Cloud Messaging(FCM) project. This ID is used to specify the Firebase project when configuring FCM or other Firebase services.
+          example: notional-armor-405018
+        apnsCertificate:
+          type: string
+          nullable: true
+          description: The Apple Push Notification service certificate.
+          example: '-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----'
+        apnsPrivateKey:
+          type: string
+          nullable: true
+          description: The Apple Push Notification service private key.
+          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+        apnsUseSandboxEndpoint:
+          type: boolean
+          nullable: true
+          description: Use the Apple Push Notification service sandbox endpoint.
+          example: false
+      required:
+      - name
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.
