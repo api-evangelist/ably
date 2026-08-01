@@ -1,0 +1,36 @@
+{
+  "provider": "ably",
+  "sources": [
+    "ably-apps-api-openapi.yml",
+    "ably-authentication-api-openapi.yml",
+    "ably-history-api-openapi.yml",
+    "ably-keys-api-openapi.yml",
+    "ably-namespaces-api-openapi.yml",
+    "ably-publishing-api-openapi.yml",
+    "ably-push-api-openapi.yml",
+    "ably-queues-api-openapi.yml",
+    "ably-rules-api-openapi.yml",
+    "ably-stats-api-openapi.yml",
+    "ably-status-api-openapi.yml",
+    "ably-tokens-api-openapi.yml"
+  ],
+  "outputs": [
+    "ably-apps-api-openapi.yml",
+    "ably-authentication-api-openapi.yml",
+    "ably-history-api-openapi.yml",
+    "ably-keys-api-openapi.yml",
+    "ably-namespaces-api-openapi.yml",
+    "ably-publishing-api-openapi.yml",
+    "ably-push-api-openapi.yml",
+    "ably-queues-api-openapi.yml",
+    "ably-rules-api-openapi.yml",
+    "ably-stats-api-openapi.yml",
+    "ably-status-api-openapi.yml",
+    "ably-tokens-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
