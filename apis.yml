@@ -48,8 +48,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -68,8 +66,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -88,8 +84,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -108,8 +102,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -128,8 +120,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -148,8 +138,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -168,8 +156,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -188,8 +174,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -208,8 +192,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -228,8 +210,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -248,8 +228,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
@@ -268,8 +246,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: WebSocket
-    url: wss://realtime.ably.io
   - type: GraphQL
     url: graphql/ably-graphql.md
   - type: Documentation
