@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps queues API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the <a href=\"https://ably.com/docs/general/queues\">queues</a> associated with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/general/queues\">queue</a> for the application specified by application ID. The properties for the queue to be created are specified in the request body."
+        },
+        {
+          "info": {
+            "name": "Deletes a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/queues/:queue_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "The queue ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete the <a href=\"https://ably.com/docs/general/queues\">queue</a> with the specified queue name, from the application with the specified application ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps keys API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists app keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the API keys associated with the application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an API key for the application specified."
+        },
+        {
+          "info": {
+            "name": "Updates a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys/:key_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The API key ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the API key with the specified key ID, for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Revokes a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/keys/:key_id/revoke",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The key ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revokes the API key with the specified ID, with the Application ID. This deletes the key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

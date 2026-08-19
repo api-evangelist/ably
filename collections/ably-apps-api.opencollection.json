@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists account apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/accounts/:account_id/apps",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID for which to retrieve the associated applications."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all Ably applications for the specified account ID."
+        },
+        {
+          "info": {
+            "name": "Creates an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/accounts/:account_id/apps",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID of the account in which to create the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an application with the specified properties."
+        },
+        {
+          "info": {
+            "name": "Updates an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of application to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Updates app's APNs info from a `.p12` file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:id/pkcs12",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the application's Apple Push Notification service (APNs) information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

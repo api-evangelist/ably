@@ -1,0 +1,378 @@
+{
+  "item": [
+    {
+      "id": "f165f863-8212-4dce-b3b9-5dc4718a3860",
+      "name": "Publishing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aefba6a0-e9c5-4ac0-a426-041ae7c36f05",
+          "name": "Publish a message to a channel",
+          "request": {
+            "name": "Publish a message to a channel",
+            "description": {
+              "content": "Publish a message to the specified channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "The event name, if provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "The string encoded payload, with the encoding specified below."
+                },
+                {
+                  "disabled": false,
+                  "key": "encoding",
+                  "value": "<string>",
+                  "description": "This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message."
+                },
+                {
+                  "disabled": false,
+                  "key": "connectionId",
+                  "value": "<string>",
+                  "description": "The connection ID of the publisher of this message."
+                },
+                {
+                  "disabled": false,
+                  "key": "push",
+                  "value": "{\"data\":\"<string>\",\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"},\"apns\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"fcm\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"web\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1078435d-63a5-43ad-957b-87c2615fb002",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event name, if provided.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The string encoded payload, with the encoding specified below.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.",
+                        "type": "text/plain"
+                      },
+                      "key": "encoding",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The connection ID of the publisher of this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "connectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "push",
+                      "value": "{\"data\":\"<string>\",\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"},\"apns\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"fcm\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"web\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": \"string\",\n  \"messageId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c3e627e-a877-4908-a306-4e4aa3be993a",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The event name, if provided.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The string encoded payload, with the encoding specified below.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.",
+                        "type": "text/plain"
+                      },
+                      "key": "encoding",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The connection ID of the publisher of this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "connectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "push",
+                      "value": "{\"data\":\"<string>\",\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"},\"apns\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"fcm\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}},\"web\":{\"notification\":{\"title\":\"<string>\",\"body\":\"<string>\",\"icon\":\"<string>\",\"sound\":\"<string>\",\"collapseKey\":\"<string>\"}}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "9486"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7440,\n  \"statusCode\": 1463,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://control.ably.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f554830f-a1d5-44c6-99f0-bc315c7c267a",
+    "name": "Control API v1 apps Publishing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
+      "type": "text/plain"
+    }
+  }
+}

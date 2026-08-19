@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps Status API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get presence of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/channels/:channel_id/presence",
+            "headers": [
+              {
+                "name": "X-Ably-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The response format you would like"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get presence on a channel"
+        },
+        {
+          "info": {
+            "name": "Get metadata of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/channels/:channel_id",
+            "headers": [
+              {
+                "name": "X-Ably-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The response format you would like"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+              }
+            ]
+          },
+          "docs": "Get metadata of a channel"
+        },
+        {
+          "info": {
+            "name": "Enumerate all active channels of the application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/channels",
+            "headers": [
+              {
+                "name": "X-Ably-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The response format you would like"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Optionally limits the query to only those channels whose name starts with the given prefix"
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "optionally specifies whether to return just channel names (by=id) or ChannelDetails (by=value)"
+              }
+            ]
+          },
+          "docs": "Enumerate all active channels of the application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

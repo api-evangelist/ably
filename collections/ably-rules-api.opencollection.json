@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps rules API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists the <a href=\"https://ably.com/docs/general/webhooks\">rules</a> for the application specified by the application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/general/webhooks\">rule</a> for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Gets a rule using a rule ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        },
+        {
+          "info": {
+            "name": "Updates a Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/rules/:rule_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "rule_id",
+                "value": "",
+                "type": "path",
+                "description": "The rule ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

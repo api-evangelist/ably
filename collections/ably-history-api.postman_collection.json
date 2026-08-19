@@ -1,0 +1,529 @@
+{
+  "item": [
+    {
+      "id": "47e919e5-3599-4a4f-8f63-5cd5d2109fe6",
+      "name": "History",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40e81063-5338-472c-a4d4-d3db7b67723c",
+          "name": "Get message history for a channel",
+          "request": {
+            "name": "Get message history for a channel",
+            "description": {
+              "content": "Get message history for a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "now"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "backwards"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2062c122-3489-4f7f-8380-5a5808bf9e3a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.",
+                  "key": "link",
+                  "value": "<>; rel=\"\",<_d3(/VpFp1>; rel=\"last\",<4_>; rel=\"\",<l1R_>; rel=\"first\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"first\"<!S[>; rel=\"first\"<n~Jz_R>; rel=\"first\"<[ zAbn/Tf)>; rel=\"\"<*]y>; rel=\"first\"<){gy>; rel=\"first\"<bwV6g>; rel=\"\"<>; rel=\"\"<>; rel=\"\"<a@YR/>; rel=\"current\""
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"data\": \"string\",\n    \"id\": \"string\",\n    \"timestamp\": 3037,\n    \"encoding\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"data\": \"string\",\n    \"id\": \"string\",\n    \"timestamp\": 3037,\n    \"encoding\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ca3f91f-34f4-4e2d-a783-3ab495f7d8b8",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "6002"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ffea19a-9572-44d1-b921-aafab87cdd24",
+          "name": "Get presence history of a channel",
+          "request": {
+            "name": "Get presence history of a channel",
+            "description": {
+              "content": "Get presence on a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "presence",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "now"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "backwards"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d29d65a2-8937-498b-991f-a5cd18ccf120",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "presence",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.",
+                  "key": "link",
+                  "value": "<>; rel=\"\",<_d3(/VpFp1>; rel=\"last\",<4_>; rel=\"\",<l1R_>; rel=\"first\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"first\"<!S[>; rel=\"first\"<n~Jz_R>; rel=\"first\"<[ zAbn/Tf)>; rel=\"\"<*]y>; rel=\"first\"<){gy>; rel=\"first\"<bwV6g>; rel=\"\"<>; rel=\"\"<>; rel=\"\"<a@YR/>; rel=\"current\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"action\": \"LEAVE\",\n    \"data\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"timestamp\": 7956,\n    \"encoding\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"action\": \"UPDATE\",\n    \"data\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"timestamp\": 415,\n    \"encoding\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c1419ab-03b1-4b90-ba78-f31b2efcd0f7",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "presence",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "6002"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 5399,\n  \"statusCode\": 8083,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://control.ably.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e32ba6ed-7f3e-4391-9393-53518652f941",
+    "name": "Control API v1 apps History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "9e17ab60-b6a3-4b06-9bca-122b3b9cfe31",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebd95248-22e7-4647-9cd5-9eb8433dda6b",
+          "name": "Request an access token",
+          "request": {
+            "name": "Request an access token",
+            "description": {
+              "content": "This is the means by which clients obtain access tokens to use the service. You can see how to construct an Ably TokenRequest in the [Ably TokenRequest spec](https://www.ably.io/documentation/rest-api/token-request-spec) documentation, although we recommend you use an Ably SDK rather to create a TokenRequest, as the construction of a TokenRequest is complex. The resulting token response object contains the token properties as defined in Ably TokenRequest spec. Authentication is not required if using a Signed TokenRequest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys",
+                ":keyName",
+                "requestToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyName",
+                  "description": "(Required) The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyName\": \"<string>\",\n  \"capability\": \"<object>\",\n  \"timestamp\": \"<integer>\",\n  \"nonce\": \"<string>\",\n  \"clientId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35be51ba-7f8e-4f72-85da-b8b0fec98e1c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":keyName",
+                    "requestToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyName",
+                      "description": "(Required) The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyName\": \"YourKey.Name\",\n  \"timestamp\": \"1559124196551\",\n  \"capability\": {\n    \"channel1\": [\n      \"publish\",\n      \"subscribe\"\n    ],\n    \"wildcard:channels:*\": [\n      \"publish\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"keyName\": \"string\",\n  \"issued\": 1019,\n  \"expires\": 3004,\n  \"capability\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0641f58f-5e17-46a8-9998-0e81c94b2c3e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":keyName",
+                    "requestToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyName",
+                      "description": "(Required) The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyName\": \"YourKey.Name\",\n  \"timestamp\": \"1559124196551\",\n  \"capability\": {\n    \"channel1\": [\n      \"publish\",\n      \"subscribe\"\n    ],\n    \"wildcard:channels:*\": [\n      \"publish\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "4263"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 207,\n  \"statusCode\": 149,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://control.ably.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53f0f528-a99d-4173-bdc2-78813d16a09a",
+    "name": "Control API v1 apps Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
+      "type": "text/plain"
+    }
+  }
+}

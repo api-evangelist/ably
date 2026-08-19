@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps namespaces API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the <a href=\"https://ably.com/docs/channels#namespaces\">namespaces</a> for the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Creates a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> for the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Updates a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces/:namespace_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "namespace_id",
+                "value": "",
+                "type": "path",
+                "description": "The namespace ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the application with the specified application ID."
+        },
+        {
+          "info": {
+            "name": "Deletes a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://control.ably.net/v1/apps/:app_id/namespaces/:namespace_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID."
+              },
+              {
+                "name": "namespace_id",
+                "value": "",
+                "type": "path",
+                "description": "The namespace ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the specified application ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "22df7a08-b548-4235-bf05-3ebd6275b480",
+      "name": "Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67de4440-2af2-4c6a-9d0b-6ce33826623d",
+          "name": "Retrieve usage statistics for an application",
+          "request": {
+            "name": "Retrieve usage statistics for an application",
+            "description": {
+              "content": "The Ably system can be queried to obtain usage statistics for a given application, and results are provided aggregated across all channels in use in the application in the specified period. Stats may be used to track usage against account quotas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "now"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "backwards"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "minute",
+                  "description": "Specifies the unit of aggregation in the returned results."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19aa1721-f02a-453b-a1d0-375fa56a0e12",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6c064a7-f341-4efb-b8d0-906ba5605111",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "backwards"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "minute"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "3129"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4497,\n  \"statusCode\": 9086,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "811ee8bc-1e49-498f-b668-16a1c83d7549",
+          "name": "Get the service time",
+          "request": {
+            "name": "Get the service time",
+            "description": {
+              "content": "This returns the service time in milliseconds since the epoch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bece1563-159e-4f9f-bdfa-2626917c9c4f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  5769,\n  2669\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bf14021-db52-474a-9577-8d5d6c911566",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "3129"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4497,\n  \"statusCode\": 9086,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://control.ably.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ab70b046-cc3c-4ba5-be49-bbf6864c3681",
+    "name": "Control API v1 apps Stats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
+      "type": "text/plain"
+    }
+  }
+}

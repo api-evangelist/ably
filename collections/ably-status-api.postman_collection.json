@@ -1,0 +1,667 @@
+{
+  "item": [
+    {
+      "id": "696c9e76-e66f-4549-8852-650bb897aee6",
+      "name": "Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7cc2486e-4fe9-4959-abb6-300265621324",
+          "name": "Get presence of a channel",
+          "request": {
+            "name": "Get presence of a channel",
+            "description": {
+              "content": "Get presence on a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "presence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "connectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54602928-bab3-4ac3-8ae5-f7d5b12e6359",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "presence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.",
+                  "key": "link",
+                  "value": "<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"last\",<>; rel=\"current\",<>; rel=\"\"<D>; rel=\"first\"<UDDeT2RB%>; rel=\"\"<_OvpjUZ>; rel=\"\"<U'HbErZ>; rel=\"last\"<>; rel=\"current\"<aewlhaM=W>; rel=\"last\""
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"action\": \"PRESENT\",\n    \"data\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"timestamp\": 8579,\n    \"encoding\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"action\": \"PRESENT\",\n    \"data\": \"string\",\n    \"clientId\": \"string\",\n    \"connectionId\": \"string\",\n    \"timestamp\": 2594,\n    \"encoding\": \"string\",\n    \"extras\": {\n      \"push\": {\n        \"data\": \"string\",\n        \"notification\": {\n          \"title\": \"string\",\n          \"body\": \"string\",\n          \"icon\": \"string\",\n          \"sound\": \"string\",\n          \"collapseKey\": \"string\"\n        },\n        \"apns\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"fcm\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"web\": {\n          \"notification\": {\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"collapseKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "406d5f44-cdea-44f1-86ee-247f1ee7bc5f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "presence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "6487"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7771,\n  \"statusCode\": 5252,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23e352cf-0013-4c55-89fb-0bc5207d0f2f",
+          "name": "Get metadata of a channel",
+          "request": {
+            "name": "Get metadata of a channel",
+            "description": {
+              "content": "Get metadata of a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5f294ee-b759-4f9e-b90b-38c43918ca09",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channelId\": \"string\",\n  \"region\": \"string\",\n  \"isGlobalMaster\": false,\n  \"status\": {\n    \"isActive\": true,\n    \"occupancy\": {\n      \"publishers\": 7947,\n      \"subscribers\": 9424,\n      \"presenceSubscribers\": 4615,\n      \"presenceConnections\": 5459,\n      \"presenceMembers\": 9453\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfa72abf-aab2-4920-877f-600b6a7ffe15",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "6487"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7771,\n  \"statusCode\": 5252,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96372f1a-dc0c-4bfc-be87-56eb6a914059",
+          "name": "Enumerate all active channels of the application",
+          "request": {
+            "name": "Enumerate all active channels of the application",
+            "description": {
+              "content": "Enumerate all active channels of the application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "Optionally limits the query to only those channels whose name starts with the given prefix"
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "optionally specifies whether to return just channel names (by=id) or ChannelDetails (by=value)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The response format you would like"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The version of the API you wish to use.",
+                "key": "X-Ably-Version",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "333882d6-b541-4987-a6b1-caf1c85c6f75",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.",
+                  "key": "link",
+                  "value": "<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"\",<>; rel=\"last\",<>; rel=\"current\",<>; rel=\"\"<D>; rel=\"first\"<UDDeT2RB%>; rel=\"\"<_OvpjUZ>; rel=\"\"<U'HbErZ>; rel=\"last\"<>; rel=\"current\"<aewlhaM=W>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"channelId\": \"string\",\n    \"region\": \"string\",\n    \"isGlobalMaster\": false,\n    \"status\": {\n      \"isActive\": false,\n      \"occupancy\": {\n        \"publishers\": 2187,\n        \"subscribers\": 2893,\n        \"presenceSubscribers\": 5344,\n        \"presenceConnections\": 9025,\n        \"presenceMembers\": 5375\n      }\n    }\n  },\n  {\n    \"channelId\": \"string\",\n    \"region\": \"string\",\n    \"isGlobalMaster\": true,\n    \"status\": {\n      \"isActive\": true,\n      \"occupancy\": {\n        \"publishers\": 4253,\n        \"subscribers\": 8674,\n        \"presenceSubscribers\": 9948,\n        \"presenceConnections\": 9781,\n        \"presenceMembers\": 3753\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99d90938-b915-4f9d-a1b4-46c90934ad14",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The version of the API you wish to use.",
+                    "key": "X-Ably-Version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The error code.",
+                  "key": "x-ably-errorcode",
+                  "value": "6487"
+                },
+                {
+                  "disabled": false,
+                  "description": "The error message.",
+                  "key": "x-ably-errormessage",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) The ID for the server communicated with.",
+                  "key": "x-ably-serverid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7771,\n  \"statusCode\": 5252,\n  \"href\": \"string\",\n  \"serverId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://control.ably.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8bb62352-9950-4a12-a931-8e884a928d9f",
+    "name": "Control API v1 apps Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
+      "type": "text/plain"
+    }
+  }
+}

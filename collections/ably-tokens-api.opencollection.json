@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Control API v1 apps tokens API",
+    "version": "1.0.32"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://control.ably.net/v1/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve information about the <a href=\"https://ably.com/docs/account/control-api#authentication\">token</a> the current user authenticates with."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
