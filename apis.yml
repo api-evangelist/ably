@@ -27,7 +27,7 @@ tags:
 - LiveSync
 created: '2026-05-08'
 modified: '2026-05-29'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: Ably is a realtime messaging platform offering pub/sub, presence, push
   notifications, chat, LiveSync, and integrations over WebSocket and HTTP. Ably publishes
   its OpenAPI specifications publicly via the ably/open-specs GitHub repository, with
