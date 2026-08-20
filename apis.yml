@@ -17,6 +17,15 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ably.png
 tags:
+- Real-Time
+- WebSockets
+- Pub-Sub
+- Messaging
+- Streaming
+- Push Notifications
+- Chat
+- LiveSync
+tags_raw:
 - Realtime
 - WebSockets
 - Pub/Sub
@@ -40,6 +49,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Application
+  tags_raw:
   - apps
   properties:
   - type: OpenAPI
@@ -94,6 +105,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Keys
+  tags_raw:
   - keys
   properties:
   - type: OpenAPI
@@ -112,6 +125,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Namespaces
+  tags_raw:
   - namespaces
   properties:
   - type: OpenAPI
@@ -166,6 +181,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Queues
+  tags_raw:
   - queues
   properties:
   - type: OpenAPI
@@ -184,6 +201,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Rules
+  tags_raw:
   - rules
   properties:
   - type: OpenAPI
@@ -238,6 +257,8 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
+  - Tokens
+  tags_raw:
   - tokens
   properties:
   - type: OpenAPI
