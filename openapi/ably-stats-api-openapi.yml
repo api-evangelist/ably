@@ -1,18 +1,17 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Control API v1 apps Stats API
-  version: 1.0.32
-  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
-
-
-    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
-
-
-    Control API is currently in Preview.
-
-    '
+  title: Platform Stats API
+  description: The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.
+  version: 1.1.1
+  contact:
+    name: Ably Support
+    url: https://www.ably.io/contact
+    email: support@ably.io
 servers:
-- url: https://control.ably.net/v1
+- url: https://rest.ably.io
+security:
+- basicAuth: []
+- bearerAuth: []
 tags:
 - name: Stats
 paths:
@@ -89,11 +88,6 @@ components:
       schema:
         type: string
         default: now
-    filterStart:
-      name: start
-      in: query
-      schema:
-        type: string
     responseFormat:
       in: query
       name: format
@@ -105,6 +99,20 @@ components:
         - msgpack
         - html
       description: The response format you would like
+    filterStart:
+      name: start
+      in: query
+      schema:
+        type: string
+    filterDirection:
+      name: direction
+      in: query
+      schema:
+        type: string
+        default: backwards
+        enum:
+        - forwards
+        - backwards
     versionHeader:
       in: header
       name: X-Ably-Version
@@ -117,25 +125,36 @@ components:
       schema:
         type: integer
         default: '100'
-    filterDirection:
-      name: direction
-      in: query
-      schema:
-        type: string
-        default: backwards
-        enum:
-        - forwards
-        - backwards
+  schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
   headers:
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
     ErrorMessage:
       description: The error message.
       schema:
@@ -160,28 +179,12 @@ components:
           $ref: '#/components/headers/ErrorMessage'
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
-  schemas:
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
   securitySchemes:
-    bearer_auth:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication using an [API key](https://www.ably.io/documentation/core-features/authentication#basic-authentication).
+    bearerAuth:
       type: http
       scheme: bearer
-      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.
+      description: Token Authentication using an [Ably Token](https://www.ably.io/documentation/core-features/authentication#basic-authentication), or optionally an [Ably JWT](https://www.ably.io/documentation/core-features/authentication#ably-jwt-process).

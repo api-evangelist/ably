@@ -1,36 +1,55 @@
 {
   "provider": "ably",
   "sources": [
-    "ably-apps-api-openapi.yml",
-    "ably-authentication-api-openapi.yml",
-    "ably-history-api-openapi.yml",
-    "ably-keys-api-openapi.yml",
-    "ably-namespaces-api-openapi.yml",
-    "ably-publishing-api-openapi.yml",
-    "ably-push-api-openapi.yml",
-    "ably-queues-api-openapi.yml",
-    "ably-rules-api-openapi.yml",
-    "ably-stats-api-openapi.yml",
-    "ably-status-api-openapi.yml",
-    "ably-tokens-api-openapi.yml"
+    "_original/ably-control-api-openapi.yml",
+    "_original/ably-platform-api-openapi.yml"
   ],
   "outputs": [
     "ably-apps-api-openapi.yml",
-    "ably-authentication-api-openapi.yml",
-    "ably-history-api-openapi.yml",
     "ably-keys-api-openapi.yml",
     "ably-namespaces-api-openapi.yml",
-    "ably-publishing-api-openapi.yml",
-    "ably-push-api-openapi.yml",
     "ably-queues-api-openapi.yml",
     "ably-rules-api-openapi.yml",
+    "ably-tokens-api-openapi.yml",
+    "ably-authentication-api-openapi.yml",
+    "ably-history-api-openapi.yml",
+    "ably-publishing-api-openapi.yml",
+    "ably-push-api-openapi.yml",
     "ably-stats-api-openapi.yml",
-    "ably-status-api-openapi.yml",
-    "ably-tokens-api-openapi.yml"
+    "ably-status-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ably-control-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "ably-control-api-openapi.yml: declared missing tag: apps",
+    "ably-control-api-openapi.yml: declared missing tag: keys",
+    "ably-control-api-openapi.yml: declared missing tag: namespaces",
+    "ably-control-api-openapi.yml: declared missing tag: queues",
+    "ably-control-api-openapi.yml: declared missing tag: rules",
+    "ably-control-api-openapi.yml: declared missing tag: tokens",
+    "ably-platform-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "ably-platform-api-openapi.yml: declared missing tag: Authentication",
+    "ably-platform-api-openapi.yml: declared missing tag: History",
+    "ably-platform-api-openapi.yml: declared missing tag: Publishing",
+    "ably-platform-api-openapi.yml: declared missing tag: Push",
+    "ably-platform-api-openapi.yml: declared missing tag: Stats",
+    "ably-platform-api-openapi.yml: declared missing tag: Status"
+  ],
+  "skipped": [
+    "ably-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-publishing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-push-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-queues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ably-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

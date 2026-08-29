@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Control API v1 apps tokens API
+  title: Control API v1 Tokens API
   version: 1.0.32
   description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
 
@@ -62,8 +62,9 @@ components:
           type: string
           description: The URL to documentation about the error code.
         details:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Any additional details about the error message.
       required:
       - message

@@ -1,18 +1,17 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Control API v1 apps History API
-  version: 1.0.32
-  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
-
-
-    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
-
-
-    Control API is currently in Preview.
-
-    '
+  title: Platform History API
+  description: The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.
+  version: 1.1.1
+  contact:
+    name: Ably Support
+    url: https://www.ably.io/contact
+    email: support@ably.io
 servers:
-- url: https://control.ably.net/v1
+- url: https://rest.ably.io
+security:
+- basicAuth: []
+- bearerAuth: []
 tags:
 - name: History
 paths:
@@ -109,6 +108,17 @@ components:
       schema:
         type: string
         default: now
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
     filterStart:
       name: start
       in: query
@@ -121,17 +131,15 @@ components:
         type: string
       required: true
       description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
-    responseFormat:
+    filterDirection:
+      name: direction
       in: query
-      name: format
       schema:
         type: string
+        default: backwards
         enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
+        - forwards
+        - backwards
     versionHeader:
       in: header
       name: X-Ably-Version
@@ -144,16 +152,88 @@ components:
       schema:
         type: integer
         default: '100'
-    filterDirection:
-      name: direction
-      in: query
-      schema:
-        type: string
-        default: backwards
-        enum:
-        - forwards
-        - backwards
   schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+    Message:
+      type: object
+      description: Message object.
+      properties:
+        name:
+          description: The event name, if provided.
+          type: string
+        data:
+          description: The string encoded payload, with the encoding specified below.
+          type: string
+        id:
+          description: A Unique ID that can be specified by the publisher for [idempotent publishing](https://www.ably.io/documentation/rest/messages#idempotent).
+          type: string
+          readOnly: true
+        timestamp:
+          description: Timestamp when the message was received by the Ably, as milliseconds since the epoch.
+          type: integer
+          format: int64
+          readOnly: true
+        encoding:
+          description: This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.
+          type: string
+        clientId:
+          description: The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.
+          type: string
+        connectionId:
+          description: The connection ID of the publisher of this message.
+          type: string
+        extras:
+          $ref: '#/components/schemas/Extras'
+    Extras:
+      type: object
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
+      properties:
+        push:
+          $ref: '#/components/schemas/Push'
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
     PresenceMessage:
       type: object
       properties:
@@ -190,38 +270,6 @@ components:
           type: string
         extras:
           $ref: '#/components/schemas/Extras'
-    Extras:
-      type: object
-      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
-      properties:
-        push:
-          $ref: '#/components/schemas/Push'
-    Push:
-      type: object
-      properties:
-        data:
-          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
-          type: string
-        notification:
-          $ref: '#/components/schemas/Notification'
-        apns:
-          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        fcm:
-          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        web:
-          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
     Notification:
       type: object
       properties:
@@ -240,56 +288,12 @@ components:
         collapseKey:
           description: Platform-specific, used to group notifications together.
           type: string
-    Message:
-      type: object
-      description: Message object.
-      properties:
-        name:
-          description: The event name, if provided.
-          type: string
-        data:
-          description: The string encoded payload, with the encoding specified below.
-          type: string
-        id:
-          description: A Unique ID that can be specified by the publisher for [idempotent publishing](https://www.ably.io/documentation/rest/messages#idempotent).
-          type: string
-          readOnly: true
-        timestamp:
-          description: Timestamp when the message was received by the Ably, as milliseconds since the epoch.
-          type: integer
-          format: int64
-          readOnly: true
-        encoding:
-          description: This will typically be empty as all messages received from Ably are automatically decoded client-side using this value. However, if the message encoding cannot be processed, this attribute will contain the remaining transformations not applied to the data payload.
-          type: string
-        clientId:
-          description: The [client ID](https://www.ably.io/documentation/core-features/authentication#identified-clients) of the publisher of this message.
-          type: string
-        connectionId:
-          description: The connection ID of the publisher of this message.
-          type: string
-        extras:
-          $ref: '#/components/schemas/Extras'
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
   headers:
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
     ErrorCode:
       description: The error code.
       schema:
@@ -299,11 +303,6 @@ components:
       schema:
         type: string
         pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
-      required: true
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
       required: true
     ErrorMessage:
       description: The error message.
@@ -330,7 +329,11 @@ components:
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
   securitySchemes:
-    bearer_auth:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication using an [API key](https://www.ably.io/documentation/core-features/authentication#basic-authentication).
+    bearerAuth:
       type: http
       scheme: bearer
-      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.
+      description: Token Authentication using an [Ably Token](https://www.ably.io/documentation/core-features/authentication#basic-authentication), or optionally an [Ably JWT](https://www.ably.io/documentation/core-features/authentication#ably-jwt-process).

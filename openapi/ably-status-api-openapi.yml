@@ -1,18 +1,17 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Control API v1 apps Status API
-  version: 1.0.32
-  description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
-
-
-    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
-
-
-    Control API is currently in Preview.
-
-    '
+  title: Platform Status API
+  description: The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.
+  version: 1.1.1
+  contact:
+    name: Ably Support
+    url: https://www.ably.io/contact
+    email: support@ably.io
 servers:
-- url: https://control.ably.net/v1
+- url: https://rest.ably.io
+security:
+- basicAuth: []
+- bearerAuth: []
 tags:
 - name: Status
 paths:
@@ -150,6 +149,25 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
     ChannelDetails:
       type: object
       properties:
@@ -166,6 +184,49 @@ components:
           $ref: '#/components/schemas/ChannelStatus'
       required:
       - channelId
+    ChannelStatus:
+      type: object
+      description: A ChannelStatus instance.
+      properties:
+        isActive:
+          type: boolean
+          description: A required boolean value indicating whether the channel that is the subject of the event is active. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
+        occupancy:
+          $ref: '#/components/schemas/Occupancy'
+      required:
+      - isActive
+    Extras:
+      type: object
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
+      properties:
+        push:
+          $ref: '#/components/schemas/Push'
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
     PresenceMessage:
       type: object
       properties:
@@ -221,49 +282,6 @@ components:
         presenceMembers:
           type: integer
           description: The number of members currently entered into the presence channel.
-    Extras:
-      type: object
-      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
-      properties:
-        push:
-          $ref: '#/components/schemas/Push'
-    Push:
-      type: object
-      properties:
-        data:
-          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
-          type: string
-        notification:
-          $ref: '#/components/schemas/Notification'
-        apns:
-          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        fcm:
-          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        web:
-          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-    ChannelStatus:
-      type: object
-      description: A ChannelStatus instance.
-      properties:
-        isActive:
-          type: boolean
-          description: A required boolean value indicating whether the channel that is the subject of the event is active. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
-        occupancy:
-          $ref: '#/components/schemas/Occupancy'
-      required:
-      - isActive
     Notification:
       type: object
       properties:
@@ -282,45 +300,6 @@ components:
         collapseKey:
           description: Platform-specific, used to group notifications together.
           type: string
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
-  headers:
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    Link:
-      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
-      schema:
-        type: string
-        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
-      required: true
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
   parameters:
     responseFormat:
       in: query
@@ -333,12 +312,6 @@ components:
         - msgpack
         - html
       description: The response format you would like
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
     channelId:
       name: channel_id
       in: path
@@ -346,6 +319,32 @@ components:
         type: string
       required: true
       description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+  headers:
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    Link:
+      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
+      schema:
+        type: string
+        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
+      required: true
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
   responses:
     Error:
       description: Error
@@ -367,7 +366,11 @@ components:
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
   securitySchemes:
-    bearer_auth:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication using an [API key](https://www.ably.io/documentation/core-features/authentication#basic-authentication).
+    bearerAuth:
       type: http
       scheme: bearer
-      description: Control API uses bearer authentication. You need to generate an access token for use with this API. More details can be found in the <a href="https://ably.com/docs/account/control-api/#authentication">Ably docs</a>.
+      description: Token Authentication using an [Ably Token](https://www.ably.io/documentation/core-features/authentication#basic-authentication), or optionally an [Ably JWT](https://www.ably.io/documentation/core-features/authentication#ably-jwt-process).

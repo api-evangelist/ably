@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Control API v1 apps queues API
+  title: Control API v1 Queues API
   version: 1.0.32
   description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
 
@@ -183,31 +183,6 @@ paths:
                 $ref: '#/components/schemas/error'
 components:
   schemas:
-    queue:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          description: A friendly name for your queue.
-          example: My queue
-        ttl:
-          type: integer
-          description: TTL in minutes.
-          example: 60
-        maxLength:
-          type: integer
-          description: Message limit in number of messages.
-          example: 10000
-        region:
-          type: string
-          description: The data center region. US East (Virginia) or EU West (Ireland). Values are `us-east-1-a` or `eu-west-1-a`.
-          example: us-east-1-a
-      required:
-      - name
-      - ttl
-      - maxLength
-      - region
     queue_response:
       type: object
       additionalProperties: false
@@ -266,18 +241,21 @@ components:
           description: Details of messages in the queue.
           properties:
             ready:
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
               description: The number of ready messages in the queue.
               example: 0
             unacknowledged:
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
               description: The number of unacknowledged messages in the queue.
               example: 0
             total:
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
               description: The total number of messages in the queue.
               example: 0
         stats:
@@ -285,16 +263,19 @@ components:
           additionalProperties: false
           properties:
             publishRate:
-              type: number
-              nullable: true
+              type:
+              - number
+              - 'null'
               description: The rate at which messages are published to the queue. Rate is messages per minute.
             deliveryRate:
-              type: number
-              nullable: true
+              type:
+              - number
+              - 'null'
               description: The rate at which messages are delivered from the queue. Rate is messages per minute.
             acknowledgementRate:
-              type: number
-              nullable: true
+              type:
+              - number
+              - 'null'
               description: The rate at which messages are acknowledged. Rate is messages per minute.
         ttl:
           type: integer
@@ -309,9 +290,10 @@ components:
           description: A boolean that indicates whether this is a dead letter queue or not.
           example: false
         deadletterId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The ID of the dead letter queue.
-          nullable: true
           example: 28AB6w:us-east-1-a:deadletter
     error:
       type: object
@@ -330,14 +312,40 @@ components:
           type: string
           description: The URL to documentation about the error code.
         details:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Any additional details about the error message.
       required:
       - message
       - code
       - statusCode
       - href
+    queue:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          description: A friendly name for your queue.
+          example: My queue
+        ttl:
+          type: integer
+          description: TTL in minutes.
+          example: 60
+        maxLength:
+          type: integer
+          description: Message limit in number of messages.
+          example: 10000
+        region:
+          type: string
+          description: The data center region. US East (Virginia) or EU West (Ireland). Values are `us-east-1-a` or `eu-west-1-a`.
+          example: us-east-1-a
+      required:
+      - name
+      - ttl
+      - maxLength
+      - region
   securitySchemes:
     bearer_auth:
       type: http
