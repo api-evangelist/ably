@@ -31,7 +31,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ably.png
 tags:
 - Real-Time
 - WebSockets
-- Pub-Sub
+- Pub/Sub
 - Messaging
 - Streaming
 - Push Notifications
@@ -137,7 +137,7 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
-  - Namespaces
+  - namespaces
   tags_raw:
   - namespaces
   properties:
@@ -213,7 +213,7 @@ apis:
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
   tags:
-  - Rules
+  - rules
   tags_raw:
   - rules
   properties:
