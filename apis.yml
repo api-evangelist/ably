@@ -285,6 +285,8 @@ apis:
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 common:
+- type: Website
+  url: https://www.ably.com/
 - type: AgenticAccess
   url: agentic-access/ably-agentic-access.yml
 - type: TrustCenter
