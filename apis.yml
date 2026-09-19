@@ -31,7 +31,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ably.png
 tags:
 - Real-Time
-- WebSockets
+- WebSocket
 - Pub-Sub
 - Messaging
 - Streaming
