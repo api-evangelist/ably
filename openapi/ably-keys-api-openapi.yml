@@ -5,23 +5,21 @@ info:
   description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
 
 
-    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+    Detailed information on using this API can be found in the Ably Control API docs.
 
 
-    Control API is currently in Preview.
-
-    '
+    Control API is currently in Preview.'
 servers:
 - url: https://control.ably.net/v1
 tags:
-- name: keys
+- name: Keys
 paths:
   /apps/{app_id}/keys:
     get:
       summary: Lists app keys
       description: Lists the API keys associated with the application ID.
       tags:
-      - keys
+      - Keys
       parameters:
       - name: app_id
         description: The application ID.
@@ -64,11 +62,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      operationId: getAppsByAppIdKeys
+      x-operation-id-source: derived
     post:
       summary: Creates a key
       description: Creates an API key for the application specified.
       tags:
-      - keys
+      - Keys
       parameters:
       - name: app_id
         description: The application ID.
@@ -120,12 +120,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/key_post'
+      operationId: postAppsByAppIdKeys
+      x-operation-id-source: derived
   /apps/{app_id}/keys/{key_id}:
     patch:
       summary: Updates a key
       description: Update the API key with the specified key ID, for the application with the specified application ID.
       tags:
-      - keys
+      - Keys
       parameters:
       - name: app_id
         description: The application ID.
@@ -189,12 +191,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/key_patch'
+      operationId: patchAppsByAppIdKeysByKeyId
+      x-operation-id-source: derived
   /apps/{app_id}/keys/{key_id}/revoke:
     post:
       summary: Revokes a key
       description: Revokes the API key with the specified ID, with the Application ID. This deletes the key.
       tags:
-      - keys
+      - Keys
       parameters:
       - name: app_id
         description: The application ID.
@@ -238,8 +242,87 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      operationId: postAppsByAppIdKeysByKeyIdRevoke
+      x-operation-id-source: derived
 components:
   schemas:
+    key_post:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          description: The name for your API key. This is a friendly name for your reference.
+          type: string
+          example: My key name
+        capability:
+          description: These are the capability operations described in the <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
+          type: object
+          additionalProperties:
+            type: array
+            description: An array of strings setting the capability operations for the resource.
+            items:
+              type: string
+      example:
+        name: My key name
+        capability:
+          channel1:
+          - publish
+          - subscribe
+          channel2:
+          - history
+      required:
+      - name
+      - capability
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type:
+          - object
+          - 'null'
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
+    key_patch:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          description: The name for your API key. This is a friendly name for your reference.
+          type: string
+          example: My key name
+        capability:
+          description: These are the capability operations described in the Ably <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
+          type: object
+          additionalProperties:
+            type: array
+            description: An array of strings setting the capability operations for the resource.
+            items:
+              type: string
+      example:
+        name: My key name
+        capability:
+          channel1:
+          - publish
+          - subscribe
+          channel2:
+          - history
     key_response:
       type: object
       additionalProperties: false
@@ -284,83 +367,6 @@ components:
           type: integer
           description: Unix timestamp representing the date and time of the last modification of the key.
           example: 1614679682091
-    error:
-      type: object
-      additionalProperties: false
-      properties:
-        message:
-          type: string
-          description: The error message.
-        code:
-          type: integer
-          description: The HTTP status code returned.
-        statusCode:
-          type: integer
-          description: The Ably error code.
-        href:
-          type: string
-          description: The URL to documentation about the error code.
-        details:
-          type:
-          - object
-          - 'null'
-          description: Any additional details about the error message.
-      required:
-      - message
-      - code
-      - statusCode
-      - href
-    key_post:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          description: The name for your API key. This is a friendly name for your reference.
-          type: string
-          example: My key name
-        capability:
-          description: These are the capability operations described in the <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
-          type: object
-          additionalProperties:
-            type: array
-            description: An array of strings setting the capability operations for the resource.
-            items:
-              type: string
-      example:
-        name: My key name
-        capability:
-          channel1:
-          - publish
-          - subscribe
-          channel2:
-          - history
-      required:
-      - name
-      - capability
-    key_patch:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          description: The name for your API key. This is a friendly name for your reference.
-          type: string
-          example: My key name
-        capability:
-          description: These are the capability operations described in the Ably <a href="https://ably.com/docs/auth/capabilities">capabilities docs</a>.
-          type: object
-          additionalProperties:
-            type: array
-            description: An array of strings setting the capability operations for the resource.
-            items:
-              type: string
-      example:
-        name: My key name
-        capability:
-          channel1:
-          - publish
-          - subscribe
-          channel2:
-          - history
   securitySchemes:
     bearer_auth:
       type: http

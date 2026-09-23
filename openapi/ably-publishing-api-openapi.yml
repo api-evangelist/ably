@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Platform Publishing API
-  description: The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.
+  description: The REST API specification for Ably.
   version: 1.1.1
   contact:
     name: Ably Support
@@ -73,25 +73,12 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    Error:
+    Extras:
       type: object
-      description: Returned error from failed REST.
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
       properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
+        push:
+          $ref: '#/components/schemas/Push'
     Message:
       type: object
       description: Message object.
@@ -122,12 +109,43 @@ components:
           type: string
         extras:
           $ref: '#/components/schemas/Extras'
-    Extras:
+    Notification:
       type: object
-      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
       properties:
-        push:
-          $ref: '#/components/schemas/Push'
+        title:
+          description: Title to display at the notification.
+          type: string
+        body:
+          description: Text below title on the expanded notification.
+          type: string
+        icon:
+          description: Platform-specific icon for the notification.
+          type: string
+        sound:
+          description: Platform-specific sound for the notification.
+          type: string
+        collapseKey:
+          description: Platform-specific, used to group notifications together.
+          type: string
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
     Push:
       type: object
       properties:
@@ -154,25 +172,20 @@ components:
           properties:
             notification:
               $ref: '#/components/schemas/Notification'
-    Notification:
-      type: object
-      properties:
-        title:
-          description: Title to display at the notification.
-          type: string
-        body:
-          description: Text below title on the expanded notification.
-          type: string
-        icon:
-          description: Platform-specific icon for the notification.
-          type: string
-        sound:
-          description: Platform-specific sound for the notification.
-          type: string
-        collapseKey:
-          description: Platform-specific, used to group notifications together.
-          type: string
   parameters:
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    channelId:
+      name: channel_id
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
     responseFormat:
       in: query
       name: format
@@ -184,33 +197,20 @@ components:
         - msgpack
         - html
       description: The response format you would like
-    channelId:
-      name: channel_id
-      in: path
-      schema:
-        type: string
-      required: true
-      description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
   headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
   responses:
     Error:
       description: Error

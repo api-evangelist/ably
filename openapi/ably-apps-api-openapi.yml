@@ -5,23 +5,21 @@ info:
   description: 'Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.
 
 
-    Detailed information on using this API can be found in the Ably <a href="https://ably.com/docs/account/control-api">Control API docs</a>.
+    Detailed information on using this API can be found in the Ably Control API docs.
 
 
-    Control API is currently in Preview.
-
-    '
+    Control API is currently in Preview.'
 servers:
 - url: https://control.ably.net/v1
 tags:
-- name: apps
+- name: Apps
 paths:
   /accounts/{account_id}/apps:
     get:
       summary: Lists account apps
       description: List all Ably applications for the specified account ID.
       tags:
-      - apps
+      - Apps
       parameters:
       - name: account_id
         in: path
@@ -58,11 +56,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      operationId: getAccountsByAccountIdApps
+      x-operation-id-source: derived
     post:
       summary: Creates an app
       description: Creates an application with the specified properties.
       tags:
-      - apps
+      - Apps
       parameters:
       - name: account_id
         description: The account ID of the account in which to create the application.
@@ -114,12 +114,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/app_post'
+      operationId: postAccountsByAccountIdApps
+      x-operation-id-source: derived
   /apps/{id}:
     patch:
       summary: Updates an app
       description: Updates the application with the specified application ID.
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         description: The ID of application to be updated.
@@ -171,11 +173,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/app_patch'
+      operationId: patchAppsById
+      x-operation-id-source: derived
     delete:
       summary: Deletes an app
       description: Deletes the application with the specified application ID.
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         description: The ID of the application to be deleted.
@@ -213,12 +217,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      operationId: deleteAppsById
+      x-operation-id-source: derived
   /apps/{id}/pkcs12:
     post:
       summary: Updates app's APNs info from a `.p12` file
       description: Updates the application's Apple Push Notification service (APNs) information.
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         description: The application ID.
@@ -264,6 +270,8 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/app_pkcs12'
+      operationId: postAppsByIdPkcs12
+      x-operation-id-source: derived
 components:
   schemas:
     app_patch:
@@ -313,13 +321,39 @@ components:
           - string
           - 'null'
           description: The Apple Push Notification service private key.
-          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
         apnsUseSandboxEndpoint:
           type:
           - boolean
           - 'null'
           description: Use the Apple Push Notification service sandbox endpoint.
           example: false
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type:
+          - object
+          - 'null'
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
     app_response:
       type: object
       additionalProperties: false
@@ -357,48 +391,6 @@ components:
           - object
           - 'null'
           description: A link self-referencing the app that has been created.
-    error:
-      type: object
-      additionalProperties: false
-      properties:
-        message:
-          type: string
-          description: The error message.
-        code:
-          type: integer
-          description: The HTTP status code returned.
-        statusCode:
-          type: integer
-          description: The Ably error code.
-        href:
-          type: string
-          description: The URL to documentation about the error code.
-        details:
-          type:
-          - object
-          - 'null'
-          description: Any additional details about the error message.
-      required:
-      - message
-      - code
-      - statusCode
-      - href
-    app_pkcs12:
-      type: object
-      additionalProperties: false
-      properties:
-        p12File:
-          type: string
-          format: binary
-          description: The `.p12` file containing the app's APNs information.
-          example: example.p12
-        p12Pass:
-          type: string
-          description: The password for the corresponding `.p12` file.
-          example: secret
-      required:
-      - p12File
-      - p12Pass
     app_post:
       type: object
       additionalProperties: false
@@ -447,7 +439,7 @@ components:
           - string
           - 'null'
           description: The Apple Push Notification service private key.
-          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
         apnsUseSandboxEndpoint:
           type:
           - boolean
@@ -456,6 +448,22 @@ components:
           example: false
       required:
       - name
+    app_pkcs12:
+      type: object
+      additionalProperties: false
+      properties:
+        p12File:
+          type: string
+          format: binary
+          description: The `.p12` file containing the app's APNs information.
+          example: example.p12
+        p12Pass:
+          type: string
+          description: The password for the corresponding `.p12` file.
+          example: secret
+      required:
+      - p12File
+      - p12Pass
   securitySchemes:
     bearer_auth:
       type: http

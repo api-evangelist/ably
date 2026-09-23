@@ -49,7 +49,7 @@
       "type": "string",
       "nullable": true,
       "description": "The Apple Push Notification service private key.",
-      "example": "-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----"
+      "example": "REDACTED_PRIVATE_KEY_EXAMPLE"
     },
     "apnsUseSandboxEndpoint": {
       "type": "boolean",

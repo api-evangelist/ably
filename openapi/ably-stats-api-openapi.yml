@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Platform Stats API
-  description: The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.
+  description: The REST API specification for Ably.
   version: 1.1.1
   contact:
     name: Ably Support
@@ -82,12 +82,21 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   parameters:
-    filterEnd:
-      name: end
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    filterDirection:
+      name: direction
       in: query
       schema:
         type: string
-        default: now
+        default: backwards
+        enum:
+        - forwards
+        - backwards
     responseFormat:
       in: query
       name: format
@@ -104,27 +113,32 @@ components:
       in: query
       schema:
         type: string
-    filterDirection:
-      name: direction
-      in: query
-      schema:
-        type: string
-        default: backwards
-        enum:
-        - forwards
-        - backwards
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
     filterLimit:
       name: limit
       in: query
       schema:
         type: integer
         default: '100'
+    filterEnd:
+      name: end
+      in: query
+      schema:
+        type: string
+        default: now
+  headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
   schemas:
     Error:
       type: object
@@ -145,20 +159,6 @@ components:
         serverId:
           type: string
           description: Server ID with which error was encountered.
-  headers:
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
   responses:
     Error:
       description: Error

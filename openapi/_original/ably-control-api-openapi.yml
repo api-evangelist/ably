@@ -2491,7 +2491,7 @@ components:
         accessKeyId:
           type: string
           description: The AWS key ID for the AWS IAM user. See the Ably <a href="https://ably.com/docs/general/aws-authentication/">AWS authentication docs</a> for details.
-          example: AKIAIOSFODNN7EXAMPLE
+          example: REDACTED_AWS_ACCESS_KEY_ID
         secretAccessKey:
           type: string
           description: The AWS secret key for the AWS IAM user. See the Ably <a href="https://ably.com/docs/general/aws-authentication/">AWS authentication docs</a> for details.
@@ -2512,7 +2512,7 @@ components:
         accessKeyId:
           type: string
           description: The AWS key ID for the AWS IAM user. See the Ably <a href="https://ably.com/docs/general/aws-authentication/">AWS authentication docs</a> for details.
-          example: AKIAIOSFODNN7EXAMPLE
+          example: REDACTED_AWS_ACCESS_KEY_ID
     aws_assume_role:
       type: object
       additionalProperties: false
@@ -4676,7 +4676,7 @@ TOfReTlUQzgpXRW5h3n2LVXbXQhPGcVitb88Cm2R8cxQwgB1VncM8yvmKhREo2tz
           type: string
           nullable: true
           description: The Apple Push Notification service private key.
-          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
         apnsUseSandboxEndpoint:
           type: boolean
           nullable: true
@@ -4725,7 +4725,7 @@ TOfReTlUQzgpXRW5h3n2LVXbXQhPGcVitb88Cm2R8cxQwgB1VncM8yvmKhREo2tz
           type: string
           nullable: true
           description: The Apple Push Notification service private key.
-          example: '-----BEGIN PRIVATE KEY-----ABCFaDCC...EXAMPLE...3Dc=-----END PRIVATE KEY-----'
+          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
         apnsUseSandboxEndpoint:
           type: boolean
           nullable: true

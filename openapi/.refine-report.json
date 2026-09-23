@@ -36,7 +36,8 @@
     "ably-platform-api-openapi.yml: declared missing tag: Publishing",
     "ably-platform-api-openapi.yml: declared missing tag: Push",
     "ably-platform-api-openapi.yml: declared missing tag: Stats",
-    "ably-platform-api-openapi.yml: declared missing tag: Status"
+    "ably-platform-api-openapi.yml: declared missing tag: Status",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "ably-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
