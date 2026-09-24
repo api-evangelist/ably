@@ -57,7 +57,7 @@ description: Ably is a realtime messaging platform offering pub/sub, presence, p
   (account, app, and key management).
 apis:
 - aid: ably:ably-apps-api
-  name: Ably apps API
+  name: Ably Apps API
   description: The apps API from Ably — 3 operation(s) for apps.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -72,8 +72,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-authentication-api
@@ -90,8 +88,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-history-api
@@ -108,12 +104,10 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-keys-api
-  name: Ably keys API
+  name: Ably Keys API
   description: The keys API from Ably — 3 operation(s) for keys.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -128,12 +122,10 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-namespaces-api
-  name: Ably namespaces API
+  name: Ably Namespaces API
   description: The namespaces API from Ably — 2 operation(s) for namespaces.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -148,8 +140,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-publishing-api
@@ -166,8 +156,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-push-api
@@ -184,12 +172,10 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-queues-api
-  name: Ably queues API
+  name: Ably Queues API
   description: The queues API from Ably — 2 operation(s) for queues.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -204,12 +190,10 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-rules-api
-  name: Ably rules API
+  name: Ably Rules API
   description: The rules API from Ably — 2 operation(s) for rules.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -224,8 +208,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-stats-api
@@ -242,8 +224,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-status-api
@@ -260,12 +240,10 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 - aid: ably:ably-tokens-api
-  name: Ably tokens API
+  name: Ably Tokens API
   description: The tokens API from Ably — 1 operation(s) for tokens.
   humanURL: https://ably.com/docs/api/rest-api
   baseURL: https://rest.ably.io
@@ -280,8 +258,6 @@ apis:
     url: https://ably.com/docs/api/rest-api
   - type: AsyncAPI
     url: asyncapi/ably-asyncapi.yml
-  - type: GraphQL
-    url: graphql/ably-graphql.md
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 common:
