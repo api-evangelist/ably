@@ -57,6 +57,17 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   parameters:
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
     versionHeader:
       in: header
       name: X-Ably-Version
@@ -70,37 +81,6 @@ components:
         type: string
       required: true
       description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
-  responses:
-    Error:
-      description: Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/x-msgpack:
-          schema:
-            $ref: '#/components/schemas/Error'
-        text/html:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        x-ably-errorcode:
-          $ref: '#/components/headers/ErrorCode'
-        x-ably-errormessage:
-          $ref: '#/components/headers/ErrorMessage'
-        x-ably-serverid:
-          $ref: '#/components/headers/ServerId'
   schemas:
     TokenDetails:
       type: object
@@ -178,19 +158,39 @@ components:
       - timestamp
       - nonce
   headers:
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/x-msgpack:
+          schema:
+            $ref: '#/components/schemas/Error'
+        text/html:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        x-ably-errorcode:
+          $ref: '#/components/headers/ErrorCode'
+        x-ably-errormessage:
+          $ref: '#/components/headers/ErrorMessage'
+        x-ably-serverid:
+          $ref: '#/components/headers/ServerId'
   securitySchemes:
     basicAuth:
       type: http

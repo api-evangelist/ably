@@ -471,94 +471,25 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  parameters:
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
-    deviceId:
-      name: device_id
-      in: path
-      schema:
-        type: string
-      required: true
-      description: Device's ID.
   schemas:
-    Recipient:
-      type: object
-      description: Push recipient details for a device.
-      properties:
-        transportType:
-          type: string
-          description: Defines which push platform is being used.
-          enum:
-          - apns
-          - fcm
-          - gcm
-          - web
-        deviceToken:
-          type: string
-          description: when using APNs, specifies the required device token.
-        registrationToken:
-          type: string
-          description: when using GCM or FCM, specifies the required registration token.
-          properties:
-            auth:
-              type: string
-              description: An Elliptic curve Diffie-Hellman public key on the P-256 curve. Obtained from a PushDescription using the `getKey` method.
-            p256dh:
-              type: string
-              description: An authentication secret, as described by [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).
-        encryptionKey:
-          type: object
-          description: when using web push, specifies the required encryptionKey.
-        clientId:
-          type: string
-          description: Client ID of recipient
-          writeOnly: true
-        deviceId:
-          type: string
-          description: Client ID of recipient
-          writeOnly: true
-    Push:
+    Notification:
       type: object
       properties:
-        data:
-          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+        title:
+          description: Title to display at the notification.
           type: string
-        notification:
-          $ref: '#/components/schemas/Notification'
-        apns:
-          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        fcm:
-          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        web:
-          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
+        body:
+          description: Text below title on the expanded notification.
+          type: string
+        icon:
+          description: Platform-specific icon for the notification.
+          type: string
+        sound:
+          description: Platform-specific sound for the notification.
+          type: string
+        collapseKey:
+          description: Platform-specific, used to group notifications together.
+          type: string
     DeviceDetails:
       type: object
       properties:
@@ -602,6 +533,32 @@ components:
           - Failing
           - Failed
           readOnly: true
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
     Error:
       type: object
       description: Returned error from failed REST.
@@ -621,38 +578,81 @@ components:
         serverId:
           type: string
           description: Server ID with which error was encountered.
-    Notification:
+    Recipient:
       type: object
+      description: Push recipient details for a device.
       properties:
-        title:
-          description: Title to display at the notification.
+        transportType:
           type: string
-        body:
-          description: Text below title on the expanded notification.
+          description: Defines which push platform is being used.
+          enum:
+          - apns
+          - fcm
+          - gcm
+          - web
+        deviceToken:
           type: string
-        icon:
-          description: Platform-specific icon for the notification.
+          description: when using APNs, specifies the required device token.
+        registrationToken:
           type: string
-        sound:
-          description: Platform-specific sound for the notification.
+          description: when using GCM or FCM, specifies the required registration token.
+          properties:
+            auth:
+              type: string
+              description: An Elliptic curve Diffie-Hellman public key on the P-256 curve. Obtained from a PushDescription using the `getKey` method.
+            p256dh:
+              type: string
+              description: An authentication secret, as described by [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).
+        encryptionKey:
+          type: object
+          description: when using web push, specifies the required encryptionKey.
+        clientId:
           type: string
-        collapseKey:
-          description: Platform-specific, used to group notifications together.
+          description: Client ID of recipient
+          writeOnly: true
+        deviceId:
           type: string
-  headers:
-    ErrorMessage:
-      description: The error message.
+          description: Client ID of recipient
+          writeOnly: true
+  parameters:
+    responseFormat:
+      in: query
+      name: format
       schema:
         type: string
-    ErrorCode:
-      description: The error code.
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    deviceId:
+      name: device_id
+      in: path
       schema:
-        type: integer
+        type: string
+      required: true
+      description: Device's ID.
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+  headers:
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
   responses:
     Error:
       description: Error

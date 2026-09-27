@@ -147,23 +147,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    Extras:
-      type: object
-      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
-      properties:
-        push:
-          $ref: '#/components/schemas/Push'
-    ChannelStatus:
-      type: object
-      description: A ChannelStatus instance.
-      properties:
-        isActive:
-          type: boolean
-          description: A required boolean value indicating whether the channel that is the subject of the event is active. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
-        occupancy:
-          $ref: '#/components/schemas/Occupancy'
-      required:
-      - isActive
     Notification:
       type: object
       properties:
@@ -182,6 +165,87 @@ components:
         collapseKey:
           description: Platform-specific, used to group notifications together.
           type: string
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+    ChannelStatus:
+      type: object
+      description: A ChannelStatus instance.
+      properties:
+        isActive:
+          type: boolean
+          description: A required boolean value indicating whether the channel that is the subject of the event is active. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
+        occupancy:
+          $ref: '#/components/schemas/Occupancy'
+      required:
+      - isActive
+    Occupancy:
+      type: object
+      description: An Occupancy instance indicating the occupancy of a channel. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
+      properties:
+        publishers:
+          type: integer
+          description: The number of connections attached to the channel that are authorised to publish.
+        subscribers:
+          type: integer
+          description: The number of connections attached that are authorised to subscribe to messages.
+        presenceSubscribers:
+          type: integer
+          description: The number of connections that are authorised to subscribe to presence messages.
+        presenceConnections:
+          type: integer
+          description: The number of connections that are authorised to enter members into the presence channel.
+        presenceMembers:
+          type: integer
+          description: The number of members currently entered into the presence channel.
+    Extras:
+      type: object
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
+      properties:
+        push:
+          $ref: '#/components/schemas/Push'
     PresenceMessage:
       type: object
       properties:
@@ -218,44 +282,6 @@ components:
           type: string
         extras:
           $ref: '#/components/schemas/Extras'
-    Occupancy:
-      type: object
-      description: An Occupancy instance indicating the occupancy of a channel. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
-      properties:
-        publishers:
-          type: integer
-          description: The number of connections attached to the channel that are authorised to publish.
-        subscribers:
-          type: integer
-          description: The number of connections attached that are authorised to subscribe to messages.
-        presenceSubscribers:
-          type: integer
-          description: The number of connections that are authorised to subscribe to presence messages.
-        presenceConnections:
-          type: integer
-          description: The number of connections that are authorised to enter members into the presence channel.
-        presenceMembers:
-          type: integer
-          description: The number of members currently entered into the presence channel.
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
     ChannelDetails:
       type: object
       properties:
@@ -272,33 +298,18 @@ components:
           $ref: '#/components/schemas/ChannelStatus'
       required:
       - channelId
-    Push:
-      type: object
-      properties:
-        data:
-          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
-          type: string
-        notification:
-          $ref: '#/components/schemas/Notification'
-        apns:
-          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        fcm:
-          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        web:
-          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
   parameters:
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
     versionHeader:
       in: header
       name: X-Ably-Version
@@ -312,17 +323,26 @@ components:
         type: string
       required: true
       description: The [Channel's ID](https://www.ably.io/documentation/rest/channels).
-    responseFormat:
-      in: query
-      name: format
+  headers:
+    ServerId:
+      description: The ID for the server communicated with.
       schema:
         type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
+      required: true
+    Link:
+      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
+      schema:
+        type: string
+        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
+      required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
   responses:
     Error:
       description: Error
@@ -343,26 +363,6 @@ components:
           $ref: '#/components/headers/ErrorMessage'
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
-  headers:
-    Link:
-      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
-      schema:
-        type: string
-        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
-      required: true
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
   securitySchemes:
     basicAuth:
       type: http

@@ -45,6 +45,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type:
+          - object
+          - 'null'
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
     me:
       type: object
       additionalProperties: false
@@ -111,32 +137,6 @@ components:
           required:
           - id
           - name
-    error:
-      type: object
-      additionalProperties: false
-      properties:
-        message:
-          type: string
-          description: The error message.
-        code:
-          type: integer
-          description: The HTTP status code returned.
-        statusCode:
-          type: integer
-          description: The Ably error code.
-        href:
-          type: string
-          description: The URL to documentation about the error code.
-        details:
-          type:
-          - object
-          - 'null'
-          description: Any additional details about the error message.
-      required:
-      - message
-      - code
-      - statusCode
-      - href
   securitySchemes:
     bearer_auth:
       type: http

@@ -274,6 +274,69 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    app_response:
+      type: object
+      additionalProperties: false
+      properties:
+        accountId:
+          type: string
+          description: The ID of your Ably account.
+          example: WgRpOB
+        id:
+          type: string
+          description: The application ID.
+          example: 28AB6x
+        name:
+          type: string
+          description: The application name.
+          example: Default
+        status:
+          type: string
+          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
+          example: enabled
+        tlsOnly:
+          type:
+          - boolean
+          - 'null'
+          description: Enforce TLS for all connections. This setting overrides any channel setting.
+          example: true
+        apnsUseSandboxEndpoint:
+          type:
+          - boolean
+          - 'null'
+          description: Use the Apple Push Notification service sandbox endpoint.
+          example: false
+        _links:
+          type:
+          - object
+          - 'null'
+          description: A link self-referencing the app that has been created.
+    error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          description: The error message.
+        code:
+          type: integer
+          description: The HTTP status code returned.
+        statusCode:
+          type: integer
+          description: The Ably error code.
+        href:
+          type: string
+          description: The URL to documentation about the error code.
+        details:
+          type:
+          - object
+          - 'null'
+          description: Any additional details about the error message.
+      required:
+      - message
+      - code
+      - statusCode
+      - href
     app_patch:
       type: object
       additionalProperties: false
@@ -321,76 +384,29 @@ components:
           - string
           - 'null'
           description: The Apple Push Notification service private key.
-          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
+          example: REDACTED_PRIVATE_KEY_EXAMPLE
         apnsUseSandboxEndpoint:
           type:
           - boolean
           - 'null'
           description: Use the Apple Push Notification service sandbox endpoint.
           example: false
-    error:
+    app_pkcs12:
       type: object
       additionalProperties: false
       properties:
-        message:
+        p12File:
           type: string
-          description: The error message.
-        code:
-          type: integer
-          description: The HTTP status code returned.
-        statusCode:
-          type: integer
-          description: The Ably error code.
-        href:
+          format: binary
+          description: The `.p12` file containing the app's APNs information.
+          example: example.p12
+        p12Pass:
           type: string
-          description: The URL to documentation about the error code.
-        details:
-          type:
-          - object
-          - 'null'
-          description: Any additional details about the error message.
+          description: The password for the corresponding `.p12` file.
+          example: secret
       required:
-      - message
-      - code
-      - statusCode
-      - href
-    app_response:
-      type: object
-      additionalProperties: false
-      properties:
-        accountId:
-          type: string
-          description: The ID of your Ably account.
-          example: WgRpOB
-        id:
-          type: string
-          description: The application ID.
-          example: 28AB6x
-        name:
-          type: string
-          description: The application name.
-          example: Default
-        status:
-          type: string
-          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
-          example: enabled
-        tlsOnly:
-          type:
-          - boolean
-          - 'null'
-          description: Enforce TLS for all connections. This setting overrides any channel setting.
-          example: true
-        apnsUseSandboxEndpoint:
-          type:
-          - boolean
-          - 'null'
-          description: Use the Apple Push Notification service sandbox endpoint.
-          example: false
-        _links:
-          type:
-          - object
-          - 'null'
-          description: A link self-referencing the app that has been created.
+      - p12File
+      - p12Pass
     app_post:
       type: object
       additionalProperties: false
@@ -439,7 +455,7 @@ components:
           - string
           - 'null'
           description: The Apple Push Notification service private key.
-          example: 'REDACTED_PRIVATE_KEY_EXAMPLE'
+          example: REDACTED_PRIVATE_KEY_EXAMPLE
         apnsUseSandboxEndpoint:
           type:
           - boolean
@@ -448,22 +464,6 @@ components:
           example: false
       required:
       - name
-    app_pkcs12:
-      type: object
-      additionalProperties: false
-      properties:
-        p12File:
-          type: string
-          format: binary
-          description: The `.p12` file containing the app's APNs information.
-          example: example.p12
-        p12Pass:
-          type: string
-          description: The password for the corresponding `.p12` file.
-          example: secret
-      required:
-      - p12File
-      - p12Pass
   securitySchemes:
     bearer_auth:
       type: http
