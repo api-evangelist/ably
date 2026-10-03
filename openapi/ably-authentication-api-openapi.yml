@@ -56,60 +56,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  parameters:
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    key_name:
-      name: keyName
-      in: path
-      schema:
-        type: string
-      required: true
-      description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
   schemas:
-    TokenDetails:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The Ably Token.
-        keyName:
-          type: string
-          description: Name of the key used to create the token
-        issued:
-          type: integer
-          description: Timestamp of token creation.
-        expires:
-          type: integer
-          description: Timestamp of token expiration.
-        capability:
-          type: string
-          description: Regular expression representation of the capabilities of the token.
-    SignedTokenRequest:
-      allOf:
-      - $ref: '#/components/schemas/TokenRequest'
-      - type: object
-        properties:
-          mac:
-            type: string
-            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
-        required:
-        - mac
     Error:
       type: object
       description: Returned error from failed REST.
@@ -129,6 +76,24 @@ components:
         serverId:
           type: string
           description: Server ID with which error was encountered.
+    TokenDetails:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The Ably Token.
+        keyName:
+          type: string
+          description: Name of the key used to create the token
+        issued:
+          type: integer
+          description: Timestamp of token creation.
+        expires:
+          type: integer
+          description: Timestamp of token expiration.
+        capability:
+          type: string
+          description: Regular expression representation of the capabilities of the token.
     TokenRequest:
       type: object
       properties:
@@ -157,20 +122,55 @@ components:
       - capability
       - timestamp
       - nonce
+    SignedTokenRequest:
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          mac:
+            type: string
+            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
+        required:
+        - mac
+  parameters:
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    key_name:
+      name: keyName
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
   headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
   responses:
     Error:
       description: Error

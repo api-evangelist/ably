@@ -274,6 +274,60 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    app_patch:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          description: The name of the application for your reference only.
+          example: My App
+        status:
+          type: string
+          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
+          example: enabled
+        tlsOnly:
+          type:
+          - boolean
+          - 'null'
+          description: Enforce TLS for all connections.
+          example: true
+        fcmKey:
+          description: The Firebase Cloud Messaging key.
+          type:
+          - string
+          - 'null'
+          example: AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I
+        fcmServiceAccount:
+          type:
+          - string
+          - 'null'
+          description: Used to specify the Firebase Cloud Messaging(FCM) service account credentials used for authentication and enabling communication with FCM to send push notifications to devices.
+          example: service_account
+        fcmProjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the Firebase Cloud Messaging(FCM) project. This ID is used to specify the Firebase project when configuring FCM or other Firebase services.
+          example: notional-armor-405018
+        apnsCertificate:
+          type:
+          - string
+          - 'null'
+          description: The Apple Push Notification service certificate.
+          example: '-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----'
+        apnsPrivateKey:
+          type:
+          - string
+          - 'null'
+          description: The Apple Push Notification service private key.
+          example: REDACTED_PRIVATE_KEY_EXAMPLE
+        apnsUseSandboxEndpoint:
+          type:
+          - boolean
+          - 'null'
+          description: Use the Apple Push Notification service sandbox endpoint.
+          example: false
     app_response:
       type: object
       additionalProperties: false
@@ -337,60 +391,6 @@ components:
       - code
       - statusCode
       - href
-    app_patch:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          description: The name of the application for your reference only.
-          example: My App
-        status:
-          type: string
-          description: The status of the application. Can be `enabled` or `disabled`. Enabled means available to accept inbound connections and all services are available.
-          example: enabled
-        tlsOnly:
-          type:
-          - boolean
-          - 'null'
-          description: Enforce TLS for all connections.
-          example: true
-        fcmKey:
-          description: The Firebase Cloud Messaging key.
-          type:
-          - string
-          - 'null'
-          example: AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I
-        fcmServiceAccount:
-          type:
-          - string
-          - 'null'
-          description: Used to specify the Firebase Cloud Messaging(FCM) service account credentials used for authentication and enabling communication with FCM to send push notifications to devices.
-          example: service_account
-        fcmProjectId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the Firebase Cloud Messaging(FCM) project. This ID is used to specify the Firebase project when configuring FCM or other Firebase services.
-          example: notional-armor-405018
-        apnsCertificate:
-          type:
-          - string
-          - 'null'
-          description: The Apple Push Notification service certificate.
-          example: '-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----'
-        apnsPrivateKey:
-          type:
-          - string
-          - 'null'
-          description: The Apple Push Notification service private key.
-          example: REDACTED_PRIVATE_KEY_EXAMPLE
-        apnsUseSandboxEndpoint:
-          type:
-          - boolean
-          - 'null'
-          description: Use the Apple Push Notification service sandbox endpoint.
-          example: false
     app_pkcs12:
       type: object
       additionalProperties: false

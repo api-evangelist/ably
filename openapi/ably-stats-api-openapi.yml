@@ -81,84 +81,6 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  parameters:
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
-    filterDirection:
-      name: direction
-      in: query
-      schema:
-        type: string
-        default: backwards
-        enum:
-        - forwards
-        - backwards
-    filterEnd:
-      name: end
-      in: query
-      schema:
-        type: string
-        default: now
-    filterStart:
-      name: start
-      in: query
-      schema:
-        type: string
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    filterLimit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        default: '100'
-  headers:
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-  responses:
-    Error:
-      description: Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/x-msgpack:
-          schema:
-            $ref: '#/components/schemas/Error'
-        text/html:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        x-ably-errorcode:
-          $ref: '#/components/headers/ErrorCode'
-        x-ably-errormessage:
-          $ref: '#/components/headers/ErrorMessage'
-        x-ably-serverid:
-          $ref: '#/components/headers/ServerId'
   schemas:
     Error:
       type: object
@@ -179,6 +101,84 @@ components:
         serverId:
           type: string
           description: Server ID with which error was encountered.
+  parameters:
+    filterEnd:
+      name: end
+      in: query
+      schema:
+        type: string
+        default: now
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    filterLimit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: '100'
+    filterDirection:
+      name: direction
+      in: query
+      schema:
+        type: string
+        default: backwards
+        enum:
+        - forwards
+        - backwards
+    filterStart:
+      name: start
+      in: query
+      schema:
+        type: string
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+  headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/x-msgpack:
+          schema:
+            $ref: '#/components/schemas/Error'
+        text/html:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        x-ably-errorcode:
+          $ref: '#/components/headers/ErrorCode'
+        x-ably-errormessage:
+          $ref: '#/components/headers/ErrorMessage'
+        x-ably-serverid:
+          $ref: '#/components/headers/ServerId'
   securitySchemes:
     basicAuth:
       type: http
