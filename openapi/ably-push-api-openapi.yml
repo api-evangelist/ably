@@ -472,6 +472,42 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
+    Recipient:
+      type: object
+      description: Push recipient details for a device.
+      properties:
+        transportType:
+          type: string
+          description: Defines which push platform is being used.
+          enum:
+          - apns
+          - fcm
+          - gcm
+          - web
+        deviceToken:
+          type: string
+          description: when using APNs, specifies the required device token.
+        registrationToken:
+          type: string
+          description: when using GCM or FCM, specifies the required registration token.
+          properties:
+            auth:
+              type: string
+              description: An Elliptic curve Diffie-Hellman public key on the P-256 curve. Obtained from a PushDescription using the `getKey` method.
+            p256dh:
+              type: string
+              description: An authentication secret, as described by [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).
+        encryptionKey:
+          type: object
+          description: when using web push, specifies the required encryptionKey.
+        clientId:
+          type: string
+          description: Client ID of recipient
+          writeOnly: true
+        deviceId:
+          type: string
+          description: Client ID of recipient
+          writeOnly: true
     DeviceDetails:
       type: object
       properties:
@@ -515,6 +551,24 @@ components:
           - Failing
           - Failed
           readOnly: true
+    Notification:
+      type: object
+      properties:
+        title:
+          description: Title to display at the notification.
+          type: string
+        body:
+          description: Text below title on the expanded notification.
+          type: string
+        icon:
+          description: Platform-specific icon for the notification.
+          type: string
+        sound:
+          description: Platform-specific sound for the notification.
+          type: string
+        collapseKey:
+          description: Platform-specific, used to group notifications together.
+          type: string
     Error:
       type: object
       description: Returned error from failed REST.
@@ -534,60 +588,6 @@ components:
         serverId:
           type: string
           description: Server ID with which error was encountered.
-    Notification:
-      type: object
-      properties:
-        title:
-          description: Title to display at the notification.
-          type: string
-        body:
-          description: Text below title on the expanded notification.
-          type: string
-        icon:
-          description: Platform-specific icon for the notification.
-          type: string
-        sound:
-          description: Platform-specific sound for the notification.
-          type: string
-        collapseKey:
-          description: Platform-specific, used to group notifications together.
-          type: string
-    Recipient:
-      type: object
-      description: Push recipient details for a device.
-      properties:
-        transportType:
-          type: string
-          description: Defines which push platform is being used.
-          enum:
-          - apns
-          - fcm
-          - gcm
-          - web
-        deviceToken:
-          type: string
-          description: when using APNs, specifies the required device token.
-        registrationToken:
-          type: string
-          description: when using GCM or FCM, specifies the required registration token.
-          properties:
-            auth:
-              type: string
-              description: An Elliptic curve Diffie-Hellman public key on the P-256 curve. Obtained from a PushDescription using the `getKey` method.
-            p256dh:
-              type: string
-              description: An authentication secret, as described by [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).
-        encryptionKey:
-          type: object
-          description: when using web push, specifies the required encryptionKey.
-        clientId:
-          type: string
-          description: Client ID of recipient
-          writeOnly: true
-        deviceId:
-          type: string
-          description: Client ID of recipient
-          writeOnly: true
     Push:
       type: object
       properties:
@@ -614,31 +614,6 @@ components:
           properties:
             notification:
               $ref: '#/components/schemas/Notification'
-  parameters:
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    deviceId:
-      name: device_id
-      in: path
-      schema:
-        type: string
-      required: true
-      description: Device's ID.
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
   headers:
     ErrorMessage:
       description: The error message.
@@ -653,6 +628,31 @@ components:
       description: The error code.
       schema:
         type: integer
+  parameters:
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    deviceId:
+      name: device_id
+      in: path
+      schema:
+        type: string
+      required: true
+      description: Device's ID.
   responses:
     Error:
       description: Error

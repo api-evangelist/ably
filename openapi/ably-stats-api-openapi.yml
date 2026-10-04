@@ -81,26 +81,6 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  schemas:
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
   parameters:
     filterEnd:
       name: end
@@ -114,12 +94,6 @@ components:
       schema:
         type: string
       description: The version of the API you wish to use.
-    filterLimit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        default: '100'
     filterDirection:
       name: direction
       in: query
@@ -145,20 +119,46 @@ components:
         - msgpack
         - html
       description: The response format you would like
+    filterLimit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: '100'
   headers:
     ErrorMessage:
       description: The error message.
       schema:
         type: string
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
     ServerId:
       description: The ID for the server communicated with.
       schema:
         type: string
       required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+  schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
   responses:
     Error:
       description: Error

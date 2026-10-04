@@ -56,26 +56,21 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
+  headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
   schemas:
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
     TokenDetails:
       type: object
       properties:
@@ -94,6 +89,16 @@ components:
         capability:
           type: string
           description: Regular expression representation of the capabilities of the token.
+    SignedTokenRequest:
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          mac:
+            type: string
+            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
+        required:
+        - mac
     TokenRequest:
       type: object
       properties:
@@ -122,16 +127,25 @@ components:
       - capability
       - timestamp
       - nonce
-    SignedTokenRequest:
-      allOf:
-      - $ref: '#/components/schemas/TokenRequest'
-      - type: object
-        properties:
-          mac:
-            type: string
-            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
-        required:
-        - mac
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
   parameters:
     versionHeader:
       in: header
@@ -157,20 +171,6 @@ components:
         - msgpack
         - html
       description: The response format you would like
-  headers:
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
   responses:
     Error:
       description: Error

@@ -147,47 +147,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    ChannelDetails:
-      type: object
-      properties:
-        channelId:
-          type: string
-          description: The required name of the channel including any qualifier, if any.
-        region:
-          type: string
-          description: In events relating to the activity of a channel in a specific region, this optionally identifies the region.
-        isGlobalMaster:
-          type: boolean
-          description: In events relating to the activity of a channel in a specific region, this optionally identifies whether or not that region is responsible for global coordination of the channel.
-        status:
-          $ref: '#/components/schemas/ChannelStatus'
-      required:
-      - channelId
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
-    Extras:
-      type: object
-      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
-      properties:
-        push:
-          $ref: '#/components/schemas/Push'
     PresenceMessage:
       type: object
       properties:
@@ -224,6 +183,12 @@ components:
           type: string
         extras:
           $ref: '#/components/schemas/Extras'
+    Extras:
+      type: object
+      description: Extras object. Currently only allows for [push](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example) extra.
+      properties:
+        push:
+          $ref: '#/components/schemas/Push'
     Notification:
       type: object
       properties:
@@ -242,32 +207,41 @@ components:
         collapseKey:
           description: Platform-specific, used to group notifications together.
           type: string
-    Push:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
+    ChannelDetails:
       type: object
       properties:
-        data:
-          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+        channelId:
           type: string
-        notification:
-          $ref: '#/components/schemas/Notification'
-        apns:
-          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        fcm:
-          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
-        web:
-          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
-          type: object
-          properties:
-            notification:
-              $ref: '#/components/schemas/Notification'
+          description: The required name of the channel including any qualifier, if any.
+        region:
+          type: string
+          description: In events relating to the activity of a channel in a specific region, this optionally identifies the region.
+        isGlobalMaster:
+          type: boolean
+          description: In events relating to the activity of a channel in a specific region, this optionally identifies whether or not that region is responsible for global coordination of the channel.
+        status:
+          $ref: '#/components/schemas/ChannelStatus'
+      required:
+      - channelId
     Occupancy:
       type: object
       description: An Occupancy instance indicating the occupancy of a channel. For events indicating regional activity of a channel this indicates activity in that region, not global activity.
@@ -298,6 +272,52 @@ components:
           $ref: '#/components/schemas/Occupancy'
       required:
       - isActive
+    Push:
+      type: object
+      properties:
+        data:
+          description: Arbitrary [key-value string-to-string payload](https://www.ably.io/documentation/general/push/publish#channel-broadcast-example).
+          type: string
+        notification:
+          $ref: '#/components/schemas/Notification'
+        apns:
+          description: Extends and overrides generic values when delivering via APNs. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        fcm:
+          description: Extends and overrides generic values when delivering via GCM/FCM. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+        web:
+          description: Extends and overrides generic values when delivering via web. [See examples](https://www.ably.io/documentation/general/push/publish#payload-structure)
+          type: object
+          properties:
+            notification:
+              $ref: '#/components/schemas/Notification'
+  headers:
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    Link:
+      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
+      schema:
+        type: string
+        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
+      required: true
   parameters:
     versionHeader:
       in: header
@@ -323,26 +343,6 @@ components:
         - msgpack
         - html
       description: The response format you would like
-  headers:
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
-    Link:
-      description: Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will potentially include a link with relation type `next`, `first`, and `current`, where appropiate.
-      schema:
-        type: string
-        pattern: (<(.*)?>; rel=\"(first|current|last)?\",)*(<(.*)?>; rel=\"(first|current|last)?\")+
-      required: true
   responses:
     Error:
       description: Error
