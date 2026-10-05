@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml",
+ "requested_url": "https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 45373,
+ "sha256": "d9cf7e90bb58306f3abff6affba595cf3e8c13608740a0d09342d3445ad39288",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
