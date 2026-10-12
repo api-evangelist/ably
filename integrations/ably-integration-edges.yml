@@ -1,0 +1,21 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=e223fe70-511d-447d-b596-ebaeda90cc87
+  listing_count: 1
+  apps:
+  - Ably Realtime
+  seller_name: Ably Realtime
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
