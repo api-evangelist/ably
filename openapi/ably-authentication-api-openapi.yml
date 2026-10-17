@@ -57,6 +57,10 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
     ErrorMessage:
       description: The error message.
       schema:
@@ -66,39 +70,26 @@ components:
       schema:
         type: string
       required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
   schemas:
-    TokenDetails:
+    Error:
       type: object
+      description: Returned error from failed REST.
       properties:
-        token:
+        message:
           type: string
-          description: The Ably Token.
-        keyName:
-          type: string
-          description: Name of the key used to create the token
-        issued:
+          description: Message explaining the error's cause.
+        code:
           type: integer
-          description: Timestamp of token creation.
-        expires:
+          description: Error code.
+        statusCode:
           type: integer
-          description: Timestamp of token expiration.
-        capability:
+          description: Status error code.
+        href:
           type: string
-          description: Regular expression representation of the capabilities of the token.
-    SignedTokenRequest:
-      allOf:
-      - $ref: '#/components/schemas/TokenRequest'
-      - type: object
-        properties:
-          mac:
-            type: string
-            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
-        required:
-        - mac
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
     TokenRequest:
       type: object
       properties:
@@ -127,50 +118,34 @@ components:
       - capability
       - timestamp
       - nonce
-    Error:
+    SignedTokenRequest:
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          mac:
+            type: string
+            description: A signature, generated as an HMAC of each of the above components, using the key secret value.
+        required:
+        - mac
+    TokenDetails:
       type: object
-      description: Returned error from failed REST.
       properties:
-        message:
+        token:
           type: string
-          description: Message explaining the error's cause.
-        code:
+          description: The Ably Token.
+        keyName:
+          type: string
+          description: Name of the key used to create the token
+        issued:
           type: integer
-          description: Error code.
-        statusCode:
+          description: Timestamp of token creation.
+        expires:
           type: integer
-          description: Status error code.
-        href:
+          description: Timestamp of token expiration.
+        capability:
           type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
-  parameters:
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    key_name:
-      name: keyName
-      in: path
-      schema:
-        type: string
-      required: true
-      description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
+          description: Regular expression representation of the capabilities of the token.
   responses:
     Error:
       description: Error
@@ -191,6 +166,31 @@ components:
           $ref: '#/components/headers/ErrorMessage'
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
+  parameters:
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
+    key_name:
+      name: keyName
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.
   securitySchemes:
     basicAuth:
       type: http

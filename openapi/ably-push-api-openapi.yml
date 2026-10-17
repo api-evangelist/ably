@@ -471,7 +471,40 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
+  headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
   schemas:
+    Error:
+      type: object
+      description: Returned error from failed REST.
+      properties:
+        message:
+          type: string
+          description: Message explaining the error's cause.
+        code:
+          type: integer
+          description: Error code.
+        statusCode:
+          type: integer
+          description: Status error code.
+        href:
+          type: string
+          description: Link to help with error.
+        serverId:
+          type: string
+          description: Server ID with which error was encountered.
     Recipient:
       type: object
       description: Push recipient details for a device.
@@ -569,25 +602,6 @@ components:
         collapseKey:
           description: Platform-specific, used to group notifications together.
           type: string
-    Error:
-      type: object
-      description: Returned error from failed REST.
-      properties:
-        message:
-          type: string
-          description: Message explaining the error's cause.
-        code:
-          type: integer
-          description: Error code.
-        statusCode:
-          type: integer
-          description: Status error code.
-        href:
-          type: string
-          description: Link to help with error.
-        serverId:
-          type: string
-          description: Server ID with which error was encountered.
     Push:
       type: object
       properties:
@@ -614,45 +628,6 @@ components:
           properties:
             notification:
               $ref: '#/components/schemas/Notification'
-  headers:
-    ErrorMessage:
-      description: The error message.
-      schema:
-        type: string
-    ServerId:
-      description: The ID for the server communicated with.
-      schema:
-        type: string
-      required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
-  parameters:
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
-    responseFormat:
-      in: query
-      name: format
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        - msgpack
-        - html
-      description: The response format you would like
-    deviceId:
-      name: device_id
-      in: path
-      schema:
-        type: string
-      required: true
-      description: Device's ID.
   responses:
     Error:
       description: Error
@@ -673,6 +648,31 @@ components:
           $ref: '#/components/headers/ErrorMessage'
         x-ably-serverid:
           $ref: '#/components/headers/ServerId'
+  parameters:
+    responseFormat:
+      in: query
+      name: format
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        - msgpack
+        - html
+      description: The response format you would like
+    deviceId:
+      name: device_id
+      in: path
+      schema:
+        type: string
+      required: true
+      description: Device's ID.
+    versionHeader:
+      in: header
+      name: X-Ably-Version
+      schema:
+        type: string
+      description: The version of the API you wish to use.
   securitySchemes:
     basicAuth:
       type: http

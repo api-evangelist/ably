@@ -81,19 +81,21 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
+  headers:
+    ErrorCode:
+      description: The error code.
+      schema:
+        type: integer
+    ServerId:
+      description: The ID for the server communicated with.
+      schema:
+        type: string
+      required: true
+    ErrorMessage:
+      description: The error message.
+      schema:
+        type: string
   parameters:
-    filterEnd:
-      name: end
-      in: query
-      schema:
-        type: string
-        default: now
-    versionHeader:
-      in: header
-      name: X-Ably-Version
-      schema:
-        type: string
-      description: The version of the API you wish to use.
     filterDirection:
       name: direction
       in: query
@@ -125,20 +127,18 @@ components:
       schema:
         type: integer
         default: '100'
-  headers:
-    ErrorMessage:
-      description: The error message.
+    filterEnd:
+      name: end
+      in: query
       schema:
         type: string
-    ServerId:
-      description: The ID for the server communicated with.
+        default: now
+    versionHeader:
+      in: header
+      name: X-Ably-Version
       schema:
         type: string
-      required: true
-    ErrorCode:
-      description: The error code.
-      schema:
-        type: integer
+      description: The version of the API you wish to use.
   schemas:
     Error:
       type: object
