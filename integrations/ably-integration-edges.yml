@@ -5,6 +5,7 @@ checked:
 - https://aws.amazon.com/marketplace/
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
+- netlify/integrations/netlify-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -78,5 +79,24 @@ edges:
   badges:
   - Verified publisher (Terraform partner tier)
   - Verified publisher (GitHub domain-verified organization)
+- partner_name: Netlify (own)
+  partner: netlify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.netlify.com/integrations/ably/
+  mirror_of: netlify/integrations/netlify-integration-edges.yml
+  apps:
+  - Ably
+  - Ably Setup Guide
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Search
+  partner_tier: listing
 source:
 - datadog/integrations/datadog-integration-edges.yml
