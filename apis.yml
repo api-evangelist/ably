@@ -261,6 +261,8 @@ apis:
   - type: Documentation
     url: https://ably.com/docs/api/control-api
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ably/overview
 - type: Website
   url: https://www.ably.com/
 - type: AgenticAccess
