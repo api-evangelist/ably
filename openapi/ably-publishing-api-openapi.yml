@@ -240,3 +240,9 @@ components:
       type: http
       scheme: bearer
       description: Token Authentication using an [Ably Token](https://www.ably.io/documentation/core-features/authentication#basic-authentication), or optionally an [Ably JWT](https://www.ably.io/documentation/core-features/authentication#ably-jwt-process).
+x-provenance:
+  method: harvested
+  publisher: Ably
+  source: https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
