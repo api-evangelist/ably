@@ -6,6 +6,9 @@ checked:
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
 - netlify/integrations/netlify-integration-edges.yml
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -98,5 +101,62 @@ edges:
   detected_by: mirror-platform-listings.py
   category: Search
   partner_tier: listing
+- partner_name: pub.dev
+  partner: pub-dev
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Dart/Flutter)
+  evidence: https://pub.dev/packages/ably
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: ably
+      version: 0.2.0
+      released: '2026-06-23'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/ably
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:ably.com
+      matched_by: domain
+    - name: ably_flutter
+      version: 1.2.44
+      released: '2026-04-09'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/ably_flutter
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:ably.com
+      matched_by: domain
+    - name: ably_pubsub_device
+      version: 0.0.0
+      released: '2026-09-11'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/ably_pubsub_device
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:ably.com
+      matched_by: domain
+    - name: ably_pubsub_device_flutter
+      version: 0.0.0
+      released: '2026-09-21'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/ably_pubsub_device_flutter
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:ably.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 source:
 - datadog/integrations/datadog-integration-edges.yml
