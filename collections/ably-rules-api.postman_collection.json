@@ -1,2128 +1,2036 @@
 {
+  "info": {
+    "_postman_id": "318b025a-d4c9-401c-b90b-f88b79e00229",
+    "name": "Control API v1 Rules API",
+    "description": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably Control API docs.\n\nControl API is currently in Preview.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:26:23.000Z",
+    "updatedAt": "2026-10-22T02:26:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-318b025a-d4c9-401c-b90b-f88b79e00229"
+  },
   "item": [
     {
-      "id": "39d5cc48-4c6d-4c7a-9542-b4fc0263a90f",
-      "name": "rules",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "apps",
       "item": [
         {
-          "id": "2128c7ac-4279-43f0-977d-c4754d4929e6",
-          "name": "Lists rules",
-          "request": {
-            "name": "Lists rules",
-            "description": {
-              "content": "Lists the <a href=\"https://ably.com/docs/general/webhooks\">rules</a> for the application specified by the application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "rules"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{app_id}",
+          "item": [
             {
-              "id": "565bb060-d37e-40ca-8b79-d03b6979ea8e",
-              "name": "Rule list",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "rules",
+              "item": [
+                {
+                  "name": "{rule_id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Gets a rule using a rule ID",
+                      "id": "71b07997-57e8-4103-aa75-8bf5cfc1c166",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules",
+                            ":rule_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0d7a3f34-6de8-4429-a1cf-6ba0874ac55f",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "b059ea2e-b4f4-416f-bf63-0e8810f8f17e",
+                              "key": "rule_id",
+                              "value": "<string>",
+                              "description": "(Required) The rule ID."
+                            }
+                          ]
+                        },
+                        "description": "Returns the rule specified by the rule ID, for the application specified by application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "2eab3f5d-57fe-4e02-ba5e-320119362094",
+                          "name": "Rule",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"id\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created\": \"<number>\",\n  \"modified\": \"<number>\",\n  \"_links\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-2eab3f5d-57fe-4e02-ba5e-320119362094"
+                        },
+                        {
+                          "id": "accaaf10-9b92-4f4d-a72a-5491c2f6d1aa",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-accaaf10-9b92-4f4d-a72a-5491c2f6d1aa"
+                        },
+                        {
+                          "id": "772cf08d-1abf-4add-b2a4-f8bb507a2f73",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-772cf08d-1abf-4add-b2a4-f8bb507a2f73"
+                        },
+                        {
+                          "id": "5bc283b5-c71e-46ab-ab2d-adda5fcf508c",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-5bc283b5-c71e-46ab-ab2d-adda5fcf508c"
+                        },
+                        {
+                          "id": "d59d7949-3c89-4cdd-bfc2-61d31cee19ae",
+                          "name": "Gateway timeout",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-d59d7949-3c89-4cdd-bfc2-61d31cee19ae"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-71b07997-57e8-4103-aa75-8bf5cfc1c166"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "name": "Updates a Rule",
+                      "id": "ac4224f6-6d1e-41d1-af31-42484d725237",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules",
+                            ":rule_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1fb25f18-b6ff-49ed-834a-068fb46fd0d6",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "d702ef6e-aa86-4230-9ee3-d491d9204173",
+                              "key": "rule_id",
+                              "value": "<string>",
+                              "description": "(Required) The rule ID."
+                            }
+                          ]
+                        },
+                        "description": "Updates the rule specified by the rule ID, for the application specified by application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "50ff5416-c30b-408f-bb30-bb2cd358923b",
+                          "name": "Rule updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"id\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created\": \"<number>\",\n  \"modified\": \"<number>\",\n  \"_links\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-50ff5416-c30b-408f-bb30-bb2cd358923b"
+                        },
+                        {
+                          "id": "e9c0db94-c94e-4462-a485-d195b2566e11",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-e9c0db94-c94e-4462-a485-d195b2566e11"
+                        },
+                        {
+                          "id": "28fbef15-9a55-468f-977a-c815baabdf67",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-28fbef15-9a55-468f-977a-c815baabdf67"
+                        },
+                        {
+                          "id": "840ba091-8d8c-4b50-900d-3f4963ad073c",
+                          "name": "App not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-840ba091-8d8c-4b50-900d-3f4963ad073c"
+                        },
+                        {
+                          "id": "3633dafb-f47c-4bde-b74a-46e08558317c",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-3633dafb-f47c-4bde-b74a-46e08558317c"
+                        },
+                        {
+                          "id": "f4c00712-8d1e-4670-9cfe-939a9f35da04",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-f4c00712-8d1e-4670-9cfe-939a9f35da04"
+                        },
+                        {
+                          "id": "560c892f-fa1a-4412-8534-d090e13e2438",
+                          "name": "Gateway timeout",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\",\n    \"format\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-560c892f-fa1a-4412-8534-d090e13e2438"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-ac4224f6-6d1e-41d1-af31-42484d725237"
+                    },
+                    {
+                      "name": "Deletes a rule",
+                      "id": "d0cd6f54-06f8-44b1-a68a-62fe2c6dc33a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules",
+                            ":rule_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d158cdca-b5e6-4771-9df2-9742116232d2",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "0a82fe8f-b8b2-4572-9984-07694c2a21f3",
+                              "key": "rule_id",
+                              "value": "<string>",
+                              "description": "(Required) The rule ID."
+                            }
+                          ]
+                        },
+                        "description": "Deletes the rule specified by the rule ID, for the application specified by application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "3f041c43-0551-4431-9d32-a31791da52e7",
+                          "name": "Rule deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-3f041c43-0551-4431-9d32-a31791da52e7"
+                        },
+                        {
+                          "id": "2872e8f7-a69e-44b6-a733-178ef2143931",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-2872e8f7-a69e-44b6-a733-178ef2143931"
+                        },
+                        {
+                          "id": "9149ab3a-1f5a-4980-ba02-1b928196d47a",
+                          "name": "App not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-9149ab3a-1f5a-4980-ba02-1b928196d47a"
+                        },
+                        {
+                          "id": "bec1081f-bc28-44d7-8ff3-6a586e3169e1",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-bec1081f-bc28-44d7-8ff3-6a586e3169e1"
+                        },
+                        {
+                          "id": "58ca16e4-7387-413a-87bf-b94da4ea33ba",
+                          "name": "Gateway timeout",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/rules/:rule_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "rules",
+                                ":rule_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:23.000Z",
+                          "updatedAt": "2026-10-22T02:26:23.000Z",
+                          "uid": "35240-58ca16e4-7387-413a-87bf-b94da4ea33ba"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-d0cd6f54-06f8-44b1-a68a-62fe2c6dc33a"
+                    }
+                  ],
+                  "id": "6b4b19d9-97b2-4811-b09c-af6def6b87d0",
+                  "createdAt": "2026-10-22T02:26:23.000Z",
+                  "updatedAt": "2026-10-22T02:26:23.000Z",
+                  "uid": "35240-6b4b19d9-97b2-4811-b09c-af6def6b87d0"
+                },
+                {
+                  "name": "Lists rules",
+                  "id": "573fa7a1-cf65-4c08-ad43-e0efd7eff76d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"ruleType\": \"http\",\n    \"requestMode\": \"single\",\n    \"source\": {\n      \"channelFilter\": \"^my-channel.*\",\n      \"type\": \"channel.message\"\n    },\n    \"target\": {\n      \"url\": \"https://example.com/webhooks\",\n      \"format\": \"json\",\n      \"headers\": [\n        {\n          \"name\": \"User-Agent\",\n          \"value\": \"user-agent-string\"\n        },\n        {\n          \"name\": \"headerName\",\n          \"value\": \"headerValue\"\n        }\n      ],\n      \"signingKeyId\": \"bw66AB\",\n      \"enveloped\": true\n    },\n    \"id\": \"83IzAB\",\n    \"appId\": \"28GY6a\",\n    \"version\": \"1.2\",\n    \"status\": \"enabled\",\n    \"created\": 1602844091815,\n    \"modified\": 1614679682091,\n    \"_links\": {}\n  },\n  {\n    \"ruleType\": \"http\",\n    \"requestMode\": \"single\",\n    \"source\": {\n      \"channelFilter\": \"^my-channel.*\",\n      \"type\": \"channel.message\"\n    },\n    \"target\": {\n      \"url\": \"https://example.com/webhooks\",\n      \"format\": \"json\",\n      \"headers\": [\n        {\n          \"name\": \"User-Agent\",\n          \"value\": \"user-agent-string\"\n        },\n        {\n          \"name\": \"headerName\",\n          \"value\": \"headerValue\"\n        }\n      ],\n      \"signingKeyId\": \"bw66AB\",\n      \"enveloped\": true\n    },\n    \"id\": \"83IzAB\",\n    \"appId\": \"28GY6a\",\n    \"version\": \"1.2\",\n    \"status\": \"enabled\",\n    \"created\": 1602844091815,\n    \"modified\": 1614679682091,\n    \"_links\": {}\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6429d583-f297-421a-9f60-41dc42e1fb5e",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/rules",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "rules"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dc532a69-7ee1-4da0-8861-e0379db80fd0",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Lists the rules for the application specified by the application ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e85c47df-ffec-4e86-8048-6f1a0d8ddaec",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "c47a1390-bffc-41de-b13f-39ee1e5f3396",
+                      "name": "Rule list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"ruleType\": \"http\",\n    \"requestMode\": \"<string>\",\n    \"source\": {\n      \"channelFilter\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"target\": {\n      \"url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"headers\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"signingKeyId\": \"<string,null>\",\n      \"enveloped\": \"<boolean,null>\"\n    },\n    \"id\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"version\": \"<string>\",\n    \"status\": \"<string>\",\n    \"created\": \"<number>\",\n    \"modified\": \"<number>\",\n    \"_links\": \"<object,null>\"\n  },\n  {\n    \"ruleType\": \"http\",\n    \"requestMode\": \"<string>\",\n    \"source\": {\n      \"channelFilter\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"target\": {\n      \"url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"headers\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"signingKeyId\": \"<string,null>\",\n      \"enveloped\": \"<boolean,null>\"\n    },\n    \"id\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"version\": \"<string>\",\n    \"status\": \"<string>\",\n    \"created\": \"<number>\",\n    \"modified\": \"<number>\",\n    \"_links\": \"<object,null>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-c47a1390-bffc-41de-b13f-39ee1e5f3396"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "id": "0ccd362b-1ef8-4d31-a6fb-f428f7547ac2",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-0ccd362b-1ef8-4d31-a6fb-f428f7547ac2"
+                    },
+                    {
+                      "id": "3cb6b13b-f809-4fdd-b503-a66b5c755abe",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-3cb6b13b-f809-4fdd-b503-a66b5c755abe"
+                    },
+                    {
+                      "id": "c75b52e6-a297-4796-8c2a-f4e46706b313",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-c75b52e6-a297-4796-8c2a-f4e46706b313"
+                    },
+                    {
+                      "id": "f1ab2daf-39ee-40b3-8a22-7e54c18e24d6",
+                      "name": "Gateway timeout",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-f1ab2daf-39ee-40b3-8a22-7e54c18e24d6"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:26:23.000Z",
+                  "updatedAt": "2026-10-22T02:26:23.000Z",
+                  "uid": "35240-573fa7a1-cf65-4c08-ad43-e0efd7eff76d"
+                },
+                {
+                  "name": "Creates a rule",
+                  "id": "9fc417d0-ad27-497f-9fd7-7973694dcef0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d8546eb1-f4bc-4de0-aa3f-6966fb11ed51",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/rules",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "rules"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7084d84-4ee9-43a0-b639-028bb4b46fdc",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Creates a rule for the application with the specified application ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "response": [
+                    {
+                      "id": "918f3016-717a-4b8a-b858-3bbbdf191b28",
+                      "name": "Rule created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"id\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created\": \"<number>\",\n  \"modified\": \"<number>\",\n  \"_links\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-918f3016-717a-4b8a-b858-3bbbdf191b28"
+                    },
+                    {
+                      "id": "dd72d1ac-2714-4610-8a71-8c080a752572",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-dd72d1ac-2714-4610-8a71-8c080a752572"
+                    },
+                    {
+                      "id": "1ddaff58-8207-459d-ab6a-9d905d04eb19",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-1ddaff58-8207-459d-ab6a-9d905d04eb19"
+                    },
+                    {
+                      "id": "5df41ac7-2d65-4bd4-96f8-111e6802d14c",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-5df41ac7-2d65-4bd4-96f8-111e6802d14c"
+                    },
+                    {
+                      "id": "68d87122-bc87-4fe5-a97b-9aa7cc7ec539",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-68d87122-bc87-4fe5-a97b-9aa7cc7ec539"
+                    },
+                    {
+                      "id": "4f4e8741-1498-443e-962a-4ebfce8ccb8e",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-4f4e8741-1498-443e-962a-4ebfce8ccb8e"
+                    },
+                    {
+                      "id": "f8c18db1-4c13-4bc0-9dcc-be30e65e4fab",
+                      "name": "Gateway timeout",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string,null>\",\n    \"enveloped\": \"<boolean,null>\"\n  },\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:23.000Z",
+                      "updatedAt": "2026-10-22T02:26:23.000Z",
+                      "uid": "35240-f8c18db1-4c13-4bc0-9dcc-be30e65e4fab"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:26:23.000Z",
+                  "updatedAt": "2026-10-22T02:26:23.000Z",
+                  "uid": "35240-9fc417d0-ad27-497f-9fd7-7973694dcef0"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "55f9e9bd-c639-428f-8337-f97537568cd2",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a4ccb8a1-4552-4196-8d9f-8fb6afde90ed",
-          "name": "Creates a rule",
-          "request": {
-            "name": "Creates a rule",
-            "description": {
-              "content": "Creates a <a href=\"https://ably.com/docs/general/webhooks\">rule</a> for the application with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "rules"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"ruleType\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"format\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string>\",\n    \"enveloped\": \"<boolean>\"\n  },\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "bed8c510-2a37-49fa-9ce4-5cb40eb63c7e",
-              "name": "Rule created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"id\": \"83IzAB\",\n  \"appId\": \"28GY6a\",\n  \"version\": \"1.2\",\n  \"status\": \"enabled\",\n  \"created\": 1602844091815,\n  \"modified\": 1614679682091,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4561b284-cc3d-473a-b460-27437ca4d7aa",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "95381cad-6a7f-451a-aa81-5cad7c7102fa",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d95ffc46-9217-4b81-88a5-d779e8788ca3",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "41c629d8-b586-46ef-80e0-223d542369f9",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "19ba33cb-e52f-4665-a31c-3b1b42570728",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "def5e311-0a0b-4b31-ab1b-327a1c1b5797",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"status\": \"enabled\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cfb9adfd-5051-4101-bde8-acdb6aa77925",
-          "name": "Gets a rule using a rule ID",
-          "request": {
-            "name": "Gets a rule using a rule ID",
-            "description": {
-              "content": "Returns the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "rules",
-                ":rule_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "rule_id",
-                  "description": "(Required) The rule ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "872b28b5-7c94-4f3e-bd09-d0cddb7db926",
-              "name": "Rule",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"id\": \"83IzAB\",\n  \"appId\": \"28GY6a\",\n  \"version\": \"1.2\",\n  \"status\": \"enabled\",\n  \"created\": 1602844091815,\n  \"modified\": 1614679682091,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f230b5ec-9386-4b6d-a0d3-9c00e56f95e4",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d9e0a830-80e3-4694-a331-e937314bfbb4",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ab5ce0b6-0cc9-4284-815e-8b69e5df2e2c",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a650b52a-05e1-4cda-afc5-3dbad4ff6855",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2172e0a7-7f0b-4945-a81a-bc5f0a5ef231",
-          "name": "Updates a Rule",
-          "request": {
-            "name": "Updates a Rule",
-            "description": {
-              "content": "Updates the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "rules",
-                ":rule_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "rule_id",
-                  "description": "(Required) The rule ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"ruleType\": \"<string>\",\n  \"status\": \"<string>\",\n  \"requestMode\": \"<string>\",\n  \"source\": {\n    \"channelFilter\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"target\": {\n    \"url\": \"<string>\",\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"signingKeyId\": \"<string>\",\n    \"enveloped\": \"<boolean>\",\n    \"format\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c416ca99-b181-488a-9de3-09bfbe15c404",
-              "name": "Rule updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"ruleType\": \"http\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"format\": \"json\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true\n  },\n  \"id\": \"83IzAB\",\n  \"appId\": \"28GY6a\",\n  \"version\": \"1.2\",\n  \"status\": \"enabled\",\n  \"created\": 1602844091815,\n  \"modified\": 1614679682091,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "006aaa97-9508-4cf9-8a83-7bd3a2dd7465",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c422d3ac-50b3-4b01-8752-dee3f401e1a1",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "967d811f-2b16-4640-a507-bb7257303a55",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "94beca08-9e65-412c-b87f-9ca87673857d",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "67dcfc2a-d65a-42a5-b197-7d39eb725a9a",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4deadc37-808a-4c02-9aa3-65fb32a230a9",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ruleType\": \"http\",\n  \"status\": \"enabled\",\n  \"requestMode\": \"single\",\n  \"source\": {\n    \"channelFilter\": \"^my-channel.*\",\n    \"type\": \"channel.message\"\n  },\n  \"target\": {\n    \"url\": \"https://example.com/webhooks\",\n    \"headers\": [\n      {\n        \"name\": \"User-Agent\",\n        \"value\": \"user-agent-string\"\n      },\n      {\n        \"name\": \"headerName\",\n        \"value\": \"headerValue\"\n      }\n    ],\n    \"signingKeyId\": \"bw66AB\",\n    \"enveloped\": true,\n    \"format\": \"json\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0e636ca6-5f0f-427d-b88a-2623cb69df3e",
-          "name": "Deletes a rule",
-          "request": {
-            "name": "Deletes a rule",
-            "description": {
-              "content": "Deletes the <a href=\"https://ably.com/docs/general/webhooks\">rule</a> specified by the rule ID, for the application specified by application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "rules",
-                ":rule_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "rule_id",
-                  "description": "(Required) The rule ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f9d38213-64fc-44e1-bca2-7e3a8e6ced3d",
-              "name": "Rule deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "91c8e082-cbbe-4390-b96c-8215855736f9",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "79e077d0-977a-46b9-9348-3b56c48a99c4",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "787ecec0-ca77-4f6f-8fe0-e6bc2d9757f8",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0bdf8916-8609-4ffd-95ec-a6ca65b0ea41",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "rules",
-                    ":rule_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "rule_id",
-                      "description": "(Required) The rule ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4818,\n  \"statusCode\": 3259,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "20a9328d-b612-45c3-ae6c-224365f2565f",
+              "createdAt": "2026-10-22T02:26:23.000Z",
+              "updatedAt": "2026-10-22T02:26:23.000Z",
+              "uid": "35240-20a9328d-b612-45c3-ae6c-224365f2565f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "cec5e255-46cb-4a1d-949d-e3cbbca9c21e",
+          "createdAt": "2026-10-22T02:26:23.000Z",
+          "updatedAt": "2026-10-22T02:26:23.000Z",
+          "uid": "35240-cec5e255-46cb-4a1d-949d-e3cbbca9c21e"
         }
       ],
-      "event": []
+      "id": "7666d22c-f93c-4c63-b7a7-e35631666d3a",
+      "createdAt": "2026-10-22T02:26:23.000Z",
+      "updatedAt": "2026-10-22T02:26:23.000Z",
+      "uid": "35240-7666d22c-f93c-4c63-b7a7-e35631666d3a"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://control.ably.net/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://control.ably.net/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "215d5e01-3c06-4e9f-992e-849d3d63e704",
-    "name": "Control API v1 apps rules API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

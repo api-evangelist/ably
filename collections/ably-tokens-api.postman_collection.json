@@ -1,204 +1,196 @@
 {
+  "info": {
+    "_postman_id": "2ee776ad-c8d4-40b6-a866-c1d886d7cec5",
+    "name": "Control API v1 Tokens API",
+    "description": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably Control API docs.\n\nControl API is currently in Preview.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:26:42.000Z",
+    "updatedAt": "2026-10-22T02:26:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2ee776ad-c8d4-40b6-a866-c1d886d7cec5"
+  },
   "item": [
     {
-      "id": "1f3921f9-31fc-470d-b43a-1eddd34c982f",
-      "name": "tokens",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "me",
       "item": [
         {
-          "id": "57464012-3cbb-4ec8-bcfc-f9b7d44536cb",
           "name": "Get token details",
+          "id": "72f3478f-f410-491c-830d-c31fa7ec2256",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get token details",
-            "description": {
-              "content": "Retrieve information about the <a href=\"https://ably.com/docs/account/control-api#authentication\">token</a> the current user authenticates with.",
-              "type": "text/plain"
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
             },
-            "url": {
-              "path": [
-                "me"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
               ]
-            }
+            },
+            "description": "Retrieve information about the token the current user authenticates with."
           },
           "response": [
             {
-              "id": "67484910-6283-460e-a308-a39f5211b5d4",
+              "id": "0d67fb55-79c1-4fa4-a188-8ecdf8820635",
               "name": "Token details",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"token\": {\n    \"id\": 12345,\n    \"name\": \"My Token\",\n    \"capabilities\": [\n      \"write:namespace\",\n      \"read:namespace\",\n      \"write:queue\",\n      \"read:queue\",\n      \"write:rule\",\n      \"read:rule\",\n      \"write:key\",\n      \"read:key\",\n      \"write:app\",\n      \"read:app\"\n    ]\n  },\n  \"user\": {\n    \"id\": 12345,\n    \"email\": \"user@example.com\"\n  },\n  \"account\": {\n    \"id\": \"VpWaOA\",\n    \"name\": \"Free account\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"token\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"capabilities\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"email\": \"<string>\"\n  },\n  \"account\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:26:43.000Z",
+              "updatedAt": "2026-10-22T02:26:43.000Z",
+              "uid": "35240-0d67fb55-79c1-4fa4-a188-8ecdf8820635"
             },
             {
-              "id": "a930180c-8dfb-494f-870e-49654a7f6a59",
+              "id": "d62fe276-052a-4248-923b-9842247f0599",
               "name": "Authentication failed",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1437,\n  \"statusCode\": 6868,\n  \"href\": \"string\",\n  \"details\": {}\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+              "createdAt": "2026-10-22T02:26:43.000Z",
+              "updatedAt": "2026-10-22T02:26:43.000Z",
+              "uid": "35240-d62fe276-052a-4248-923b-9842247f0599"
             },
             {
-              "id": "a6adeb7a-51e1-4dda-a4f3-6ae8b5dfdc1f",
+              "id": "e1b6d013-5174-4749-95d3-cbe7a584d894",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1437,\n  \"statusCode\": 6868,\n  \"href\": \"string\",\n  \"details\": {}\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+              "createdAt": "2026-10-22T02:26:43.000Z",
+              "updatedAt": "2026-10-22T02:26:43.000Z",
+              "uid": "35240-e1b6d013-5174-4749-95d3-cbe7a584d894"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:26:43.000Z",
+          "updatedAt": "2026-10-22T02:26:43.000Z",
+          "uid": "35240-72f3478f-f410-491c-830d-c31fa7ec2256"
         }
       ],
-      "event": []
+      "id": "dbd602bb-3a1f-4afd-a448-957e67618e02",
+      "createdAt": "2026-10-22T02:26:43.000Z",
+      "updatedAt": "2026-10-22T02:26:43.000Z",
+      "uid": "35240-dbd602bb-3a1f-4afd-a448-957e67618e02"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://control.ably.net/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://control.ably.net/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "af5b451c-2f84-4b76-800f-9899efed859e",
-    "name": "Control API v1 apps tokens API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

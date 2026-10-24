@@ -1,1632 +1,1583 @@
 {
+  "info": {
+    "_postman_id": "b86fdcef-3685-47c1-85d4-424331aabd21",
+    "name": "Control API v1 Namespaces API",
+    "description": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably Control API docs.\n\nControl API is currently in Preview.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:25:52.000Z",
+    "updatedAt": "2026-10-22T02:25:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b86fdcef-3685-47c1-85d4-424331aabd21"
+  },
   "item": [
     {
-      "id": "ab1ef7ec-a1e3-438f-8283-70b5d82fec78",
-      "name": "namespaces",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "apps",
       "item": [
         {
-          "id": "9f6eb167-3578-470e-bbd0-3c6f5e786742",
-          "name": "Lists namespaces",
-          "request": {
-            "name": "Lists namespaces",
-            "description": {
-              "content": "List the <a href=\"https://ably.com/docs/channels#namespaces\">namespaces</a> for the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "namespaces"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{app_id}",
+          "item": [
             {
-              "id": "67b202a7-04db-4237-8648-1321e10369c4",
-              "name": "Namespace list",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "namespaces",
+              "item": [
+                {
+                  "name": "{namespace_id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Updates a namespace",
+                      "id": "dc1b08c5-4c5d-440d-8bce-bae4d2268c92",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces",
+                            ":namespace_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dd966902-ff39-4cf2-b290-4453df635d19",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "71c36c70-1d91-4629-bd8c-c660101a1884",
+                              "key": "namespace_id",
+                              "value": "<string>",
+                              "description": "(Required) The namespace ID."
+                            }
+                          ]
+                        },
+                        "description": "Updates the namespace with the specified ID, for the application with the specified application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "d0460288-3343-404c-b9e4-74cd132a967e",
+                          "name": "Namespace updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"authenticated\": false,\n  \"created\": \"<integer>\",\n  \"modified\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-d0460288-3343-404c-b9e4-74cd132a967e"
+                        },
+                        {
+                          "id": "369d9883-75bc-41ac-863a-60c8f20dfb17",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-369d9883-75bc-41ac-863a-60c8f20dfb17"
+                        },
+                        {
+                          "id": "2ba44115-34fc-4225-bb95-1bcf86946c42",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-2ba44115-34fc-4225-bb95-1bcf86946c42"
+                        },
+                        {
+                          "id": "66046f64-bf4f-422d-ae43-1638908a139e",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-66046f64-bf4f-422d-ae43-1638908a139e"
+                        },
+                        {
+                          "id": "b7ccda0f-20fc-4380-bedd-f3074a869909",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-b7ccda0f-20fc-4380-bedd-f3074a869909"
+                        },
+                        {
+                          "id": "37cf2804-b211-4660-9deb-820e555f02b9",
+                          "name": "Gateway timeout",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-37cf2804-b211-4660-9deb-820e555f02b9"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-dc1b08c5-4c5d-440d-8bce-bae4d2268c92"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "name": "Deletes a namespace",
+                      "id": "4dbd78b4-5ec7-4150-95f9-41eebb9a7100",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces",
+                            ":namespace_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9a8a0e91-14b0-46d4-87ed-6e0ad146fee0",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "fd8026cd-ede1-4be8-8f57-fbf40004a2a5",
+                              "key": "namespace_id",
+                              "value": "<string>",
+                              "description": "(Required) The namespace ID."
+                            }
+                          ]
+                        },
+                        "description": "Deletes the namespace with the specified ID, for the specified application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "08798244-c69f-4fda-8b1d-35bd710aa8ac",
+                          "name": "Namespace deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-08798244-c69f-4fda-8b1d-35bd710aa8ac"
+                        },
+                        {
+                          "id": "6db150fd-044b-44cc-87f6-61153b3e3f5f",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-6db150fd-044b-44cc-87f6-61153b3e3f5f"
+                        },
+                        {
+                          "id": "dfd67cdd-fb3b-4d4b-9823-186ea4a91bee",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-dfd67cdd-fb3b-4d4b-9823-186ea4a91bee"
+                        },
+                        {
+                          "id": "64c30e1e-b673-45e8-b431-e5db090469ab",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-64c30e1e-b673-45e8-b431-e5db090469ab"
+                        },
+                        {
+                          "id": "02160093-8257-45d3-9ab3-d350037ad3b8",
+                          "name": "Gateway timeout",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/namespaces/:namespace_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "namespaces",
+                                ":namespace_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "namespace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:25:53.000Z",
+                          "updatedAt": "2026-10-22T02:25:53.000Z",
+                          "uid": "35240-02160093-8257-45d3-9ab3-d350037ad3b8"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-4dbd78b4-5ec7-4150-95f9-41eebb9a7100"
+                    }
+                  ],
+                  "id": "da99256b-aeed-44d8-990d-6e94f9552274",
+                  "createdAt": "2026-10-22T02:25:53.000Z",
+                  "updatedAt": "2026-10-22T02:25:53.000Z",
+                  "uid": "35240-da99256b-aeed-44d8-990d-6e94f9552274"
+                },
+                {
+                  "name": "Lists namespaces",
+                  "id": "356db346-1bbd-4978-a892-ff579c16b875",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"authenticated\": false,\n    \"created\": 1602844091815,\n    \"modified\": 1614679682091,\n    \"id\": \"namespace\",\n    \"persisted\": false,\n    \"persistLast\": false,\n    \"pushEnabled\": false,\n    \"batchingEnabled\": false,\n    \"batchingPolicy\": \"simple\",\n    \"batchingInterval\": 20,\n    \"tlsOnly\": false,\n    \"exposeTimeserial\": true\n  },\n  {\n    \"authenticated\": false,\n    \"created\": 1602844091815,\n    \"modified\": 1614679682091,\n    \"id\": \"namespace\",\n    \"persisted\": false,\n    \"persistLast\": false,\n    \"pushEnabled\": false,\n    \"batchingEnabled\": false,\n    \"batchingPolicy\": \"simple\",\n    \"batchingInterval\": 20,\n    \"tlsOnly\": false,\n    \"exposeTimeserial\": true\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3b75a780-ebcb-44d3-a585-0f6e871961e3",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "namespaces"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8d1859d3-bdaa-4ad8-9ab2-086bb1248648",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "List the namespaces for the specified application ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "78d69880-d746-4de7-8124-d46bb4f8f65c",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "54098132-c587-4f83-846d-7792aec58e0b",
+                      "name": "Namespace list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"authenticated\": false,\n    \"created\": \"<integer>\",\n    \"modified\": \"<integer>\",\n    \"id\": \"<string>\",\n    \"persisted\": false,\n    \"persistLast\": false,\n    \"pushEnabled\": false,\n    \"batchingEnabled\": false,\n    \"batchingPolicy\": \"simple\",\n    \"batchingInterval\": 20,\n    \"tlsOnly\": false,\n    \"exposeTimeserial\": \"<boolean>\"\n  },\n  {\n    \"authenticated\": false,\n    \"created\": \"<integer>\",\n    \"modified\": \"<integer>\",\n    \"id\": \"<string>\",\n    \"persisted\": false,\n    \"persistLast\": false,\n    \"pushEnabled\": false,\n    \"batchingEnabled\": false,\n    \"batchingPolicy\": \"simple\",\n    \"batchingInterval\": 20,\n    \"tlsOnly\": false,\n    \"exposeTimeserial\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-54098132-c587-4f83-846d-7792aec58e0b"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "id": "42f8ddd8-33cd-48d9-83a2-c9efa7dd6eb2",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-42f8ddd8-33cd-48d9-83a2-c9efa7dd6eb2"
+                    },
+                    {
+                      "id": "3e32080c-b686-4b99-9da3-36040b001915",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-3e32080c-b686-4b99-9da3-36040b001915"
+                    },
+                    {
+                      "id": "df572bc4-3f40-4ea3-9f7a-53d2592cd0e0",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-df572bc4-3f40-4ea3-9f7a-53d2592cd0e0"
+                    },
+                    {
+                      "id": "237d47cc-e0e6-4b2b-a762-cfc0512df3a7",
+                      "name": "Gateway timeout",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-237d47cc-e0e6-4b2b-a762-cfc0512df3a7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:25:53.000Z",
+                  "updatedAt": "2026-10-22T02:25:53.000Z",
+                  "uid": "35240-356db346-1bbd-4978-a892-ff579c16b875"
+                },
+                {
+                  "name": "Creates a namespace",
+                  "id": "7a47c325-66c4-4d5c-99bd-077fa8dac4b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9ddf8fde-345a-4d8d-99f3-f5051991f15e",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "namespaces"
+                      ],
+                      "variable": [
+                        {
+                          "id": "63687fb2-240b-4577-89d3-abd0f777c31e",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Creates a namespace for the specified application ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "response": [
+                    {
+                      "id": "b4d49c71-7b9a-4830-ac2f-ffb47b5f993e",
+                      "name": "Namespace created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"authenticated\": false,\n  \"created\": \"<integer>\",\n  \"modified\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-b4d49c71-7b9a-4830-ac2f-ffb47b5f993e"
+                    },
+                    {
+                      "id": "78252acd-695c-44ba-92d3-817f7ebf4288",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-78252acd-695c-44ba-92d3-817f7ebf4288"
+                    },
+                    {
+                      "id": "e0abe1f0-92b1-44f0-ab25-7f9b46d16f4d",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-e0abe1f0-92b1-44f0-ab25-7f9b46d16f4d"
+                    },
+                    {
+                      "id": "a2acb2cf-e7af-4adc-921e-86c1a6bd029f",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-a2acb2cf-e7af-4adc-921e-86c1a6bd029f"
+                    },
+                    {
+                      "id": "02f4fb67-dc47-469f-9e41-250ba459d920",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-02f4fb67-dc47-469f-9e41-250ba459d920"
+                    },
+                    {
+                      "id": "640707b2-6999-4aba-8a2a-f14ce307cb82",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/namespaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "namespaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:53.000Z",
+                      "updatedAt": "2026-10-22T02:25:53.000Z",
+                      "uid": "35240-640707b2-6999-4aba-8a2a-f14ce307cb82"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:25:53.000Z",
+                  "updatedAt": "2026-10-22T02:25:53.000Z",
+                  "uid": "35240-7a47c325-66c4-4d5c-99bd-077fa8dac4b0"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ebfb3525-1064-46c6-98cb-a92dd8c4714b",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "473150c4-2ddb-4110-ba25-94353b2e61b5",
-          "name": "Creates a namespace",
-          "request": {
-            "name": "Creates a namespace",
-            "description": {
-              "content": "Creates a <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> for the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "namespaces"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ceead1bf-c59c-4eac-a86e-966d371718b7",
-              "name": "Namespace created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"authenticated\": false,\n  \"created\": 1602844091815,\n  \"modified\": 1614679682091,\n  \"id\": \"namespace\",\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "420fecf1-15b5-4709-85c6-cc93b84786e3",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e311f774-3938-4029-8726-069f126f93dc",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "810e63c9-3a54-4d62-a107-05fdf009c18b",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8ba27b06-5367-47ad-b772-f8bdaf7092a6",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3b1bf6da-11d6-4e8e-862e-7a4242c40784",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"namespace\",\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6f56f5c2-bb55-4fc1-96cf-30b18c67cb6a",
-          "name": "Updates a namespace",
-          "request": {
-            "name": "Updates a namespace",
-            "description": {
-              "content": "Updates the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the application with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "namespaces",
-                ":namespace_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace_id",
-                  "description": "(Required) The namespace ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a55ca719-91fd-4c21-bf25-9e14d59bde68",
-              "name": "Namespace updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"authenticated\": false,\n  \"created\": 1602844091815,\n  \"modified\": 1614679682091,\n  \"id\": \"namespace\",\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f6e7ea5f-e0c7-42c4-968f-1dc817d2e051",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c94f9100-219c-49b2-8cf0-6d98f8106511",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "adbea119-2881-471a-af95-885c7a8e03e7",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "65649650-302e-4abb-b842-3b7669265be8",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bae54d27-7dd7-490d-b22e-a2d453fba807",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"authenticated\": false,\n  \"persisted\": false,\n  \"persistLast\": false,\n  \"pushEnabled\": false,\n  \"batchingEnabled\": false,\n  \"batchingPolicy\": \"simple\",\n  \"batchingInterval\": 20,\n  \"tlsOnly\": false,\n  \"exposeTimeserial\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "09fb0223-be95-4acf-8c01-38a7c08a5015",
-          "name": "Deletes a namespace",
-          "request": {
-            "name": "Deletes a namespace",
-            "description": {
-              "content": "Deletes the <a href=\"https://ably.com/docs/channels#namespaces\">namespace</a> with the specified ID, for the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "namespaces",
-                ":namespace_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace_id",
-                  "description": "(Required) The namespace ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f6310054-99fe-48c7-a85a-e336ee342c73",
-              "name": "Namespace deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "0b285c9b-2ec5-4701-ba9f-b3131af7eb6d",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "47a42858-7090-4247-bd89-d3470ad87bfc",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f292a222-6fa9-4709-a33a-fbacdaf09ad8",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8a091753-048e-4224-934c-11abb7fa8e02",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "namespaces",
-                    ":namespace_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace_id",
-                      "description": "(Required) The namespace ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 1026,\n  \"statusCode\": 9330,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "85f7bb85-2220-4bc6-9060-80b71e0e753b",
+              "createdAt": "2026-10-22T02:25:53.000Z",
+              "updatedAt": "2026-10-22T02:25:53.000Z",
+              "uid": "35240-85f7bb85-2220-4bc6-9060-80b71e0e753b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "72268ab7-5d0e-4e89-8e2d-1eea8f27e951",
+          "createdAt": "2026-10-22T02:25:53.000Z",
+          "updatedAt": "2026-10-22T02:25:53.000Z",
+          "uid": "35240-72268ab7-5d0e-4e89-8e2d-1eea8f27e951"
         }
       ],
-      "event": []
+      "id": "29450d03-e668-4910-b332-7c790e0476a4",
+      "createdAt": "2026-10-22T02:25:53.000Z",
+      "updatedAt": "2026-10-22T02:25:53.000Z",
+      "uid": "35240-29450d03-e668-4910-b332-7c790e0476a4"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://control.ably.net/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://control.ably.net/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "e48713b3-987f-4e0d-b554-fb762b3bd697",
-    "name": "Control API v1 apps namespaces API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

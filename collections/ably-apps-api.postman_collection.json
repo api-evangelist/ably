@@ -1,1910 +1,1898 @@
 {
+  "info": {
+    "_postman_id": "a453f784-2acf-4588-a7a3-4b98e36e5374",
+    "name": "Control API v1 Apps API",
+    "description": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably Control API docs.\n\nControl API is currently in Preview.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:25:24.000Z",
+    "updatedAt": "2026-10-22T02:25:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a453f784-2acf-4588-a7a3-4b98e36e5374"
+  },
   "item": [
     {
-      "id": "1eae7aa4-9c64-4dab-94e3-2306258e82d7",
-      "name": "apps",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "f683f351-079c-4efe-abb7-d942dcd01b96",
-          "name": "Lists account apps",
-          "request": {
-            "name": "Lists account apps",
-            "description": {
-              "content": "List all Ably applications for the specified account ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":account_id",
-                "apps"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "account_id",
-                  "description": "(Required) The account ID for which to retrieve the associated applications."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{account_id}",
+          "item": [
             {
-              "id": "a2b39a29-02bd-4111-8962-d2e393be767a",
-              "name": "List of apps for the specified account are returned",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID for which to retrieve the associated applications."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "apps",
+              "item": [
+                {
+                  "name": "Lists account apps",
+                  "id": "490d92c8-1903-4c01-b58e-552c20120b9a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"accountId\": \"WgRpOB\",\n    \"id\": \"28AB6x\",\n    \"name\": \"Default\",\n    \"status\": \"enabled\",\n    \"tlsOnly\": true,\n    \"apnsUseSandboxEndpoint\": false,\n    \"_links\": {}\n  },\n  {\n    \"accountId\": \"WgRpOB\",\n    \"id\": \"28AB6x\",\n    \"name\": \"Default\",\n    \"status\": \"enabled\",\n    \"tlsOnly\": true,\n    \"apnsUseSandboxEndpoint\": false,\n    \"_links\": {}\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f87cff35-8d47-4032-b372-9b8492f44836",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID for which to retrieve the associated applications."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "aee76e5b-7910-4421-90f2-fc67a12e75b4",
-              "name": "Account not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID for which to retrieve the associated applications."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "apps"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0c8992c3-4407-40b2-a414-680b37c8ece8",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) The account ID for which to retrieve the associated applications."
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "description": "List all Ably applications for the specified account ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "20b35e17-f0b9-4264-97a7-22c8f0298305",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID for which to retrieve the associated applications."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "1a15edaa-7fd5-47f1-b54e-7c53ceabc496",
+                      "name": "List of apps for the specified account are returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"accountId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tlsOnly\": \"<boolean,null>\",\n    \"apnsUseSandboxEndpoint\": \"<boolean,null>\",\n    \"_links\": \"<object,null>\"\n  },\n  {\n    \"accountId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tlsOnly\": \"<boolean,null>\",\n    \"apnsUseSandboxEndpoint\": \"<boolean,null>\",\n    \"_links\": \"<object,null>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-1a15edaa-7fd5-47f1-b54e-7c53ceabc496"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3d50463c-6f9e-4426-a692-51076a80d8c1",
-          "name": "Creates an app",
-          "request": {
-            "name": "Creates an app",
-            "description": {
-              "content": "Creates an application with the specified properties.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":account_id",
-                "apps"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "account_id",
-                  "description": "(Required) The account ID of the account in which to create the application."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean>\",\n  \"fcmKey\": \"<string>\",\n  \"fcmServiceAccount\": \"<string>\",\n  \"fcmProjectId\": \"<string>\",\n  \"apnsCertificate\": \"<string>\",\n  \"apnsPrivateKey\": \"<string>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "37ae2f19-01ec-4891-b8ec-924792366660",
-              "name": "App created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "a867502a-7818-4537-bca6-74b9a12537c6",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-a867502a-7818-4537-bca6-74b9a12537c6"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accountId\": \"WgRpOB\",\n  \"id\": \"28AB6x\",\n  \"name\": \"Default\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"apnsUseSandboxEndpoint\": false,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "69d6b24e-98cd-406a-a912-bada8e08d274",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "6d85c685-3673-4ec5-9402-20e858ac1690",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-6d85c685-3673-4ec5-9402-20e858ac1690"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9653989a-2651-4ef0-9f7c-e42272118658",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
+                      "id": "19211bd0-7171-4f57-85c6-510b6e94b925",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-19211bd0-7171-4f57-85c6-510b6e94b925"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-490d92c8-1903-4c01-b58e-552c20120b9a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9584b1ec-2c5d-4635-93bd-04dc0fe95f6a",
-              "name": "Account not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "Creates an app",
+                  "id": "04595d98-5674-4869-b301-caab93352a77",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "apps"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b447d984-590e-41ac-a798-f9d435cf2dec",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) The account ID of the account in which to create the application."
+                        }
+                      ]
+                    },
+                    "description": "Creates an application with the specified properties."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "cb7dd2f4-97a0-479a-8313-251ea4b49591",
+                      "name": "App created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"accountId\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\",\n  \"_links\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-cb7dd2f4-97a0-479a-8313-251ea4b49591"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c05e4335-ccc6-41fd-a4ee-25de545575e1",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "9ac7a56e-00d1-48ec-8d34-38e157d84dff",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-9ac7a56e-00d1-48ec-8d34-38e157d84dff"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "66e58fd0-9670-4863-80b3-952519473ab3",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":account_id",
-                    "apps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "account_id",
-                      "description": "(Required) The account ID of the account in which to create the application."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "774de092-a703-47fd-b879-7fccb4fa3ad4",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-774de092-a703-47fd-b879-7fccb4fa3ad4"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "50ec893e-0190-4b8d-81fd-40289acee704",
-          "name": "Updates an app",
-          "request": {
-            "name": "Updates an app",
-            "description": {
-              "content": "Updates the application with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of application to be updated."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean>\",\n  \"fcmKey\": \"<string>\",\n  \"fcmServiceAccount\": \"<string>\",\n  \"fcmProjectId\": \"<string>\",\n  \"apnsCertificate\": \"<string>\",\n  \"apnsPrivateKey\": \"<string>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "68dfbf42-e42e-40f2-a807-739ae38ba08d",
-              "name": "App updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "bf3f9898-8922-404c-ae13-4826e81884bd",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-bf3f9898-8922-404c-ae13-4826e81884bd"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accountId\": \"WgRpOB\",\n  \"id\": \"28AB6x\",\n  \"name\": \"Default\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"apnsUseSandboxEndpoint\": false,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2d5bf703-c8e6-446b-b509-65757eabb1d7",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "076a87fc-5a60-41a3-a2c0-569950ead360",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-076a87fc-5a60-41a3-a2c0-569950ead360"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9c88b3fb-878d-439b-ac8a-d13a6bc874a1",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
+                      "id": "e9d7c236-7a68-4b1c-8470-84b28b2f35e7",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "apps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-e9d7c236-7a68-4b1c-8470-84b28b2f35e7"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-04595d98-5674-4869-b301-caab93352a77"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e4afb0ae-2148-4c93-b77a-04188a1161d9",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "739dde98-82ef-483b-bb5d-a91d5b2bbfd9",
-              "name": "Invalid resource",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "482dd399-c415-4fcf-af7a-c3e762eb2318",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of application to be updated."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My App\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"fcmKey\": \"AABBQ1KyxCE:APA91bCCYs7r_Q-sqW8HMP_hV4t3vMYx...cJ8344-MhGWODZEuAmg_J4MUJcVQEyDn...I\",\n  \"fcmServiceAccount\": \"service_account\",\n  \"fcmProjectId\": \"notional-armor-405018\",\n  \"apnsCertificate\": \"-----BEGIN CERTIFICATE-----MIIFaDCC...EXAMPLE...3Dc=-----END CERTIFICATE-----\",\n  \"apnsPrivateKey\": \"REDACTED_PRIVATE_KEY_EXAMPLE\",\n  \"apnsUseSandboxEndpoint\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b2b74352-8db9-49d4-9501-646328c7a490",
+              "createdAt": "2026-10-22T02:25:24.000Z",
+              "updatedAt": "2026-10-22T02:25:24.000Z",
+              "uid": "35240-b2b74352-8db9-49d4-9501-646328c7a490"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "21a8a300-a990-4e25-8978-087e83a99247",
-          "name": "Deletes an app",
-          "request": {
-            "name": "Deletes an app",
-            "description": {
-              "content": "Deletes the application with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the application to be deleted."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "71b9e131-a283-41a6-9b17-5295f94e761b",
-              "name": "App deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the application to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2ba0b747-803f-4dbf-9510-a5f92bd315a4",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the application to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7d307a28-2d1b-4483-b925-781d0b80f42a",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the application to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9620ac29-313b-4c56-ac46-cd7e31981d8e",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the application to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "409af499-15d9-401f-a240-e0f497538eab",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the application to be deleted."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cfedd27b-26c7-4a3e-81c8-30dddc63ee8d",
-          "name": "Updates app's APNs info from a `.p12` file",
-          "request": {
-            "name": "Updates app's APNs info from a `.p12` file",
-            "description": {
-              "content": "Updates the application's Apple Push Notification service (APNs) information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":id",
-                "pkcs12"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "p12File",
-                  "type": "file",
-                  "description": "(Required) The `.p12` file containing the app's APNs information."
-                },
-                {
-                  "key": "p12Pass",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "(Required) The password for the corresponding `.p12` file."
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "2d8be66b-3cf5-4553-8088-8eef55ec7182",
-              "name": "App updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id",
-                    "pkcs12"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) The `.p12` file containing the app's APNs information.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12File",
-                      "value": "example.p12",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) The password for the corresponding `.p12` file.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12Pass",
-                      "value": "secret",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accountId\": \"WgRpOB\",\n  \"id\": \"28AB6x\",\n  \"name\": \"Default\",\n  \"status\": \"enabled\",\n  \"tlsOnly\": true,\n  \"apnsUseSandboxEndpoint\": false,\n  \"_links\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e1cab8d2-7e3a-4550-a469-e058ae291b77",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id",
-                    "pkcs12"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) The `.p12` file containing the app's APNs information.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12File",
-                      "value": "example.p12",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) The password for the corresponding `.p12` file.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12Pass",
-                      "value": "secret",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e0f8c809-64dd-4a97-914b-260a6fdebdfa",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id",
-                    "pkcs12"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) The `.p12` file containing the app's APNs information.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12File",
-                      "value": "example.p12",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) The password for the corresponding `.p12` file.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12Pass",
-                      "value": "secret",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dc697aa8-2d6a-44dd-bbd6-bd1f848b4cac",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id",
-                    "pkcs12"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) The `.p12` file containing the app's APNs information.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12File",
-                      "value": "example.p12",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) The password for the corresponding `.p12` file.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12Pass",
-                      "value": "secret",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6802601a-9904-45e5-bbea-d811a1afac59",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":id",
-                    "pkcs12"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) The `.p12` file containing the app's APNs information.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12File",
-                      "value": "example.p12",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) The password for the corresponding `.p12` file.",
-                        "type": "text/plain"
-                      },
-                      "key": "p12Pass",
-                      "value": "secret",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 4164,\n  \"statusCode\": 4807,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b1c3c5ed-5824-441a-b222-8f8f4e063bcf",
+          "createdAt": "2026-10-22T02:25:24.000Z",
+          "updatedAt": "2026-10-22T02:25:24.000Z",
+          "uid": "35240-b1c3c5ed-5824-441a-b222-8f8f4e063bcf"
         }
       ],
-      "event": []
+      "id": "4648b9db-f6ea-4833-8669-eace82b4af24",
+      "createdAt": "2026-10-22T02:25:24.000Z",
+      "updatedAt": "2026-10-22T02:25:24.000Z",
+      "uid": "35240-4648b9db-f6ea-4833-8669-eace82b4af24"
+    },
+    {
+      "name": "apps",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "pkcs12",
+              "item": [
+                {
+                  "name": "Updates app's APNs info from a `.p12` file",
+                  "id": "426d3fed-ad10-4c4f-be1f-a53a34c101a1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The `.p12` file containing the app's APNs information.",
+                          "key": "p12File",
+                          "type": "file",
+                          "value": null
+                        },
+                        {
+                          "description": "(Required) The password for the corresponding `.p12` file.",
+                          "key": "p12Pass",
+                          "value": "<string>",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id",
+                        "pkcs12"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7dfd164-bebf-429d-acdf-31bd628ee939",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Updates the application's Apple Push Notification service (APNs) information."
+                  },
+                  "response": [
+                    {
+                      "id": "932b6d7f-0050-48ad-9912-051f3e1bbe29",
+                      "name": "App updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The `.p12` file containing the app's APNs information.",
+                              "key": "p12File",
+                              "type": "file"
+                            },
+                            {
+                              "description": "(Required) The password for the corresponding `.p12` file.",
+                              "key": "p12Pass",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":id",
+                            "pkcs12"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"accountId\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\",\n  \"_links\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-932b6d7f-0050-48ad-9912-051f3e1bbe29"
+                    },
+                    {
+                      "id": "c9ba86a6-d887-48a1-b38d-f7fd4364e3aa",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The `.p12` file containing the app's APNs information.",
+                              "key": "p12File",
+                              "type": "file"
+                            },
+                            {
+                              "description": "(Required) The password for the corresponding `.p12` file.",
+                              "key": "p12Pass",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":id",
+                            "pkcs12"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-c9ba86a6-d887-48a1-b38d-f7fd4364e3aa"
+                    },
+                    {
+                      "id": "110a9f1f-b757-4437-bf2c-95f00f83715a",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The `.p12` file containing the app's APNs information.",
+                              "key": "p12File",
+                              "type": "file"
+                            },
+                            {
+                              "description": "(Required) The password for the corresponding `.p12` file.",
+                              "key": "p12Pass",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":id",
+                            "pkcs12"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-110a9f1f-b757-4437-bf2c-95f00f83715a"
+                    },
+                    {
+                      "id": "392ba5c2-e41a-4a0f-a537-0af6f117e984",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The `.p12` file containing the app's APNs information.",
+                              "key": "p12File",
+                              "type": "file"
+                            },
+                            {
+                              "description": "(Required) The password for the corresponding `.p12` file.",
+                              "key": "p12Pass",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":id",
+                            "pkcs12"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-392ba5c2-e41a-4a0f-a537-0af6f117e984"
+                    },
+                    {
+                      "id": "d5fb29c1-c9ad-4d19-9508-064df5927b59",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The `.p12` file containing the app's APNs information.",
+                              "key": "p12File",
+                              "type": "file"
+                            },
+                            {
+                              "description": "(Required) The password for the corresponding `.p12` file.",
+                              "key": "p12Pass",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:id/pkcs12",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":id",
+                            "pkcs12"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:25:24.000Z",
+                      "updatedAt": "2026-10-22T02:25:24.000Z",
+                      "uid": "35240-d5fb29c1-c9ad-4d19-9508-064df5927b59"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-426d3fed-ad10-4c4f-be1f-a53a34c101a1"
+                }
+              ],
+              "id": "8b3f1a43-ba33-46e5-a225-e0302b3e8de2",
+              "createdAt": "2026-10-22T02:25:24.000Z",
+              "updatedAt": "2026-10-22T02:25:24.000Z",
+              "uid": "35240-8b3f1a43-ba33-46e5-a225-e0302b3e8de2"
+            },
+            {
+              "name": "Updates an app",
+              "id": "577ae939-97ac-40c8-8a2d-1ca80fa3cf43",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "99fe4231-7db5-4dcd-9814-cdc07ccea8a2",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of application to be updated."
+                    }
+                  ]
+                },
+                "description": "Updates the application with the specified application ID."
+              },
+              "response": [
+                {
+                  "id": "2e89ac00-ac5c-46b8-b1b6-217aa010369a",
+                  "name": "App updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountId\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\",\n  \"_links\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-2e89ac00-ac5c-46b8-b1b6-217aa010369a"
+                },
+                {
+                  "id": "2123eda4-e760-4878-bccf-370ce8f1a2a6",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-2123eda4-e760-4878-bccf-370ce8f1a2a6"
+                },
+                {
+                  "id": "0542af90-e445-4785-a6b7-8fd30b8acbca",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-0542af90-e445-4785-a6b7-8fd30b8acbca"
+                },
+                {
+                  "id": "84194d30-863f-4805-9a37-8675dffb915b",
+                  "name": "App not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-84194d30-863f-4805-9a37-8675dffb915b"
+                },
+                {
+                  "id": "4c40b2ea-3289-4248-b58f-de144928e658",
+                  "name": "Invalid resource",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-4c40b2ea-3289-4248-b58f-de144928e658"
+                },
+                {
+                  "id": "7f0f7e80-ae2d-4fe9-9266-11c2691ec92f",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tlsOnly\": \"<boolean,null>\",\n  \"fcmKey\": \"<string,null>\",\n  \"fcmServiceAccount\": \"<string,null>\",\n  \"fcmProjectId\": \"<string,null>\",\n  \"apnsCertificate\": \"<string,null>\",\n  \"apnsPrivateKey\": \"<string,null>\",\n  \"apnsUseSandboxEndpoint\": \"<boolean,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-7f0f7e80-ae2d-4fe9-9266-11c2691ec92f"
+                }
+              ],
+              "createdAt": "2026-10-22T02:25:24.000Z",
+              "updatedAt": "2026-10-22T02:25:24.000Z",
+              "uid": "35240-577ae939-97ac-40c8-8a2d-1ca80fa3cf43"
+            },
+            {
+              "name": "Deletes an app",
+              "id": "22898b89-2ef6-4b52-b60b-9748e7b356a7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bea937b7-a5aa-4977-b66f-a23b95a1d4eb",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the application to be deleted."
+                    }
+                  ]
+                },
+                "description": "Deletes the application with the specified application ID."
+              },
+              "response": [
+                {
+                  "id": "9f806fe7-99e6-42c3-a5a0-c436222c3b14",
+                  "name": "App deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-9f806fe7-99e6-42c3-a5a0-c436222c3b14"
+                },
+                {
+                  "id": "ac7faeae-cfb9-490b-9a56-00cb1e09cda8",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-ac7faeae-cfb9-490b-9a56-00cb1e09cda8"
+                },
+                {
+                  "id": "96bdc2f0-30f0-4043-81c0-0740cc6adba6",
+                  "name": "App not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-96bdc2f0-30f0-4043-81c0-0740cc6adba6"
+                },
+                {
+                  "id": "4e524ca8-99f9-43cd-aab0-cea06f839029",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-4e524ca8-99f9-43cd-aab0-cea06f839029"
+                },
+                {
+                  "id": "97bfa881-3b73-4521-a222-655cec814292",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                  "createdAt": "2026-10-22T02:25:24.000Z",
+                  "updatedAt": "2026-10-22T02:25:24.000Z",
+                  "uid": "35240-97bfa881-3b73-4521-a222-655cec814292"
+                }
+              ],
+              "createdAt": "2026-10-22T02:25:24.000Z",
+              "updatedAt": "2026-10-22T02:25:24.000Z",
+              "uid": "35240-22898b89-2ef6-4b52-b60b-9748e7b356a7"
+            }
+          ],
+          "id": "fa4f7eac-5316-4e0d-a7b2-136e877ee212",
+          "createdAt": "2026-10-22T02:25:24.000Z",
+          "updatedAt": "2026-10-22T02:25:24.000Z",
+          "uid": "35240-fa4f7eac-5316-4e0d-a7b2-136e877ee212"
+        }
+      ],
+      "id": "97665fff-7b07-443d-9c08-91809ff997d9",
+      "createdAt": "2026-10-22T02:25:24.000Z",
+      "updatedAt": "2026-10-22T02:25:24.000Z",
+      "uid": "35240-97665fff-7b07-443d-9c08-91809ff997d9"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://control.ably.net/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://control.ably.net/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "8e115ca0-1107-43d3-b270-e75314473a49",
-    "name": "Control API v1 apps API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

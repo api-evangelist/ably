@@ -1,1258 +1,1211 @@
 {
+  "info": {
+    "_postman_id": "81b6bab7-f39a-4f2c-9e55-90427d7a9e0e",
+    "name": "Control API v1 Queues API",
+    "description": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably Control API docs.\n\nControl API is currently in Preview.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:26:11.000Z",
+    "updatedAt": "2026-10-22T02:26:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-81b6bab7-f39a-4f2c-9e55-90427d7a9e0e"
+  },
   "item": [
     {
-      "id": "385fa89e-e5f4-4efb-af45-1bd78a0e2681",
-      "name": "queues",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "apps",
       "item": [
         {
-          "id": "6196cd7e-7aa0-4db6-8406-bdf43c50cebc",
-          "name": "Lists queues",
-          "request": {
-            "name": "Lists queues",
-            "description": {
-              "content": "Lists the <a href=\"https://ably.com/docs/general/queues\">queues</a> associated with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "queues"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{app_id}",
+          "item": [
             {
-              "id": "453bfaa1-b788-4043-aacf-012c972c4491",
-              "name": "Queue list",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "queues",
+              "item": [
+                {
+                  "name": "{queue_id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
+                      "name": "Deletes a queue",
+                      "id": "3a3d4d7f-97cb-4373-b76e-63cd7e0bd329",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues",
+                            ":queue_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1f2a568d-1b7b-4aee-914a-97fb82f5f890",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) The application ID."
+                            },
+                            {
+                              "id": "6e068e62-64a3-406a-b3b0-81f3f8f06941",
+                              "key": "queue_id",
+                              "value": "<string>",
+                              "description": "(Required) The queue ID."
+                            }
+                          ]
+                        },
+                        "description": "Delete the queue with the specified queue name, from the application with the specified application ID."
+                      },
+                      "response": [
+                        {
+                          "id": "32a48572-46a0-4384-ad9b-2053ffa5cd66",
+                          "name": "Queue deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-32a48572-46a0-4384-ad9b-2053ffa5cd66"
+                        },
+                        {
+                          "id": "9114e20a-1fde-4e5c-a5e2-97cc8e5c8d4d",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-9114e20a-1fde-4e5c-a5e2-97cc8e5c8d4d"
+                        },
+                        {
+                          "id": "4f79c339-f397-4556-b6e5-b720544233b9",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-4f79c339-f397-4556-b6e5-b720544233b9"
+                        },
+                        {
+                          "id": "a0c82c20-0d2f-4f90-b48c-ef8b75c2ba07",
+                          "name": "App not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-a0c82c20-0d2f-4f90-b48c-ef8b75c2ba07"
+                        },
+                        {
+                          "id": "2aa51a67-fe6e-446f-a81a-af82963f6cd8",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-2aa51a67-fe6e-446f-a81a-af82963f6cd8"
+                        },
+                        {
+                          "id": "ced80103-bbeb-4de4-93e4-5239fdbf3f34",
+                          "name": "503 Service unavailable",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:app_id/queues/:queue_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":app_id",
+                                "queues",
+                                ":queue_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                },
+                                {
+                                  "key": "queue_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                          "createdAt": "2026-10-22T02:26:12.000Z",
+                          "updatedAt": "2026-10-22T02:26:12.000Z",
+                          "uid": "35240-ced80103-bbeb-4de4-93e4-5239fdbf3f34"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-3a3d4d7f-97cb-4373-b76e-63cd7e0bd329"
                     }
-                  ]
+                  ],
+                  "id": "a0f3bccf-665a-4629-ae1f-95b6c07e6817",
+                  "createdAt": "2026-10-22T02:26:12.000Z",
+                  "updatedAt": "2026-10-22T02:26:12.000Z",
+                  "uid": "35240-a0f3bccf-665a-4629-ae1f-95b6c07e6817"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Lists queues",
+                  "id": "3dba4963-d5d2-466e-bd54-ce85e7152024",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"28AB6w:us-east-1-a:My queue\",\n    \"appId\": \"28AB6w\",\n    \"name\": \"My queue\",\n    \"region\": \"eu-west-1-a\",\n    \"amqp\": {\n      \"uri\": \"amqps://us-east-1-a-queue.ably.io:5671/shared\",\n      \"queueName\": \"28AB6w:My queue\"\n    },\n    \"stomp\": {\n      \"uri\": \"stomp://us-east-1-a-queue.ably.io:61614\",\n      \"host\": \"shared\",\n      \"destination\": \"/amqp/queue/28AB6w:My queue\"\n    },\n    \"state\": \"Running\",\n    \"messages\": {\n      \"ready\": 0,\n      \"unacknowledged\": 0,\n      \"total\": 0\n    },\n    \"stats\": {\n      \"publishRate\": 7367.516014521236,\n      \"deliveryRate\": 4970.230825654562,\n      \"acknowledgementRate\": 9887.896476293547\n    },\n    \"ttl\": 60,\n    \"maxLength\": 10000,\n    \"deadletter\": false,\n    \"deadletterId\": \"28AB6w:us-east-1-a:deadletter\"\n  },\n  {\n    \"id\": \"28AB6w:us-east-1-a:My queue\",\n    \"appId\": \"28AB6w\",\n    \"name\": \"My queue\",\n    \"region\": \"eu-west-1-a\",\n    \"amqp\": {\n      \"uri\": \"amqps://us-east-1-a-queue.ably.io:5671/shared\",\n      \"queueName\": \"28AB6w:My queue\"\n    },\n    \"stomp\": {\n      \"uri\": \"stomp://us-east-1-a-queue.ably.io:61614\",\n      \"host\": \"shared\",\n      \"destination\": \"/amqp/queue/28AB6w:My queue\"\n    },\n    \"state\": \"Running\",\n    \"messages\": {\n      \"ready\": 0,\n      \"unacknowledged\": 0,\n      \"total\": 0\n    },\n    \"stats\": {\n      \"publishRate\": 9288.03064795932,\n      \"deliveryRate\": 7531.345065329658,\n      \"acknowledgementRate\": 5826.648099884011\n    },\n    \"ttl\": 60,\n    \"maxLength\": 10000,\n    \"deadletter\": false,\n    \"deadletterId\": \"28AB6w:us-east-1-a:deadletter\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b1e270f6-25b7-4374-aed9-b4c7ca206afe",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/queues",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "queues"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eb4bb1fa-a4b7-41d7-aab7-607124633b79",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Lists the queues associated with the specified application ID."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3b1fa316-c0b8-4cb5-8d8b-02d73918d514",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "id": "8d294c2b-3d1f-4d58-afa8-28a1e486ddd3",
+                      "name": "Queue list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"amqp\": {\n      \"uri\": \"<string>\",\n      \"queueName\": \"<string>\"\n    },\n    \"stomp\": {\n      \"uri\": \"<string>\",\n      \"host\": \"<string>\",\n      \"destination\": \"<string>\"\n    },\n    \"state\": \"<string>\",\n    \"messages\": {\n      \"ready\": \"<integer,null>\",\n      \"unacknowledged\": \"<integer,null>\",\n      \"total\": \"<integer,null>\"\n    },\n    \"stats\": {\n      \"publishRate\": \"<number,null>\",\n      \"deliveryRate\": \"<number,null>\",\n      \"acknowledgementRate\": \"<number,null>\"\n    },\n    \"ttl\": \"<integer>\",\n    \"maxLength\": \"<integer>\",\n    \"deadletter\": \"<boolean>\",\n    \"deadletterId\": \"<string,null>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"amqp\": {\n      \"uri\": \"<string>\",\n      \"queueName\": \"<string>\"\n    },\n    \"stomp\": {\n      \"uri\": \"<string>\",\n      \"host\": \"<string>\",\n      \"destination\": \"<string>\"\n    },\n    \"state\": \"<string>\",\n    \"messages\": {\n      \"ready\": \"<integer,null>\",\n      \"unacknowledged\": \"<integer,null>\",\n      \"total\": \"<integer,null>\"\n    },\n    \"stats\": {\n      \"publishRate\": \"<number,null>\",\n      \"deliveryRate\": \"<number,null>\",\n      \"acknowledgementRate\": \"<number,null>\"\n    },\n    \"ttl\": \"<integer>\",\n    \"maxLength\": \"<integer>\",\n    \"deadletter\": \"<boolean>\",\n    \"deadletterId\": \"<string,null>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-8d294c2b-3d1f-4d58-afa8-28a1e486ddd3"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "id": "ec5330b0-fc43-450f-8b2e-0eb312e975c0",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-ec5330b0-fc43-450f-8b2e-0eb312e975c0"
+                    },
+                    {
+                      "id": "35e0a961-9c0d-464e-ab59-34eb216ecdf6",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-35e0a961-9c0d-464e-ab59-34eb216ecdf6"
+                    },
+                    {
+                      "id": "c638de25-8322-4f05-a9a2-ae2f6e24893f",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-c638de25-8322-4f05-a9a2-ae2f6e24893f"
+                    },
+                    {
+                      "id": "8419b1b1-6009-49b3-aa58-c237281c0c51",
+                      "name": "503 Service unavailable",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-8419b1b1-6009-49b3-aa58-c237281c0c51"
+                    },
+                    {
+                      "id": "54c8deb3-7b7c-4947-b0f7-f248cf26797b",
+                      "name": "Gateway timeout",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-54c8deb3-7b7c-4947-b0f7-f248cf26797b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:26:12.000Z",
+                  "updatedAt": "2026-10-22T02:26:12.000Z",
+                  "uid": "35240-3dba4963-d5d2-466e-bd54-ce85e7152024"
+                },
+                {
+                  "name": "Creates a queue",
+                  "id": "7dcb2713-feb3-471b-b0f1-0e53fa60c030",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "64be0606-b1fc-4a70-aeb6-a82706c37d92",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:app_id/queues",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":app_id",
+                        "queues"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f690681-629b-46ff-bfc9-dd392a75f4f8",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID."
+                        }
+                      ]
+                    },
+                    "description": "Creates a queue for the application specified by application ID. The properties for the queue to be created are specified in the request body."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "response": [
+                    {
+                      "id": "348b4a3d-ccb1-4763-afaf-d77092700cf8",
+                      "name": "Queue created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"amqp\": {\n    \"uri\": \"<string>\",\n    \"queueName\": \"<string>\"\n  },\n  \"stomp\": {\n    \"uri\": \"<string>\",\n    \"host\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"state\": \"<string>\",\n  \"messages\": {\n    \"ready\": \"<integer,null>\",\n    \"unacknowledged\": \"<integer,null>\",\n    \"total\": \"<integer,null>\"\n  },\n  \"stats\": {\n    \"publishRate\": \"<number,null>\",\n    \"deliveryRate\": \"<number,null>\",\n    \"acknowledgementRate\": \"<number,null>\"\n  },\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"deadletter\": \"<boolean>\",\n  \"deadletterId\": \"<string,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-348b4a3d-ccb1-4763-afaf-d77092700cf8"
+                    },
+                    {
+                      "id": "1d3aafe4-7619-4265-9052-9bffe7b59a59",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-1d3aafe4-7619-4265-9052-9bffe7b59a59"
+                    },
+                    {
+                      "id": "60fac824-8a7a-4d2e-a32a-2fc8c55e4533",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-60fac824-8a7a-4d2e-a32a-2fc8c55e4533"
+                    },
+                    {
+                      "id": "6a1e46da-383d-4eb9-b875-e44de04140d4",
+                      "name": "App not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-6a1e46da-383d-4eb9-b875-e44de04140d4"
+                    },
+                    {
+                      "id": "68ae438b-49ca-4b7d-a914-9213e0204632",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-68ae438b-49ca-4b7d-a914-9213e0204632"
+                    },
+                    {
+                      "id": "c6bacede-5694-4e38-b06d-96231fed7a83",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:app_id/queues",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":app_id",
+                            "queues"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"href\": \"<string>\",\n  \"details\": \"<object,null>\"\n}",
+                      "createdAt": "2026-10-22T02:26:12.000Z",
+                      "updatedAt": "2026-10-22T02:26:12.000Z",
+                      "uid": "35240-c6bacede-5694-4e38-b06d-96231fed7a83"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:26:12.000Z",
+                  "updatedAt": "2026-10-22T02:26:12.000Z",
+                  "uid": "35240-7dcb2713-feb3-471b-b0f1-0e53fa60c030"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0c29d16c-0577-4a48-b8e8-013c17f4a0fd",
-              "name": "503 Service unavailable",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Service Unavailable",
-              "code": 503,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2c357bb8-0c0c-408c-9acf-856f37ce1f1b",
-              "name": "Gateway timeout",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Gateway Timeout",
-              "code": 504,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c6cd844f-62c7-45e2-9744-1788422dfd2e",
-          "name": "Creates a queue",
-          "request": {
-            "name": "Creates a queue",
-            "description": {
-              "content": "Creates a <a href=\"https://ably.com/docs/general/queues\">queue</a> for the application specified by application ID. The properties for the queue to be created are specified in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "queues"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"maxLength\": \"<integer>\",\n  \"region\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3b2df6d9-3a4c-4f05-82ba-b1a7868d1b01",
-              "name": "Queue created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"28AB6w:us-east-1-a:My queue\",\n  \"appId\": \"28AB6w\",\n  \"name\": \"My queue\",\n  \"region\": \"eu-west-1-a\",\n  \"amqp\": {\n    \"uri\": \"amqps://us-east-1-a-queue.ably.io:5671/shared\",\n    \"queueName\": \"28AB6w:My queue\"\n  },\n  \"stomp\": {\n    \"uri\": \"stomp://us-east-1-a-queue.ably.io:61614\",\n    \"host\": \"shared\",\n    \"destination\": \"/amqp/queue/28AB6w:My queue\"\n  },\n  \"state\": \"Running\",\n  \"messages\": {\n    \"ready\": 0,\n    \"unacknowledged\": 0,\n    \"total\": 0\n  },\n  \"stats\": {\n    \"publishRate\": 4973.292158173457,\n    \"deliveryRate\": 1654.4658218822162,\n    \"acknowledgementRate\": 9473.61008475163\n  },\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"deadletter\": false,\n  \"deadletterId\": \"28AB6w:us-east-1-a:deadletter\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "60b7e4e1-179b-4bb9-a1bd-f97a7eee8781",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a68ac8fc-7067-4b6f-9b1c-b30fa2939d23",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "be45ffdf-ef18-43b4-b591-5b8477199d4c",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "df8b353b-c3c8-4cd2-bab9-193d969e7111",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "477be4e7-6a7e-4e57-8f36-2824ba313c26",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"My queue\",\n  \"ttl\": 60,\n  \"maxLength\": 10000,\n  \"region\": \"us-east-1-a\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e8430e9a-fe95-4246-9a93-ce53e1c9ee66",
-          "name": "Deletes a queue",
-          "request": {
-            "name": "Deletes a queue",
-            "description": {
-              "content": "Delete the <a href=\"https://ably.com/docs/general/queues\">queue</a> with the specified queue name, from the application with the specified application ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                ":app_id",
-                "queues",
-                ":queue_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "app_id",
-                  "description": "(Required) The application ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "queue_id",
-                  "description": "(Required) The queue ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "c1429923-9204-4784-9e46-003e532d70f7",
-              "name": "Queue deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "456d19d9-fb8b-4262-a107-c6f7648195b8",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "02b81e8e-4201-45a4-9e91-7000e58f2882",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a993ba14-4cc8-4f2d-9197-fa59758a1702",
-              "name": "App not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e9e92d04-7a06-4872-8933-a871feeadd9e",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9818904b-5597-4f0f-8684-5bf86c9f0ba3",
-              "name": "503 Service unavailable",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    ":app_id",
-                    "queues",
-                    ":queue_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "app_id",
-                      "description": "(Required) The application ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queue_id",
-                      "description": "(Required) The queue ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Service Unavailable",
-              "code": 503,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"code\": 7672,\n  \"statusCode\": 4596,\n  \"href\": \"string\",\n  \"details\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "0aadb328-ca4a-4c38-a179-8d254bea3449",
+              "createdAt": "2026-10-22T02:26:12.000Z",
+              "updatedAt": "2026-10-22T02:26:12.000Z",
+              "uid": "35240-0aadb328-ca4a-4c38-a179-8d254bea3449"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ffdb3db6-6329-48e8-8929-3d3d1bba6e36",
+          "createdAt": "2026-10-22T02:26:12.000Z",
+          "updatedAt": "2026-10-22T02:26:12.000Z",
+          "uid": "35240-ffdb3db6-6329-48e8-8929-3d3d1bba6e36"
         }
       ],
-      "event": []
+      "id": "4b190caf-6787-4e7b-b16b-1311a926a779",
+      "createdAt": "2026-10-22T02:26:12.000Z",
+      "updatedAt": "2026-10-22T02:26:12.000Z",
+      "uid": "35240-4b190caf-6787-4e7b-b16b-1311a926a779"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://control.ably.net/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://control.ably.net/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "a6c77447-b55b-4f46-9246-4ac92f42134f",
-    "name": "Control API v1 apps queues API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Use the Control API to manage your applications, namespaces, keys, queues, rules, and more.\n\nDetailed information on using this API can be found in the Ably <a href=\"https://ably.com/docs/account/control-api\">Control API docs</a>.\n\nControl API is currently in Preview.\n",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
