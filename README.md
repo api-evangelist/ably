@@ -1,4 +1,4 @@
-# Ably (ably)
+# Ably
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,86 +66,213 @@
 
 Ably is a realtime messaging platform offering pub/sub, presence, push notifications, chat, LiveSync, and integrations over WebSocket and HTTP. Ably publishes its OpenAPI specifications publicly via the ably/open-specs GitHub repository, with separate specs for the Platform API (REST messaging surface) and the Control API (account, app, and key management).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ably/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ably/refs/heads/main/apis.yml)
+**Areas:** Real-Time · WebSocket · Pub/Sub · Messaging · Streaming · Push Notifications · Chat · LiveSync
 
-## Tags
+## Ably on APIs.io
 
-- Realtime
-- WebSockets
-- Pub/Sub
-- Messaging
-- Streaming
-- Push Notifications
-- Chat
-- LiveSync
+Everything profiled for Ably is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ably/](https://apis.io/providers/ably/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (12)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-29
+- [Ably Apps API](https://apis.io/apis/ably/ably-apps-api/) — The apps API from Ably — 3 operation(s) for apps.
+- [Ably Authentication API](https://apis.io/apis/ably/ably-authentication-api/) — The Authentication API from Ably — 1 operation(s) for authentication.
+- [Ably History API](https://apis.io/apis/ably/ably-history-api/) — The History API from Ably — 2 operation(s) for history.
+- [Ably Keys API](https://apis.io/apis/ably/ably-keys-api/) — The keys API from Ably — 3 operation(s) for keys.
+- [Ably Namespaces API](https://apis.io/apis/ably/ably-namespaces-api/) — The namespaces API from Ably — 2 operation(s) for namespaces.
+- [Ably Publishing API](https://apis.io/apis/ably/ably-publishing-api/) — The Publishing API from Ably — 1 operation(s) for publishing.
+- [Ably Push API](https://apis.io/apis/ably/ably-push-api/) — The Push API from Ably — 6 operation(s) for push.
+- [Ably Queues API](https://apis.io/apis/ably/ably-queues-api/) — The queues API from Ably — 2 operation(s) for queues.
+- [Ably Rules API](https://apis.io/apis/ably/ably-rules-api/) — The rules API from Ably — 2 operation(s) for rules.
+- [Ably Stats API](https://apis.io/apis/ably/ably-stats-api/) — The Stats API from Ably — 2 operation(s) for stats.
+- [Ably Status API](https://apis.io/apis/ably/ably-status-api/) — The Status API from Ably — 3 operation(s) for status.
+- [Ably Tokens API](https://apis.io/apis/ably/ably-tokens-api/) — The tokens API from Ably — 1 operation(s) for tokens.
 
-## APIs
+### Published properties
 
-### Ably Platform API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Ably Platform API exposes pub/sub messaging, presence, history, push notifications, and channel/stats endpoints over REST and WebSocket. WebSocket realtime connections use realtime.ably.io. Authentication via Basic auth (key) or token-based.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://ably.com/docs/api/rest-api](https://ably.com/docs/api/rest-api)
-- **Base URL:** `https://rest.ably.io`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Ably Realtime Protocol](https://apis.io/asyncapis/ably/ably-asyncapi/)
 
-- Pub/Sub
-- Messaging
-- WebSockets
-- REST
-- Streaming
+#### Event channels (3)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://ably.com/docs/api/rest-api)
-- [OpenAPI](openapi/ably-platform-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ably-platform-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ably-platform-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/ably-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Web Socket](wss://realtime.ably.io)
+- [{channelName}](https://apis.io/channels/ably/channelname/)
+- [/](https://apis.io/channels/ably/connection/)
+- [/sse](https://apis.io/channels/ably/sse/)
 
-### Ably Control API
+#### GraphQL (1)
 
-The Ably Control API manages accounts, apps, API keys, namespaces, queues, integration rules, and webhooks. Used to provision and operate Ably resources programmatically. Authentication via personal access token (PAT).
+GraphQL schemas.
 
-- **Human URL:** [https://ably.com/docs/api/control-api](https://ably.com/docs/api/control-api)
-- **Base URL:** `https://control.ably.net/v1`
+- [Moved to /providers/ably/](https://apis.io/graphqls/ably/ably-graphql/)
 
-#### Tags
+#### Agentic access (1)
 
-- Account Management
-- Apps
-- Keys
-- Namespaces
-- Integrations
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Ably Agentic Access](https://apis.io/agentic-access/ably/ably-agentic-access/)
 
-- [Documentation](https://ably.com/docs/api/control-api)
-- [OpenAPI](openapi/ably-control-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ably-control-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ably-control-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Schema (79)
 
-## Common Properties
+The data models the API reads and writes.
 
-- [LinkedIn](https://www.linkedin.com/company/ably-realtime)
-- [Portal](https://ably.com/)
+- [amqp_external_rule_patch](https://apis.io/schemas/ably/ably-amqp-external-rule-patch/)
+- [amqp_external_rule_post](https://apis.io/schemas/ably/ably-amqp-external-rule-post/)
+- [amqp_external_rule_response](https://apis.io/schemas/ably/ably-amqp-external-rule-response/)
+- [amqp_rule_patch](https://apis.io/schemas/ably/ably-amqp-rule-patch/)
+- [amqp_rule_post](https://apis.io/schemas/ably/ably-amqp-rule-post/)
+- [amqp_rule_response](https://apis.io/schemas/ably/ably-amqp-rule-response/)
+- [app_patch](https://apis.io/schemas/ably/ably-app-patch/)
+- [app_pkcs12](https://apis.io/schemas/ably/ably-app-pkcs12/)
+- [app_post](https://apis.io/schemas/ably/ably-app-post/)
+- [app_response](https://apis.io/schemas/ably/ably-app-response/)
+- [aws_access_keys](https://apis.io/schemas/ably/ably-aws-access-keys/)
+- [aws_access_keys_response](https://apis.io/schemas/ably/ably-aws-access-keys-response/)
+- [aws_assume_role](https://apis.io/schemas/ably/ably-aws-assume-role/)
+- [aws_kinesis_rule_patch](https://apis.io/schemas/ably/ably-aws-kinesis-rule-patch/)
+- [aws_kinesis_rule_post](https://apis.io/schemas/ably/ably-aws-kinesis-rule-post/)
+- [aws_kinesis_rule_response](https://apis.io/schemas/ably/ably-aws-kinesis-rule-response/)
+- [aws_lambda_rule_patch](https://apis.io/schemas/ably/ably-aws-lambda-rule-patch/)
+- [aws_lambda_rule_post](https://apis.io/schemas/ably/ably-aws-lambda-rule-post/)
+- [aws_lambda_rule_response](https://apis.io/schemas/ably/ably-aws-lambda-rule-response/)
+- [aws_sqs_rule_patch](https://apis.io/schemas/ably/ably-aws-sqs-rule-patch/)
+- [aws_sqs_rule_post](https://apis.io/schemas/ably/ably-aws-sqs-rule-post/)
+- [aws_sqs_rule_response](https://apis.io/schemas/ably/ably-aws-sqs-rule-response/)
+- [azure_function_rule_patch](https://apis.io/schemas/ably/ably-azure-function-rule-patch/)
+- [azure_function_rule_post](https://apis.io/schemas/ably/ably-azure-function-rule-post/)
+- [azure_function_rule_response](https://apis.io/schemas/ably/ably-azure-function-rule-response/)
+- …and 54 more published on APIs.io
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Ably Structure](https://apis.io/json-structure/ably/ably-structure/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Ably Requestaccesstoken Example](https://apis.io/examples/ably/ably-requestaccesstoken-example/)
+- [Ably Subscribepushdevicetochannel Example](https://apis.io/examples/ably/ably-subscribepushdevicetochannel-example/)
+
+#### Collections (14)
+
+Postman and Open Collection request collections.
+
+- [Control API v1 apps API](https://apis.io/collections/ably/open-ably-apps-api/)
+- [Control API v1 apps Authentication API](https://apis.io/collections/ably/open-ably-authentication-api/)
+- [Control API v1](https://apis.io/collections/ably/open-ably-control-api/)
+- [Control API v1 apps History API](https://apis.io/collections/ably/open-ably-history-api/)
+- [Control API v1 apps keys API](https://apis.io/collections/ably/open-ably-keys-api/)
+- [Control API v1 apps namespaces API](https://apis.io/collections/ably/open-ably-namespaces-api/)
+- [Platform API](https://apis.io/collections/ably/open-ably-platform-api/)
+- [Control API v1 apps Publishing API](https://apis.io/collections/ably/open-ably-publishing-api/)
+- [Control API v1 apps Push API](https://apis.io/collections/ably/open-ably-push-api/)
+- [Control API v1 apps queues API](https://apis.io/collections/ably/open-ably-queues-api/)
+- [Control API v1 apps rules API](https://apis.io/collections/ably/open-ably-rules-api/)
+- [Control API v1 apps Stats API](https://apis.io/collections/ably/open-ably-stats-api/)
+- [Control API v1 apps Status API](https://apis.io/collections/ably/open-ably-status-api/)
+- [Control API v1 apps tokens API](https://apis.io/collections/ably/open-ably-tokens-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Ably — asyncapi rules](https://apis.io/rules/ably/ably-asyncapi-spectral-rules/)
+- [Ably — jsonschema rules](https://apis.io/rules/ably/ably-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ably Authentication](https://apis.io/security/ably/ably-authentication/)
+- [Ably Domain Security](https://apis.io/security/ably/ably-domain-security/)
+- [Ably Trust Center](https://apis.io/security/ably/ably-trust-center/)
+- [Ably Vulnerability Disclosure](https://apis.io/security/ably/ably-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ably Plans Pricing](https://apis.io/plans/ably/ably-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ably Rate Limits](https://apis.io/rate-limits/ably/ably-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ably Finops](https://apis.io/finops/ably/ably-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ably.com/)
 - [Documentation](https://ably.com/docs)
 - [Pricing](https://ably.com/pricing)
-- [Git Hub](https://github.com/ably)
-- [Status Page](https://status.ably.com/)
-- [Plans](plans/ably-plans-pricing.yml)
-- [Rate Limits](rate-limits/ably-rate-limits.yml)
-- [Fin Ops](finops/ably-finops.yml)
-- [L L Ms Txt](https://ably.com/llms.txt)
+- [Blog](https://voltaire.ably.com/blog/rss.xml)
+- [Status](https://status.ably.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.1** — developing · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 57.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 26.3 |
+
+**Agent readiness 27.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ably/](https://apis.io/providers/ably/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ably: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ably/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
